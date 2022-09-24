@@ -9,4 +9,10 @@ public class Staff extends AbstractWeapon {
     super(name, damage, weight);
     this.magicDamage = magicDamage;
   }
+
+  @Override
+  public String toString() {
+    return "Staff{name='%s', damage=%d, weight=%d, magicDamage=%d}"
+            .formatted(this.getName(), this.getDamage(), this.getWeight(), magicDamage);
+  }
 }

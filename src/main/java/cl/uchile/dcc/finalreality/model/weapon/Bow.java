@@ -7,4 +7,9 @@ public class Bow extends AbstractWeapon {
   public Bow(String name, int damage, int weight) {
     super(name, damage, weight);
   }
+
+  @Override
+  public String toString() {
+    return "Bow" + super.toString();
+  }
 }

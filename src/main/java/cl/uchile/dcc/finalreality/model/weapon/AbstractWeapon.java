@@ -59,7 +59,7 @@ public abstract class AbstractWeapon implements Weapon {
 
   @Override
   public String toString() {
-    return "Weapon{name='%s', damage=%d, weight=%d}"
+    return "{name='%s', damage=%d, weight=%d}"
         .formatted(name, damage, weight);
   }
 }
