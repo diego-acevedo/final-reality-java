@@ -16,11 +16,6 @@ import cl.uchile.dcc.finalreality.model.weapon.Weapon;
  * A {@link GameCharacter} that can equip a weapon.
  */
 public interface PlayerCharacter extends GameCharacter {
-  /**
-   * Sets a scheduled executor to make this character (thread) wait for {@code weight / 10}
-   * seconds before adding the character to the queue.
-   */
-  void waitTurn();
 
   /**
    * Equips a weapon to the character.

@@ -59,6 +59,8 @@ public abstract class AbstractCharacter implements GameCharacter {
     scheduledExecutor.shutdown();
   }
 
+  public abstract void waitTurn();
+
   @Override
   public String getName() {
     return name;
