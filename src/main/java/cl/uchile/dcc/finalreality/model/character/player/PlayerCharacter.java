@@ -10,6 +10,7 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 /**
  * A {@link GameCharacter} that can equip a weapon.
@@ -18,10 +19,10 @@ public interface PlayerCharacter extends GameCharacter {
   /**
    * Equips a weapon to the character.
    */
-  void equip(AbstractWeapon weapon);
+  void equip(Weapon weapon);
 
   /**
    * Return this character's equipped weapon.
    */
-  AbstractWeapon getEquippedWeapon();
+  Weapon getEquippedWeapon();
 }

@@ -13,6 +13,8 @@ import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
 import java.util.concurrent.BlockingQueue;
+
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -28,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractPlayerCharacter extends AbstractCharacter implements
     PlayerCharacter {
 
-  private AbstractWeapon equippedWeapon = null;
+  private Weapon equippedWeapon = null;
 
   /**
    * Creates a new character.
@@ -50,12 +52,12 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   @Override
-  public void equip(AbstractWeapon weapon) {
+  public void equip(Weapon weapon) {
     this.equippedWeapon = weapon;
   }
 
   @Override
-  public AbstractWeapon getEquippedWeapon() {
+  public Weapon getEquippedWeapon() {
     return equippedWeapon;
   }
 }
