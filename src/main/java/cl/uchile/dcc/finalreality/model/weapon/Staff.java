@@ -12,6 +12,10 @@ public class Staff extends AbstractWeapon {
     this.magicDamage = magicDamage;
   }
 
+  public int getMagicDamage() {
+    return magicDamage;
+  }
+
   @Override
   public boolean equals(final Object o) {
     if (this == o) {
