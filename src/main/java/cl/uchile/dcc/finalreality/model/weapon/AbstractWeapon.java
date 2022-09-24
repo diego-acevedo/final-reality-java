@@ -15,7 +15,7 @@ public abstract class AbstractWeapon {
   private final int weight;
 
   /**
-   * Creates a weapon with a name, a base damage, speed, and it's type.
+   * Creates a weapon with a name, a base damage and its weight.
    */
   public AbstractWeapon(final String name, final int damage, final int weight) {
     this.name = name;
