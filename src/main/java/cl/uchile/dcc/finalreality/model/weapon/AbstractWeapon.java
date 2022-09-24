@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author ~Your name~
  */
-public abstract class AbstractWeapon {
+public abstract class AbstractWeapon implements Weapon {
 
   private final String name;
   private final int damage;
@@ -23,11 +23,11 @@ public abstract class AbstractWeapon {
     this.weight = weight;
   }
 
-  private String getName() {
+  public String getName() {
     return name;
   }
 
-  private int getDamage() {
+  public int getDamage() {
     return damage;
   }
 
