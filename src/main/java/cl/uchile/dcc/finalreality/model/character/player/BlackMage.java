@@ -36,7 +36,7 @@ public class BlackMage extends AbstractMage {
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  protected BlackMage(final @NotNull String name, final int maxHp, final int defense,
+  public BlackMage(final @NotNull String name, final int maxHp, final int defense,
       final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
     super(name, maxHp, defense, maxMp, turnsQueue);
