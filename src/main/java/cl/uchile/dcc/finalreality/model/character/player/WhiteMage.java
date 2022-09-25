@@ -59,7 +59,7 @@ public class WhiteMage extends AbstractMage {
 
   @Override
   public String toString() {
-    return "BlackMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
+    return "WhiteMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
         .formatted(maxMp, maxHp, defense, name);
   }
 
