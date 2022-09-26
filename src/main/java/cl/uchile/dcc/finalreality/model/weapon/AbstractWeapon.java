@@ -1,5 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.Require;
+
 import java.util.Objects;
 
 /**
@@ -17,7 +20,8 @@ public abstract class AbstractWeapon implements Weapon {
   /**
    * Creates a weapon with a name, a base damage and its weight.
    */
-  public AbstractWeapon(final String name, final int damage, final int weight) {
+  public AbstractWeapon(final String name, final int damage, final int weight) throws InvalidStatValueException {
+    Require.statValueAtLeast(0, weight, "Weight");
     this.name = name;
     this.damage = damage;
     this.weight = weight;

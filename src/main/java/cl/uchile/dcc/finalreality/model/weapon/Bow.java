@@ -1,12 +1,14 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+
 import java.util.Objects;
 
 public class Bow extends AbstractWeapon {
   /**
    * Creates a bow with a name, a base damage and its weight.
    */
-  public Bow(String name, int damage, int weight) {
+  public Bow(String name, int damage, int weight) throws InvalidStatValueException {
     super(name, damage, weight);
   }
 

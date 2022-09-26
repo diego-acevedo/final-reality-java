@@ -1,5 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.Require;
+
 import java.util.Objects;
 
 public class Staff extends AbstractWeapon {
@@ -7,8 +10,9 @@ public class Staff extends AbstractWeapon {
   /**
    * Creates a staff with a name, a base damage, weight and its magic damage.
    */
-  public Staff(String name, int damage, int weight, int magicDamage) {
+  public Staff(String name, int damage, int weight, int magicDamage) throws InvalidStatValueException {
     super(name, damage, weight);
+    Require.statValueAtLeast(0, magicDamage, "Magic Damage");
     this.magicDamage = magicDamage;
   }
 

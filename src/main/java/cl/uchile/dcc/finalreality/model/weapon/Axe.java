@@ -1,12 +1,14 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+
 import java.util.Objects;
 
 public class Axe extends AbstractWeapon {
   /**
    * Creates an axe with a name, a base damage and its weight.
    */
-  public Axe(String name, int damage, int weight) {
+  public Axe(String name, int damage, int weight)  throws InvalidStatValueException {
     super(name, damage, weight);
   }
 
