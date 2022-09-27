@@ -16,15 +16,13 @@ import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A {@link PlayerCharacter} that can equip {@code Staff}s and use <i>white magic</i>.
+ * A White Mage is a type of player character that can cast white magic.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author ~Your name~
+ * @version 2.0
  */
-public class WhiteMage extends AbstractPlayerCharacter {
-
-  private int currentMp;
-  private final int maxMp;
+public class WhiteMage extends AbstractMage {
 
   /**
    * Creates a new character.
@@ -38,12 +36,10 @@ public class WhiteMage extends AbstractPlayerCharacter {
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
    */
-  protected WhiteMage(final @NotNull String name, final int maxHp, final int defense,
-      int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
+  public WhiteMage(final @NotNull String name, final int maxHp, final int defense,
+                      final int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
-    super(name, maxHp, defense, turnsQueue);
-    this.maxMp = maxMp;
-    this.currentMp = maxMp;
+    super(name, maxHp, defense, maxMp, turnsQueue);
   }
 
   @Override
@@ -55,15 +51,10 @@ public class WhiteMage extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && maxMp == that.maxMp
         && name.equals(that.name)
         && maxHp == that.maxHp
-        && defense == that.defense;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(WhiteMage.class, name, maxHp, defense, maxMp);
+        && defense == that.defense
+        && maxMp == that.maxMp;
   }
 
   @Override
@@ -72,26 +63,9 @@ public class WhiteMage extends AbstractPlayerCharacter {
         .formatted(maxMp, maxHp, defense, name);
   }
 
-  /**
-   * Returns the current MP of the character.
-   */
-  public int getCurrentMp() {
-    return currentMp;
+  @Override
+  public int hashCode() {
+    return Objects.hash(WhiteMage.class, name, maxHp, defense, maxMp);
   }
-
-  /**
-   * Sets the current MP of the character to {@code newMp}.
-   */
-  public void setCurrentMp(final int newMp) throws InvalidStatValueException {
-    Require.statValueAtLeast(0, newMp, "Current MP");
-    Require.statValueAtMost(maxMp, newMp, "Current MP");
-    this.currentMp = newMp;
-  }
-
-  /**
-   * Returns the max MP of the character.
-   */
-  public int getMaxMp() {
-    return maxMp;
-  }
+  // endregion
 }
