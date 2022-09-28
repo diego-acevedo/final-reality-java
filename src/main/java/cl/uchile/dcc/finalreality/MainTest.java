@@ -3,15 +3,30 @@ package cl.uchile.dcc.finalreality;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.*;
-import cl.uchile.dcc.finalreality.model.weapon.*;
-
+import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model.weapon.Axe;
+import cl.uchile.dcc.finalreality.model.weapon.Bow;
+import cl.uchile.dcc.finalreality.model.weapon.Knife;
+import cl.uchile.dcc.finalreality.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Pseudo-test that shows the project works.
+ */
 public class MainTest {
 
+  /**
+   * Main function to test the project implementation.
+   */
   public static void main(String[] args) throws InvalidStatValueException, InterruptedException {
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     Random rnd = new Random();
@@ -84,17 +99,18 @@ public class MainTest {
 
     /*
      * Turns example:
-     * This part illustrates the turns order and wait time by printing on the console when a character
-     * starts to wait for theit next round
+     * This part illustrates the turns order and wait time by
+     * printing on the console when a character starts to wait for theit next round
      */
 
-    System.out.println("\n---Turns example---\nCharacters will attack and wait for their next turn\n");
+    System.out.println(
+        "\n---Turns example---\nCharacters will attackand wait for their next turn\n");
 
     long startTime = System.currentTimeMillis();
     while (System.currentTimeMillis() - startTime < 10000) {
       if (!(queue.isEmpty())) {
         GameCharacter character = queue.poll();
-        System.out.printf("%s attacked\n",character);
+        System.out.printf("%s attacked\n", character);
         character.waitTurn();
       }
     }
