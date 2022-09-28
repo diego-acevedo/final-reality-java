@@ -8,7 +8,7 @@ import java.util.Objects;
  * A class that holds the information of a {@link Weapon} that's a Staff.
  */
 
-public class Staff extends AbstractWeapon {
+public class Staff extends AbstractWeapon implements MagicWeapon {
   private final int magicDamage;
 
   /**
