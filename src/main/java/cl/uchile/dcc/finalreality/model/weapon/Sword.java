@@ -1,14 +1,19 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-
 import java.util.Objects;
 
+/**
+ * A class that holds the information of a {@link Weapon} that's a Sword.
+ */
+
 public class Sword extends AbstractWeapon {
+
   /**
    * Creates a sword with a name, a base damage and its weight.
    */
-  public Sword(final String name, final int damage, final int weight) throws InvalidStatValueException {
+  public Sword(final String name, final int damage, final int weight)
+      throws InvalidStatValueException {
     super(name, damage, weight);
   }
 
