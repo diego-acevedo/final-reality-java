@@ -6,8 +6,6 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,6 +30,10 @@ public class Enemy extends AbstractCharacter {
     this.weight = weight;
   }
 
+  /**
+   * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
+   * Cooldown depends on the enemy's weight.
+   */
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
     scheduledExecutor.schedule(
@@ -69,6 +71,7 @@ public class Enemy extends AbstractCharacter {
 
   @Override
   public String toString() {
-    return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d}".formatted(maxHp, defense, name ,weight);
+    return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d}"
+            .formatted(maxHp, defense, name, weight);
   }
 }

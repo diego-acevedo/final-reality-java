@@ -7,7 +7,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
  * A character can be controlled by the player or by the CPU (an enemy).
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public interface GameCharacter {
 
@@ -36,6 +36,9 @@ public interface GameCharacter {
    */
   void setCurrentHp(int hp) throws InvalidStatValueException;
 
+  /**
+   * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
+   */
   void waitTurn();
 
 }
