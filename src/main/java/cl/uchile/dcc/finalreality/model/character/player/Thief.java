@@ -19,7 +19,8 @@ import org.jetbrains.annotations.NotNull;
  * {@code Bow}s.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ *
  * @version 2.0
  */
 public class Thief extends AbstractPlayerCharacter {

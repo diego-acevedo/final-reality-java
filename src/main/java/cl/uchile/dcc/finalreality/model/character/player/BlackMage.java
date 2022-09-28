@@ -16,10 +16,11 @@ import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A Black Mage is a type of player character that can cast black magic.
+ * * A {@link PlayerCharacter} that can equip {@code Staff}s and {@code Knife}s.
+ * They can also cast white magic.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  * @version 2.0
  */
 public class BlackMage extends AbstractMage {

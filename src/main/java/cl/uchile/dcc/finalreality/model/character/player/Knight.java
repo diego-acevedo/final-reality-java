@@ -17,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 /**
  * A {@link PlayerCharacter} that can equip {@code Sword}s,{@code Knife}s and
  * {@code Axe}s.
+ *
+ * @author <a href="https://www.github.com/r8vnhill">R8V</a>
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class Knight extends AbstractPlayerCharacter {
 
