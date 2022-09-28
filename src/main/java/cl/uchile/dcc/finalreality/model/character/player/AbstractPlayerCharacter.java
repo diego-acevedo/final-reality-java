@@ -10,14 +10,12 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -28,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  * waiting for their turn ({@code turnsQueue}), and can equip a {@link AbstractWeapon}.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public abstract class AbstractPlayerCharacter extends AbstractCharacter implements
     PlayerCharacter {
@@ -54,6 +52,10 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     super(name, maxHp, defense, turnsQueue);
   }
 
+  /**
+   * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
+   * Cooldown depends on the PlayerCharacter's equipped weapon's weight.
+   */
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
     scheduledExecutor.schedule(
