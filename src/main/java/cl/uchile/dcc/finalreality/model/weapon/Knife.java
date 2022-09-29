@@ -25,14 +25,14 @@ public class Knife extends AbstractWeapon {
       return false;
     }
     return hashCode() == weapon.hashCode()
-            && this.getDamage() == weapon.getDamage()
-            && this.getWeight() == weapon.getWeight()
-            && this.getName().equals(weapon.getName());
+            && this.damage == weapon.damage
+            && this.weight == weapon.weight
+            && this.name.equals(weapon.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Knife.class, this.getName(), this.getDamage(), this.getWeight());
+    return Objects.hash(Knife.class, this.name, this.damage, this.weight);
   }
 
   @Override

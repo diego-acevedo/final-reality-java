@@ -12,14 +12,14 @@ import java.util.Objects;
  */
 public abstract class AbstractWeapon implements Weapon {
 
-  private final String name;
-  private final int damage;
-  private final int weight;
+  protected final String name;
+  protected final int damage;
+  protected final int weight;
 
   /**
    * Creates a weapon with a name, a base damage and its weight.
    */
-  public AbstractWeapon(final String name, final int damage, final int weight)
+  protected AbstractWeapon(final String name, final int damage, final int weight)
       throws InvalidStatValueException {
     Require.statValueAtLeast(1, weight, "Weight");
     this.name = name;

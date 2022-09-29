@@ -7,7 +7,7 @@ abstract class AbstractMagicWeapon extends AbstractWeapon {
 
   protected final int magicDamage;
 
-  public AbstractMagicWeapon(final String name, final int damage, final int weight,
+  protected AbstractMagicWeapon(final String name, final int damage, final int weight,
       int magicDamage) throws InvalidStatValueException {
     super(name, damage, weight);
     Require.statValueAtLeast(0, magicDamage, "Magic Damage");
