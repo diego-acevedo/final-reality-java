@@ -24,14 +24,14 @@ public class Axe extends AbstractWeapon {
       return false;
     }
     return hashCode() == weapon.hashCode()
-            && this.damage == weapon.damage
-            && this.weight == weapon.weight
-            && this.name.equals(weapon.name);
+            && this.getDamage() == weapon.getDamage()
+            && this.getWeight() == weapon.getWeight()
+            && this.getName().equals(weapon.getName());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Axe.class, this.name, this.damage, this.weight);
+    return Objects.hash(Axe.class, this.getName(), this.getDamage(), this.getWeight());
   }
 
   @Override

@@ -5,7 +5,7 @@ import cl.uchile.dcc.finalreality.exceptions.Require;
 
 abstract class AbstractMagicWeapon extends AbstractWeapon {
 
-  protected final int magicDamage;
+  private final int magicDamage;
 
   protected AbstractMagicWeapon(final String name, final int damage, final int weight,
       int magicDamage) throws InvalidStatValueException {

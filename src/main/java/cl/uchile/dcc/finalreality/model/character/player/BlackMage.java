@@ -52,21 +52,21 @@ public class BlackMage extends AbstractMage {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense
-        && maxMp == that.maxMp;
+        && this.getName().equals(that.getName())
+        && this.getMaxHp() == that.getMaxHp()
+        && this.getDefense() == that.getDefense()
+        && this.getMaxMp() == that.getMaxMp();
   }
 
   @Override
   public String toString() {
     return "BlackMage{maxMp=%d, maxHp=%d, defense=%d, name='%s'}"
-        .formatted(maxMp, maxHp, defense, name);
+        .formatted(this.getMaxMp(), this.getMaxHp(), this.getDefense(), this.getName());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(BlackMage.class, name, maxHp, defense, maxMp);
+    return Objects.hash(BlackMage.class, this.getName(), this.getMaxHp(), this.getDefense(), this.getMaxMp());
   }
   // endregion
 }

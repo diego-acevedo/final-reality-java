@@ -45,7 +45,7 @@ public class Thief extends AbstractPlayerCharacter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Thief.class, name, maxHp, defense);
+    return Objects.hash(Thief.class, this.getName(), this.getMaxHp(), this.getDefense());
   }
 
   @Override
@@ -57,13 +57,13 @@ public class Thief extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+        && this.getName().equals(that.getName())
+        && this.getMaxHp() == that.getMaxHp()
+        && this.getDefense() == that.getDefense();
   }
 
   @Override
   public String toString() {
-    return "Thief{maxHp=%d, defense=%d, name='%s'}".formatted(maxHp, defense, name);
+    return "Thief{maxHp=%d, defense=%d, name='%s'}".formatted(this.getMaxHp(), this.getDefense(), this.getName());
   }
 }

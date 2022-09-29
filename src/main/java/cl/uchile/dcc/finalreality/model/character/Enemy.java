@@ -58,20 +58,20 @@ public class Enemy extends AbstractCharacter {
       return false;
     }
     return hashCode() == enemy.hashCode()
-        && name.equals(enemy.name)
-        && weight == enemy.weight
-        && maxHp == enemy.maxHp
-        && defense == enemy.defense;
+        && this.getName().equals(enemy.getName())
+        && this.getWeight() == enemy.getWeight()
+        && this.getMaxHp() == enemy.getMaxHp()
+        && this.getDefense() == enemy.getDefense();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Enemy.class, name, weight, maxHp, defense);
+    return Objects.hash(Enemy.class, this.getName(), this.getWeight(), this.getMaxHp(), this.getDefense());
   }
 
   @Override
   public String toString() {
     return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d}"
-            .formatted(maxHp, defense, name, weight);
+            .formatted(this.getMaxHp(), this.getDefense(), this.getName(), this.getWeight());
   }
 }

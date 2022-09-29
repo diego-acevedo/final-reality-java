@@ -65,7 +65,7 @@ public class MainTest {
 
     // Equals
 
-    System.out.println("-----Testing equals() methods-----\n");
+    System.out.println("-----Testing equals() methods and getters-----\n");
 
     if (!(knight1.equals(knight1)) ||
         !(knight1.equals(knight2)) ||

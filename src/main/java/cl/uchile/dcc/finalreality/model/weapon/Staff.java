@@ -26,21 +26,21 @@ public class Staff extends AbstractMagicWeapon {
       return false;
     }
     return hashCode() == weapon.hashCode()
-            && this.damage == weapon.damage
-            && this.weight == weapon.weight
-            && this.name.equals(weapon.name)
-            && this.magicDamage == weapon.magicDamage;
+            && this.getDamage() == weapon.getDamage()
+            && this.getWeight() == weapon.getWeight()
+            && this.getName().equals(weapon.getName())
+            && this.getMagicDamage() == weapon.getMagicDamage();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Staff.class, this.name, this.damage,
-            this.weight, this.magicDamage);
+    return Objects.hash(Staff.class, this.getName(), this.getDamage(),
+            this.getWeight(), this.getMagicDamage());
   }
 
   @Override
   public String toString() {
     return "Staff{name='%s', damage=%d, weight=%d, magicDamage=%d}"
-            .formatted(this.name, this.damage, this.weight, this.magicDamage);
+            .formatted(this.getName(), this.getDamage(), this.getWeight(), this.getMagicDamage());
   }
 }

@@ -12,9 +12,9 @@ import java.util.Objects;
  */
 public abstract class AbstractWeapon implements Weapon {
 
-  protected final String name;
-  protected final int damage;
-  protected final int weight;
+  private final String name;
+  private final int damage;
+  private final int weight;
 
   /**
    * Creates a weapon with a name, a base damage and its weight.
