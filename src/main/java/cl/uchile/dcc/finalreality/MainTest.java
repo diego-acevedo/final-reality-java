@@ -31,37 +31,78 @@ public class MainTest {
     BlockingQueue<GameCharacter> queue = new LinkedBlockingQueue<>();
     Random rnd = new Random();
 
-    PlayerCharacter knight1 = new Knight("Knight", 100, 50, queue);
-    PlayerCharacter knight2 = new Knight("Knight", 100, 50, queue);
-    PlayerCharacter knight3 = new Knight("AlternativeKnight", 100, 50, queue);
-    PlayerCharacter knight4 = new Knight("Knight", 150, 50, queue);
-    PlayerCharacter knight5 = new Knight("Knight", 100, 100, queue);
+    // Knights
+    PlayerCharacter knight1 = new Knight("1", 100, 50, queue);
+    PlayerCharacter knight2 = new Knight("1", 100, 50, queue);
+    PlayerCharacter knight3 = new Knight("2", 100, 50, queue);
+    PlayerCharacter knight4 = new Knight("1", 150, 50, queue);
+    PlayerCharacter knight5 = new Knight("1", 100, 100, queue);
 
-    PlayerCharacter thief1 = new Thief("Thief", 100, 50, queue);
-    PlayerCharacter thief2 = new Thief("Thief", 100, 50, queue);
-    PlayerCharacter thief3 = new Thief("AlternativeThief", 100, 50, queue);
-    PlayerCharacter thief4 = new Thief("Thief", 150, 50, queue);
-    PlayerCharacter thief5 = new Thief("Thief", 100, 100, queue);
+    // Thiefs
+    PlayerCharacter thief1 = new Thief("1", 100, 50, queue);
+    PlayerCharacter thief2 = new Thief("1", 100, 50, queue);
+    PlayerCharacter thief3 = new Thief("2", 100, 50, queue);
+    PlayerCharacter thief4 = new Thief("1", 150, 50, queue);
+    PlayerCharacter thief5 = new Thief("1", 100, 100, queue);
 
-    PlayerCharacter engineer1 = new Engineer("Engineer", 100, 50, queue);
-    PlayerCharacter engineer2 = new Engineer("Engineer", 100, 50, queue);
-    PlayerCharacter engineer3 = new Engineer("AlternativeEngineer", 100, 50, queue);
-    PlayerCharacter engineer4 = new Engineer("Engineer", 150, 50, queue);
-    PlayerCharacter engineer5 = new Engineer("Engineer", 100, 100, queue);
+    // Engineers
+    PlayerCharacter engineer1 = new Engineer("1", 100, 50, queue);
+    PlayerCharacter engineer2 = new Engineer("1", 100, 50, queue);
+    PlayerCharacter engineer3 = new Engineer("2", 100, 50, queue);
+    PlayerCharacter engineer4 = new Engineer("1", 150, 50, queue);
+    PlayerCharacter engineer5 = new Engineer("1", 100, 100, queue);
 
-    PlayerCharacter blackmage1 = new BlackMage("BlackMage", 100, 50, 100, queue);
-    PlayerCharacter blackmage2 = new BlackMage("BlackMage", 100, 50, 100, queue);
-    PlayerCharacter blackmage3 = new BlackMage("AlternativeBlackMage", 100, 50, 100, queue);
-    PlayerCharacter blackmage4 = new BlackMage("BlackMage", 150, 50, 100, queue);
-    PlayerCharacter blackmage5 = new BlackMage("BlackMage", 100, 100, 100, queue);
-    PlayerCharacter blackmage6 = new BlackMage("BlackMage", 100, 50, 200, queue);
+    // Black Mages
+    PlayerCharacter blackmage1 = new BlackMage("1", 100, 50, 100, queue);
+    PlayerCharacter blackmage2 = new BlackMage("1", 100, 50, 100, queue);
+    PlayerCharacter blackmage3 = new BlackMage("2", 100, 50, 100, queue);
+    PlayerCharacter blackmage4 = new BlackMage("1", 150, 50, 100, queue);
+    PlayerCharacter blackmage5 = new BlackMage("1", 100, 100, 100, queue);
+    PlayerCharacter blackmage6 = new BlackMage("1", 100, 50, 200, queue);
 
-    PlayerCharacter whitemage1 = new WhiteMage("WhiteMage", 100, 50, 100, queue);
-    PlayerCharacter whitemage2 = new WhiteMage("WhiteMage", 100, 50, 100, queue);
-    PlayerCharacter whitemage3 = new WhiteMage("AlternativeWhiteMage", 100, 50, 100, queue);
-    PlayerCharacter whitemage4 = new WhiteMage("WhiteMage", 150, 50, 100, queue);
-    PlayerCharacter whitemage5 = new WhiteMage("WhiteMage", 100, 100, 100, queue);
-    PlayerCharacter whitemage6 = new WhiteMage("WhiteMage", 100, 50, 200, queue);
+    // White Mages
+    PlayerCharacter whitemage1 = new WhiteMage("1", 100, 50, 100, queue);
+    PlayerCharacter whitemage2 = new WhiteMage("1", 100, 50, 100, queue);
+    PlayerCharacter whitemage3 = new WhiteMage("2", 100, 50, 100, queue);
+    PlayerCharacter whitemage4 = new WhiteMage("1", 150, 50, 100, queue);
+    PlayerCharacter whitemage5 = new WhiteMage("1", 100, 100, 100, queue);
+    PlayerCharacter whitemage6 = new WhiteMage("1", 100, 50, 200, queue);
+
+    // Swords
+    Weapon sword1 = new Sword("1", 50, 20);
+    Weapon sword2 = new Sword("1", 50, 20);
+    Weapon sword3 = new Sword("2", 50, 20);
+    Weapon sword4 = new Sword("1", 70, 20);
+    Weapon sword5 = new Sword("1", 50, 30);
+
+    // Axes
+    Weapon axe1 = new Axe("1", 50, 20);
+    Weapon axe2 = new Axe("1", 50, 20);
+    Weapon axe3 = new Axe("2", 50, 20);
+    Weapon axe4 = new Axe("1", 70, 20);
+    Weapon axe5 = new Axe("1", 50, 30);
+
+    // Bows
+    Weapon bow1 = new Bow("1", 50, 20);
+    Weapon bow2 = new Bow("1", 50, 20);
+    Weapon bow3 = new Bow("2", 50, 20);
+    Weapon bow4 = new Bow("1", 70, 20);
+    Weapon bow5 = new Bow("1", 50, 30);
+
+    // Knifes
+    Weapon knife1 = new Knife("1", 50, 20);
+    Weapon knife2 = new Knife("1", 50, 20);
+    Weapon knife3 = new Knife("2", 50, 20);
+    Weapon knife4 = new Knife("1", 70, 20);
+    Weapon knife5 = new Knife("1", 50, 30);
+
+    // Staffs
+    Weapon staff1 = new Staff("1", 50, 20, 50);
+    Weapon staff2 = new Staff("1", 50, 20, 50);
+    Weapon staff3 = new Staff("2", 50, 20, 50);
+    Weapon staff4 = new Staff("1", 70, 20, 50);
+    Weapon staff5 = new Staff("1", 50, 30, 50);
+    Weapon staff6 = new Staff("1", 50, 20, 100);
 
     // Equals
 
@@ -108,6 +149,47 @@ public class MainTest {
         whitemage1.equals(whitemage6)) {
       System.out.println("Method equals() fails for WhiteMage class\n");
     } else System.out.println("Method equals() worked correctly for WhiteMage class\n");
+
+    if (!(sword1.equals(sword1)) ||
+        !(sword1.equals(sword2)) ||
+        sword1.equals(sword3) ||
+        sword1.equals(sword4) ||
+        sword1.equals(sword5)) {
+      System.out.println("Method equals() fails for Sword class\n");
+    } else System.out.println("Method equals() worked correctly for Sword class\n");
+
+    if (!(axe1.equals(axe1)) ||
+        !(axe1.equals(axe2)) ||
+        axe1.equals(axe3) ||
+        axe1.equals(axe4) ||
+        axe1.equals(axe5)) {
+      System.out.println("Method equals() fails for Axe class\n");
+    } else System.out.println("Method equals() worked correctly for Axe class\n");
+
+    if (!(bow1.equals(bow1)) ||
+        !(bow1.equals(bow2)) ||
+        bow1.equals(bow3) ||
+        bow1.equals(bow4) ||
+        bow1.equals(bow5)) {
+      System.out.println("Method equals() fails for Bow class\n");
+    } else System.out.println("Method equals() worked correctly for Bow class\n");
+
+    if (!(knife1.equals(knife1)) ||
+        !(knife1.equals(knife2)) ||
+        knife1.equals(knife3) ||
+        knife1.equals(knife4) ||
+        knife1.equals(knife5)) {
+      System.out.println("Method equals() fails for Knife class\n");
+    } else System.out.println("Method equals() worked correctly for Knife class\n");
+
+    if (!(staff1.equals(staff1)) ||
+        !(staff1.equals(staff2)) ||
+        staff1.equals(staff3) ||
+        staff1.equals(staff4) ||
+        staff1.equals(staff5) ||
+        staff1.equals(staff6)) {
+      System.out.println("Method equals() fails for Staff class\n");
+    } else System.out.println("Method equals() worked correctly for Satff class\n");
 
     System.out.println("-----Testing toString() methods and equip() method (incomplete implementation)-----\n");
 
