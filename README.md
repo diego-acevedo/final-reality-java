@@ -59,6 +59,8 @@ Each weapon has their own weight (which is used for the cooldown).
 However, the Staff has an extra atribute: magic damage. This is the
 only weapon in the game that can be used to cast spells.
 
+![My Image](img/UML.png)
+
 Changes implemented (Firts Assigment)
 -------
 
@@ -67,10 +69,8 @@ Changes implemented (Firts Assigment)
 1. Change type implementation from Enumeration to Classes
 and Abstract Classes (polimorphism).
 2. Add interface Weapon to be used as a type for all weapons.
-3. Add abstract class AbstractMagicWeapon and interface 
-MagicWeapon. For all the weapons implemented this far, this 
-abstract class isn't a good implementation, but it is good if
-more weapons are expected to be added, especially, magic weapons.
+3. Add interface MagicWeapon to be implemented by all magic weapons
+   (Staff)
 
 ### Characters
 

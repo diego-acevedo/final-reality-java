@@ -7,14 +7,16 @@ import java.util.Objects;
  * A class that holds the information of a {@link Weapon} that's a Staff.
  */
 
-public class Staff extends AbstractMagicWeapon {
+public class Staff extends AbstractWeapon implements MagicWeapon {
 
+  private final int magicDamage;
   /**
    * Creates a staff with a name, a base damage, weight and its magic damage.
    */
   public Staff(String name, int damage, int weight, final int magicDamage)
       throws InvalidStatValueException {
-    super(name, damage, weight, magicDamage);
+    super(name, damage, weight);
+    this.magicDamage = magicDamage;
   }
 
   @Override
@@ -42,5 +44,13 @@ public class Staff extends AbstractMagicWeapon {
   public String toString() {
     return "Staff{name='%s', damage=%d, weight=%d, magicDamage=%d}"
             .formatted(this.getName(), this.getDamage(), this.getWeight(), this.getMagicDamage());
+  }
+
+  /**
+   * Returns this magic weapon's magic damage.
+   */
+  @Override
+  public int getMagicDamage() {
+    return magicDamage;
   }
 }
