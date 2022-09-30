@@ -68,6 +68,14 @@ public class MainTest {
     PlayerCharacter whitemage5 = new WhiteMage("1", 100, 100, 100, queue);
     PlayerCharacter whitemage6 = new WhiteMage("1", 100, 50, 200, queue);
 
+    // Enemies
+    Enemy enemy1 = new Enemy("1", 100, 100, 50, queue);
+    Enemy enemy2 = new Enemy("1", 100, 100, 50, queue);
+    Enemy enemy3 = new Enemy("2", 100, 100, 50, queue);
+    Enemy enemy4 = new Enemy("1", 50, 100, 50, queue);
+    Enemy enemy5 = new Enemy("1", 100, 50, 50, queue);
+    Enemy enemy6 = new Enemy("1", 100, 100, 100, queue);
+
     // Swords
     Weapon sword1 = new Sword("1", 50, 20);
     Weapon sword2 = new Sword("1", 50, 20);
@@ -150,6 +158,15 @@ public class MainTest {
       System.out.println("Method equals() fails for WhiteMage class\n");
     } else System.out.println("Method equals() worked correctly for WhiteMage class\n");
 
+    if (!(enemy1.equals(enemy1)) ||
+        !(enemy1.equals(enemy2)) ||
+        enemy1.equals(enemy3) ||
+        enemy1.equals(enemy4) ||
+        enemy1.equals(enemy5) ||
+        enemy1.equals(enemy6)) {
+      System.out.println("Method equals() fails for Enemy class\n");
+    } else System.out.println("Method equals() worked correctly for Enemy class\n");
+
     if (!(sword1.equals(sword1)) ||
         !(sword1.equals(sword2)) ||
         sword1.equals(sword3) ||
@@ -190,6 +207,21 @@ public class MainTest {
         staff1.equals(staff6)) {
       System.out.println("Method equals() fails for Staff class\n");
     } else System.out.println("Method equals() worked correctly for Satff class\n");
+
+    if (knight1.equals(engineer1) ||
+        engineer1.equals(thief1) ||
+        thief1.equals(whitemage1) ||
+        whitemage1.equals(blackmage1) ||
+        sword1.equals(knife1) ||
+        knife1.equals(axe1) ||
+        axe1.equals(staff1) ||
+        staff1.equals(bow1) ||
+        knight1.equals(knife1) ||
+        engineer1.equals(sword1) ||
+        thief1.equals(axe1) ||
+        whitemage1.equals(staff1)) {
+      System.out.println("Method equals() fails for objects of different classes\n");
+    } else System.out.println("Method equals() worked correctly for objects of different classes\n");
 
     System.out.println("-----Testing toString() methods and equip() method (incomplete implementation)-----\n");
 
