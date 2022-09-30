@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class Enemy extends AbstractCharacter {
 
   private final int weight;
+  private final int attack;
 
   /**
    * Creates a new enemy with a name, a weight and the queue with the characters ready to
@@ -35,11 +36,12 @@ public class Enemy extends AbstractCharacter {
    * @throws InvalidStatValueException weight must be greater than 1.
    */
   public Enemy(@NotNull final String name, final int weight, int maxHp, int defense,
-      @NotNull final BlockingQueue<GameCharacter> turnsQueue)
+      int attack, @NotNull final BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
+    this.attack = attack;
   }
 
   /**
@@ -61,6 +63,13 @@ public class Enemy extends AbstractCharacter {
     return weight;
   }
 
+  /**
+   * Returns the attack of this enemy.
+   */
+  public int getAttack() {
+    return attack;
+  }
+
   @Override
   public boolean equals(final Object o) {
     if (this == o) {
@@ -73,18 +82,20 @@ public class Enemy extends AbstractCharacter {
         && this.getName().equals(enemy.getName())
         && this.getWeight() == enemy.getWeight()
         && this.getMaxHp() == enemy.getMaxHp()
-        && this.getDefense() == enemy.getDefense();
+        && this.getDefense() == enemy.getDefense()
+        && this.getAttack() == enemy.getAttack();
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(Enemy.class, this.getName(), this.getWeight(),
-        this.getMaxHp(), this.getDefense());
+        this.getMaxHp(), this.getDefense(), this.getAttack());
   }
 
   @Override
   public String toString() {
-    return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d}"
-            .formatted(this.getMaxHp(), this.getDefense(), this.getName(), this.getWeight());
+    return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d, attack=%d}"
+            .formatted(this.getMaxHp(), this.getDefense(), this.getName(),
+                this.getWeight(), this.getAttack());
   }
 }
