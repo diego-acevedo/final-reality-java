@@ -6,10 +6,10 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
-abstract class AbstractMage extends AbstractPlayerCharacter {
+public abstract class AbstractMage extends AbstractPlayerCharacter {
 
   private int currentMp;
-  protected int maxMp;
+  private final int maxMp;
 
   /**
    * Creates a new character.
