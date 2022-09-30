@@ -66,7 +66,8 @@ public class Enemy extends AbstractCharacter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Enemy.class, this.getName(), this.getWeight(), this.getMaxHp(), this.getDefense());
+    return Objects.hash(Enemy.class, this.getName(), this.getWeight(),
+        this.getMaxHp(), this.getDefense());
   }
 
   @Override

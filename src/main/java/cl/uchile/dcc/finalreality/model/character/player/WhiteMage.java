@@ -66,7 +66,8 @@ public class WhiteMage extends AbstractMage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(WhiteMage.class, this.getName(), this.getMaxHp(), this.getDefense(), this.getMaxMp());
+    return Objects.hash(WhiteMage.class, this.getName(), this.getMaxHp(),
+        this.getDefense(), this.getMaxMp());
   }
   // endregion
 }

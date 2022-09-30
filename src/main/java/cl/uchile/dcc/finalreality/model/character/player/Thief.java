@@ -64,6 +64,7 @@ public class Thief extends AbstractPlayerCharacter {
 
   @Override
   public String toString() {
-    return "Thief{maxHp=%d, defense=%d, name='%s'}".formatted(this.getMaxHp(), this.getDefense(), this.getName());
+    return "Thief{maxHp=%d, defense=%d, name='%s'}"
+        .formatted(this.getMaxHp(), this.getDefense(), this.getName());
   }
 }

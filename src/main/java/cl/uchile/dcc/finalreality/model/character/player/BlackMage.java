@@ -66,7 +66,8 @@ public class BlackMage extends AbstractMage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(BlackMage.class, this.getName(), this.getMaxHp(), this.getDefense(), this.getMaxMp());
+    return Objects.hash(BlackMage.class, this.getName(), this.getMaxHp(),
+        this.getDefense(), this.getMaxMp());
   }
   // endregion
 }
