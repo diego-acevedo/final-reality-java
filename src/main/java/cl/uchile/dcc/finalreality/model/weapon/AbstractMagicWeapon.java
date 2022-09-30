@@ -3,7 +3,7 @@ package cl.uchile.dcc.finalreality.model.weapon;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 
-abstract class AbstractMagicWeapon extends AbstractWeapon {
+abstract class AbstractMagicWeapon extends AbstractWeapon implements MagicWeapon {
 
   private final int magicDamage;
 
