@@ -10,6 +10,14 @@ public class Bow extends AbstractWeapon {
 
   /**
    * Creates a bow with a name, a base damage and its weight.
+   *
+   * @param name
+   *     the weapon's name.
+   * @param damage
+   *     the weapon's damage.
+   * @param weight
+   *     the weapon's weight.
+   * @throws InvalidStatValueException the weapon's weight can't be less than 1.
    */
   public Bow(String name, int damage, int weight) throws InvalidStatValueException {
     super(name, damage, weight);

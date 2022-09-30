@@ -21,6 +21,18 @@ public class Enemy extends AbstractCharacter {
   /**
    * Creates a new enemy with a name, a weight and the queue with the characters ready to
    * play.
+   *
+   * @param name
+   *     this enemy's name.
+   * @param weight
+   *     this enemy's weight.
+   * @param maxHp
+   *     this enemy's max health points.
+   * @param defense
+   *     this enemy's defense
+   * @param turnsQueue
+   *     the combat queue that manages the turns.
+   * @throws InvalidStatValueException weight must be greater than 1.
    */
   public Enemy(@NotNull final String name, final int weight, int maxHp, int defense,
       @NotNull final BlockingQueue<GameCharacter> turnsQueue)

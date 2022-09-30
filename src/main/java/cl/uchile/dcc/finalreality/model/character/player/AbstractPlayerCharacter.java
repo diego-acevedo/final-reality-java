@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * <p>All player characters have a {@code name}, a maximum amount of <i>hit points</i>
  * ({@code maxHp}), a {@code defense} value, a queue of {@link GameCharacter}s that are
- * waiting for their turn ({@code turnsQueue}), and can equip a {@link AbstractWeapon}.
+ * waiting for their turn ({@code turnsQueue}), and can equip a {@link Weapon}.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
  * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
@@ -38,13 +38,13 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
    * This constructor is <b>protected</b>, because it'll only be used by subclasses.
    *
    * @param name
-   *     the character's name
+   *     the character's name.
    * @param maxHp
-   *     the character's max hp
+   *     the character's max hp.
    * @param defense
-   *     the character's defense
+   *     the character's defense.
    * @param turnsQueue
-   *     the queue with the characters waiting for their turn
+   *     the queue with the characters waiting for their turn.
    */
   protected AbstractPlayerCharacter(@NotNull final String name, final int maxHp,
       final int defense, @NotNull final BlockingQueue<GameCharacter> turnsQueue)

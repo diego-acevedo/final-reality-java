@@ -6,14 +6,32 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Cointains the common behavior between mages.
+ * Its constructor is <b>protected</b>, because it'll only be used by subclasses.
+ */
 public abstract class AbstractMage extends AbstractPlayerCharacter {
 
   private int currentMp;
   private final int maxMp;
 
   /**
-   * Creates a new character.
-   * This constructor is <b>protected</b>, because it'll only be used by subclasses.
+   * Creates a new mage.
+   *
+   * @param name
+   *     this character's name.
+   * @param maxHp
+   *     this character's max health points.
+   * @param defense
+   *     this character's defense.
+   * @param maxMp
+   *     this mage's max mana points.
+   * @param turnsQueue
+   *     the combat queue that manages the turns.
+   * @throws InvalidStatValueException maxMp must be greater than 0.
+   *
+   * @author <a href="https://www.github.com/r8vnhill">R8V</a>
+   * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
    */
   protected AbstractMage(final @NotNull String name, final int maxHp, final int defense,
       int maxMp, final @NotNull BlockingQueue<GameCharacter> turnsQueue)

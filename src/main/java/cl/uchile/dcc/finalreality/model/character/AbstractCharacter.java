@@ -35,6 +35,8 @@ public abstract class AbstractCharacter implements GameCharacter {
    *     the character's defense
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
+   * @throws InvalidStatValueException maxHp must be greater than 1
+   *     and defense must be greater than 0
    */
   protected AbstractCharacter(@NotNull String name, int maxHp, int defense,
       @NotNull BlockingQueue<GameCharacter> turnsQueue) throws InvalidStatValueException {

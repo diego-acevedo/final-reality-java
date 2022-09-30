@@ -59,7 +59,7 @@ Each weapon has their own weight (which is used for the cooldown).
 However, the Staff has an extra atribute: magic damage. This is the
 only weapon in the game that can be used to cast spells.
 
-![My Image](img/UML.png)
+![UML Diagram](img/UML.png)
 
 Changes implemented (Firts Assigment)
 -------

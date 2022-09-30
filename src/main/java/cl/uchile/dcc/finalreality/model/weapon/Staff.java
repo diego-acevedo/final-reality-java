@@ -10,8 +10,19 @@ import java.util.Objects;
 public class Staff extends AbstractWeapon implements MagicWeapon {
 
   private final int magicDamage;
+
   /**
    * Creates a staff with a name, a base damage, weight and its magic damage.
+   *
+   * @param name
+   *     the weapon's name.
+   * @param damage
+   *     the weapon's damage.
+   * @param weight
+   *     the weapon's weight.
+   * @param magicDamage
+   *     the weapon's magic damage.
+   * @throws InvalidStatValueException the weapon's weight can't be less than 1.
    */
   public Staff(String name, int damage, int weight, final int magicDamage)
       throws InvalidStatValueException {
