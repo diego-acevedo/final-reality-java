@@ -69,12 +69,12 @@ public class MainTest {
     final PlayerCharacter whitemage6 = new WhiteMage("1", 100, 50, 200, queue);
 
     // Enemies
-    final Enemy enemy1 = new Enemy("1", 100, 100, 50, queue);
-    final Enemy enemy2 = new Enemy("1", 100, 100, 50, queue);
-    final Enemy enemy3 = new Enemy("2", 100, 100, 50, queue);
-    final Enemy enemy4 = new Enemy("1", 50, 100, 50, queue);
-    final Enemy enemy5 = new Enemy("1", 100, 50, 50, queue);
-    final Enemy enemy6 = new Enemy("1", 100, 100, 100, queue);
+    final Enemy enemy1 = new Enemy("1", 100, 100, 50, 100, queue);
+    final Enemy enemy2 = new Enemy("1", 100, 100, 50, 100, queue);
+    final Enemy enemy3 = new Enemy("2", 100, 100, 50, 100, queue);
+    final Enemy enemy4 = new Enemy("1", 50, 100, 50, 100, queue);
+    final Enemy enemy5 = new Enemy("1", 100, 50, 50, 100, queue);
+    final Enemy enemy6 = new Enemy("1", 100, 100, 100, 100, queue);
 
     // Swords
     final Weapon sword1 = new Sword("1", 50, 20);
@@ -312,7 +312,7 @@ public class MainTest {
     System.out.println("\n---Enemies---");
     for (int i = 0; i < 5; i++) {
       Enemy enemy = new Enemy("Enemy %d".formatted(i), rnd.nextInt(50) + 50,
-          rnd.nextInt(100) + 1, 0, queue);
+          rnd.nextInt(100) + 1, 0, 100, queue);
       System.out.println(enemy);
       queue.put(enemy);
     }
@@ -324,7 +324,7 @@ public class MainTest {
      */
 
     System.out.println(
-        "\n---Turns example---\nCharacters will attackand wait for their next turn\n");
+        "\n---Turns example---\nCharacters will attack and wait for their next turn\n");
 
     long startTime = System.currentTimeMillis();
     while (System.currentTimeMillis() - startTime < 10000) {
