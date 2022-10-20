@@ -2,8 +2,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.Bow;
-import cl.uchile.dcc.finalreality.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model.weapon.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +19,11 @@ class ThiefTest {
   Thief thief2;
   Thief thief3;
   BlockingQueue<GameCharacter> queue;
+  static Sword sword;
+  static Axe axe;
+  static Knife knife;
+  static Staff staff;
+  static Bow bow;
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
@@ -28,6 +33,15 @@ class ThiefTest {
     thief1 = new Thief("Thief1", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
     thief2 = new Thief("Thief2", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
     thief3 = new Thief("Thief3", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
+  }
+
+  @BeforeAll
+  static void setUpWeapons() throws InvalidStatValueException {
+    sword = new Sword("Sword", 10, 10);
+    axe = new Axe("Axe", 10, 10);
+    knife = new Knife("Axe", 10, 10);
+    staff = new Staff("Staff", 10, 10 ,10);
+    bow = new Bow("Bow", 10, 10);
   }
 
   @Test
@@ -58,6 +72,21 @@ class ThiefTest {
     } catch (InvalidStatValueException e) {
       assertTrue(true);
     }
+  }
+
+  @Test
+  void testEquip() {
+    assertNull(thief1.getEquippedWeapon());
+    thief1.equip(sword);
+    assertEquals(sword, thief1.getEquippedWeapon());
+    thief1.equip(axe);
+    assertEquals(sword, thief1.getEquippedWeapon());
+    thief1.equip(knife);
+    assertEquals(knife, thief1.getEquippedWeapon());
+    thief1.equip(staff);
+    assertEquals(knife, thief1.getEquippedWeapon());
+    thief1.equip(bow);
+    assertEquals(bow, thief1.getEquippedWeapon());
   }
 
   @Test

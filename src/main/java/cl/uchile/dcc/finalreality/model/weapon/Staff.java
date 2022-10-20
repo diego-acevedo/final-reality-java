@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.player.*;
+
 import java.util.Objects;
 
 /**
@@ -63,5 +65,30 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   @Override
   public int getMagicDamage() {
     return magicDamage;
+  }
+
+  @Override
+  public Weapon equipToKnight(Knight knight) {
+    return knight.getEquippedWeapon();
+  }
+
+  @Override
+  public Weapon equipToEngineer(Engineer engineer) {
+    return engineer.getEquippedWeapon();
+  }
+
+  @Override
+  public Weapon equipToThief(Thief thief) {
+    return thief.getEquippedWeapon();
+  }
+
+  @Override
+  public Weapon equipToBlackMage(BlackMage blackmage) {
+    return this;
+  }
+
+  @Override
+  public Weapon equipToWhiteMage(WhiteMage whitemage) {
+    return this;
   }
 }

@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.player.*;
+
 import java.util.Objects;
 
 /**
@@ -46,5 +48,30 @@ public class Knife extends AbstractWeapon {
   @Override
   public String toString() {
     return "Knife" + super.toString();
+  }
+
+  @Override
+  public Weapon equipToKnight(Knight knight) {
+    return this;
+  }
+
+  @Override
+  public Weapon equipToEngineer(Engineer engineer) {
+    return engineer.getEquippedWeapon();
+  }
+
+  @Override
+  public Weapon equipToThief(Thief thief) {
+    return this;
+  }
+
+  @Override
+  public Weapon equipToBlackMage(BlackMage blackmage) {
+    return this;
+  }
+
+  @Override
+  public Weapon equipToWhiteMage(WhiteMage whitemage) {
+    return whitemage.getEquippedWeapon();
   }
 }

@@ -2,8 +2,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.Knife;
-import cl.uchile.dcc.finalreality.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model.weapon.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +19,11 @@ class BlackMageTest {
   BlackMage blackmage2;
   BlackMage blackmage3;
   BlockingQueue<GameCharacter> queue;
+  static Sword sword;
+  static Axe axe;
+  static Knife knife;
+  static Staff staff;
+  static Bow bow;
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
@@ -31,6 +36,15 @@ class BlackMageTest {
         rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
     blackmage3 = new BlackMage("WhiteMage3", rnd.nextInt(10,100),
         rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
+  }
+
+  @BeforeAll
+  static void setUpWeapons() throws InvalidStatValueException {
+    sword = new Sword("Sword", 10, 10);
+    axe = new Axe("Axe", 10, 10);
+    knife = new Knife("Axe", 10, 10);
+    staff = new Staff("Staff", 10, 10 ,10);
+    bow = new Bow("Bow", 10, 10);
   }
 
   @Test
@@ -61,6 +75,21 @@ class BlackMageTest {
     } catch (InvalidStatValueException e) {
       assertTrue(true);
     }
+  }
+
+  @Test
+  void testEquip() throws InvalidStatValueException {
+    assertNull(blackmage1.getEquippedWeapon());
+    blackmage1.equip(sword);
+    assertNull(blackmage1.getEquippedWeapon());
+    blackmage1.equip(axe);
+    assertNull(blackmage1.getEquippedWeapon());
+    blackmage1.equip(knife);
+    assertEquals(knife, blackmage1.getEquippedWeapon());
+    blackmage1.equip(staff);
+    assertEquals(staff, blackmage1.getEquippedWeapon());
+    blackmage1.equip(bow);
+    assertEquals(staff, blackmage1.getEquippedWeapon());
   }
 
   @Test

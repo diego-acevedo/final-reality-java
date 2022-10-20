@@ -3,7 +3,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model.weapon.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,11 @@ class KnightTest {
   Knight knight2;
   Knight knight3;
   BlockingQueue<GameCharacter> queue;
+  static Sword sword;
+  static Axe axe;
+  static Knife knife;
+  static Staff staff;
+  static Bow bow;
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
@@ -28,6 +34,15 @@ class KnightTest {
     knight1 = new Knight("Knight1", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
     knight2 = new Knight("Knight2", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
     knight3 = new Knight("Knight3", rnd.nextInt(10,100), rnd.nextInt(10,100), queue);
+  }
+
+  @BeforeAll
+  static void setUpWeapons() throws InvalidStatValueException {
+    sword = new Sword("Sword", 10, 10);
+    axe = new Axe("Axe", 10, 10);
+    knife = new Knife("Axe", 10, 10);
+    staff = new Staff("Staff", 10, 10 ,10);
+    bow = new Bow("Bow", 10, 10);
   }
 
   @Test
@@ -58,6 +73,21 @@ class KnightTest {
     } catch (InvalidStatValueException e) {
       assertTrue(true);
     }
+  }
+
+  @Test
+  void testEquip() {
+    assertNull(knight1.getEquippedWeapon());
+    knight1.equip(sword);
+    assertEquals(sword, knight1.getEquippedWeapon());
+    knight1.equip(axe);
+    assertEquals(axe, knight1.getEquippedWeapon());
+    knight1.equip(knife);
+    assertEquals(knife, knight1.getEquippedWeapon());
+    knight1.equip(staff);
+    assertEquals(knife, knight1.getEquippedWeapon());
+    knight1.equip(bow);
+    assertEquals(knife, knight1.getEquippedWeapon());
   }
 
   @Test

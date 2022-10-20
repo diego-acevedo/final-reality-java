@@ -2,8 +2,8 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.Axe;
-import cl.uchile.dcc.finalreality.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model.weapon.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +19,11 @@ class EngineerTest {
   Engineer engineer2;
   Engineer engineer3;
   BlockingQueue<GameCharacter> queue;
+  static Sword sword;
+  static Axe axe;
+  static Knife knife;
+  static Staff staff;
+  static Bow bow;
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
@@ -31,6 +36,15 @@ class EngineerTest {
         rnd.nextInt(10,100), queue);
     engineer3 = new Engineer("Engineer3", rnd.nextInt(10,100),
         rnd.nextInt(10,100), queue);
+  }
+
+  @BeforeAll
+  static void setUpWeapons() throws InvalidStatValueException {
+    sword = new Sword("Sword", 10, 10);
+    axe = new Axe("Axe", 10, 10);
+    knife = new Knife("Axe", 10, 10);
+    staff = new Staff("Staff", 10, 10 ,10);
+    bow = new Bow("Bow", 10, 10);
   }
 
   @Test
@@ -61,6 +75,21 @@ class EngineerTest {
     } catch (InvalidStatValueException e) {
       assertTrue(true);
     }
+  }
+
+  @Test
+  void testEquip() {
+    assertNull(engineer1.getEquippedWeapon());
+    engineer1.equip(sword);
+    assertNull(engineer1.getEquippedWeapon());
+    engineer1.equip(axe);
+    assertEquals(axe, engineer1.getEquippedWeapon());
+    engineer1.equip(knife);
+    assertEquals(axe, engineer1.getEquippedWeapon());
+    engineer1.equip(staff);
+    assertEquals(axe, engineer1.getEquippedWeapon());
+    engineer1.equip(bow);
+    assertEquals(bow, engineer1.getEquippedWeapon());
   }
 
   @Test
