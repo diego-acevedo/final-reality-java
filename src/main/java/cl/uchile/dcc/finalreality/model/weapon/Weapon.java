@@ -1,6 +1,10 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
 
 /**
  * This represents a weapon equipable by a
@@ -26,14 +30,39 @@ public interface Weapon {
    */
   int getWeight();
 
+  /**
+   * Tries to equip this weapon to a {@link Knight}.
+   *
+   * @param knight Character {@link Knight} who will be equipped this weapon.
+   */
   Weapon equipToKnight(Knight knight);
 
+  /**
+   * Tries to equip this weapon to a {@link Engineer}.
+   *
+   * @param engineer Character {@link Engineer} who will be equipped this weapon.
+   */
   Weapon equipToEngineer(Engineer engineer);
 
+  /**
+   * Tries to equip this weapon to a {@link Thief}.
+   *
+   * @param thief Character {@link Thief} who will be equipped this weapon.
+   */
   Weapon equipToThief(Thief thief);
 
+  /**
+   * Tries to equip this weapon to a {@link BlackMage}.
+   *
+   * @param blackmage Character {@link BlackMage} who will be equipped this weapon.
+   */
   Weapon equipToBlackMage(BlackMage blackmage);
 
+  /**
+   * Tries to equip this weapon to a {@link WhiteMage}.
+   *
+   * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
+   */
   Weapon equipToWhiteMage(WhiteMage whitemage);
 
 }
