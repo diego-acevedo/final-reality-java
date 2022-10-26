@@ -93,6 +93,16 @@ class BlackMageTest {
   }
 
   @Test
+  void testManaPoints() throws InvalidStatValueException {
+    Random rnd = new Random();
+    int n = rnd.nextInt(1, blackmage1.getMaxMp());
+    blackmage1.setCurrentMp(n);
+    assertEquals(n, blackmage1.getCurrentMp());
+    assertThrows(InvalidStatValueException.class, () -> blackmage1.setCurrentMp(blackmage1.getMaxMp() + 10));
+    assertThrows(InvalidStatValueException.class, () -> blackmage1.setCurrentMp(-10));
+  }
+
+  @Test
   void testEquals() throws InvalidStatValueException {
     assertEquals(blackmage1, blackmage1);
     assertEquals(blackmage2, blackmage2);

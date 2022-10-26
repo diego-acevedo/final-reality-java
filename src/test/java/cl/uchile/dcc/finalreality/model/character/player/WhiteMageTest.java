@@ -93,6 +93,16 @@ class WhiteMageTest {
   }
 
   @Test
+  void testManaPoints() throws InvalidStatValueException {
+    Random rnd = new Random();
+    int n = rnd.nextInt(1, whitemage1.getMaxMp());
+    whitemage1.setCurrentMp(n);
+    assertEquals(n, whitemage1.getCurrentMp());
+    assertThrows(InvalidStatValueException.class, () -> whitemage1.setCurrentMp(whitemage1.getMaxMp() + 10));
+    assertThrows(InvalidStatValueException.class, () -> whitemage1.setCurrentMp(-10));
+  }
+
+  @Test
   void testEquals() throws InvalidStatValueException {
     assertEquals(whitemage1, whitemage1);
     assertEquals(whitemage2, whitemage2);

@@ -49,23 +49,10 @@ public abstract class AbstractWeapon implements Weapon {
   }
 
   @Override
-  public boolean equals(final Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof final AbstractWeapon weapon)) {
-      return false;
-    }
-    return hashCode() == weapon.hashCode()
-        && damage == weapon.damage
-        && weight == weapon.weight
-        && name.equals(weapon.name);
-  }
+  public abstract boolean equals(final Object o);
 
   @Override
-  public int hashCode() {
-    return Objects.hash(AbstractWeapon.class, name, damage, weight);
-  }
+  public abstract int hashCode();
 
   @Override
   public String toString() {
