@@ -10,6 +10,7 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +20,8 @@ import org.jetbrains.annotations.NotNull;
  * {@code Bow}s.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ *
  * @version 2.0
  */
 public class Thief extends AbstractPlayerCharacter {
@@ -44,7 +46,7 @@ public class Thief extends AbstractPlayerCharacter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Thief.class, name, maxHp, defense);
+    return Objects.hash(Thief.class, this.getName(), this.getMaxHp(), this.getDefense());
   }
 
   @Override
@@ -56,13 +58,20 @@ public class Thief extends AbstractPlayerCharacter {
       return false;
     }
     return hashCode() == that.hashCode()
-        && name.equals(that.name)
-        && maxHp == that.maxHp
-        && defense == that.defense;
+        && this.getName().equals(that.getName())
+        && this.getMaxHp() == that.getMaxHp()
+        && this.getDefense() == that.getDefense();
   }
 
   @Override
   public String toString() {
-    return "Thief{maxHp=%d, defense=%d, name='%s'}".formatted(maxHp, defense, name);
+    return "Thief{maxHp=%d, defense=%d, name='%s'}"
+        .formatted(this.getMaxHp(), this.getDefense(), this.getName());
+  }
+
+  @Override
+  public void equip(Weapon weapon) {
+    Weapon w = weapon.equipToThief(this);
+    this.setEquippedWeapon(w);
   }
 }
