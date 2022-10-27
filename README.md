@@ -81,3 +81,25 @@ extended from this new class.
 AbstractPlayerCharacter and Enemy. This allows the code not
 to implement instanceof in the waitTurn method. Each class
 knows how to behave when the method is called.
+
+Changes implemented (Second Assigment)
+-------
+
+### Testing
+
+1. All methods implemented so far have been tested using JUnit5.
+All tests are located in the [test folder](src/test/java).
+
+### Weapons restrictions
+
+1. Now, only certain weapons can be equipped by certain characters.
+This has been implemented by using double dispatch. The restrictions
+for each weapon can be found in the next table:
+
+|                | Sword | Axe  | Knife  | Staff  | Bow  |
+|---------------:|:-----:|:----:|:------:|:------:|:----:|
+|         Knight |  🟢   |  🟢  |   🟢   |   ❌    |  ❌   |
+|       Engineer |   ❌   |  🟢  |   ❌    |   ❌    |  🟢  |
+|          Thief |  🟢   |  ❌   |   🟢   |   ❌    |  🟢  |
+|     Black Mage |   ❌   |  ❌   |   🟢   |   🟢   |  ❌   |
+|     White Mage |   ❌   |  ❌   |   ❌    |   🟢   |  ❌   |
