@@ -58,16 +58,6 @@ public class Bow extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) {
-    return this;
-  }
-
-  @Override
-  public Weapon equipToThief(Thief thief) {
-    return this;
-  }
-
-  @Override
   public Weapon equipToBlackMage(BlackMage blackmage) {
     return blackmage.getEquippedWeapon();
   }

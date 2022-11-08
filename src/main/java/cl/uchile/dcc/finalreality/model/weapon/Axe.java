@@ -53,16 +53,6 @@ public class Axe extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) {
-    return this;
-  }
-
-  @Override
-  public Weapon equipToEngineer(Engineer engineer) {
-    return this;
-  }
-
-  @Override
   public Weapon equipToThief(Thief thief) {
     return thief.getEquippedWeapon();
   }

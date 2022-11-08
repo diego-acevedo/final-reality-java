@@ -84,14 +84,4 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   public Weapon equipToThief(Thief thief) {
     return thief.getEquippedWeapon();
   }
-
-  @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) {
-    return this;
-  }
-
-  @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) {
-    return this;
-  }
 }

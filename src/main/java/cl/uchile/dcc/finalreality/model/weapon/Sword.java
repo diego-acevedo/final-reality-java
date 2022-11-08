@@ -55,18 +55,8 @@ public class Sword extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) {
-    return this;
-  }
-
-  @Override
   public Weapon equipToEngineer(Engineer engineer) {
     return engineer.getEquippedWeapon();
-  }
-
-  @Override
-  public Weapon equipToThief(Thief thief) {
-    return this;
   }
 
   @Override
