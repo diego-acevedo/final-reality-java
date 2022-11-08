@@ -69,7 +69,10 @@ public class Knight extends AbstractPlayerCharacter {
 
   @Override
   public void equip(Weapon weapon) {
-    Weapon w = weapon.equipToKnight(this);
-    this.setEquippedWeapon(w);
+    try {
+      this.setEquippedWeapon(weapon.equipToKnight(this));
+    } catch (InvalidStatValueException e) {
+      System.out.println("Invalid weapon given.");
+    }
   }
 }

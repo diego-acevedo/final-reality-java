@@ -72,7 +72,11 @@ public class WhiteMage extends AbstractMage {
 
   @Override
   public void equip(Weapon weapon) {
-    Weapon w = weapon.equipToWhiteMage(this);
-    this.setEquippedWeapon(w);
+    try {
+      this.setEquippedWeapon(weapon.equipToWhiteMage(this));
+    } catch (InvalidStatValueException e) {
+      System.out.println("Invalid weapon given.");
+    }
+
   }
 }

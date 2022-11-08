@@ -71,7 +71,11 @@ public class Thief extends AbstractPlayerCharacter {
 
   @Override
   public void equip(Weapon weapon) {
-    Weapon w = weapon.equipToThief(this);
-    this.setEquippedWeapon(w);
+    try {
+      this.setEquippedWeapon(weapon.equipToThief(this));
+    } catch (InvalidStatValueException e) {
+      System.out.println("Invalid weapon given.");
+    }
+
   }
 }

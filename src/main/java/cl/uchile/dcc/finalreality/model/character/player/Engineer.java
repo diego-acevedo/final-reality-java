@@ -70,7 +70,10 @@ public class Engineer extends AbstractPlayerCharacter {
 
   @Override
   public void equip(Weapon weapon) {
-    Weapon w = weapon.equipToEngineer(this);
-    this.setEquippedWeapon(w);
+    try {
+      this.setEquippedWeapon(weapon.equipToEngineer(this));
+    } catch (InvalidStatValueException e) {
+      System.out.println("Invalid weapon given.");
+    }
   }
 }

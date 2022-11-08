@@ -8,6 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -72,7 +73,10 @@ public class BlackMage extends AbstractMage {
 
   @Override
   public void equip(Weapon weapon) {
-    Weapon w = weapon.equipToBlackMage(this);
-    this.setEquippedWeapon(w);
+    try {
+      this.setEquippedWeapon(weapon.equipToBlackMage(this));
+    } catch (InvalidStatValueException e) {
+      System.out.println("Invalid weapon given.");
+    }
   }
 }
