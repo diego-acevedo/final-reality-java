@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
 import cl.uchile.dcc.finalreality.model.character.player.Knight;
@@ -35,34 +36,34 @@ public interface Weapon {
    *
    * @param knight Character {@link Knight} who will be equipped this weapon.
    */
-  Weapon equipToKnight(Knight knight);
+  Weapon equipToKnight(Knight knight) throws InvalidStatValueException;
 
   /**
    * Tries to equip this weapon to a {@link Engineer}.
    *
    * @param engineer Character {@link Engineer} who will be equipped this weapon.
    */
-  Weapon equipToEngineer(Engineer engineer);
+  Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException;
 
   /**
    * Tries to equip this weapon to a {@link Thief}.
    *
    * @param thief Character {@link Thief} who will be equipped this weapon.
    */
-  Weapon equipToThief(Thief thief);
+  Weapon equipToThief(Thief thief) throws InvalidStatValueException;
 
   /**
    * Tries to equip this weapon to a {@link BlackMage}.
    *
    * @param blackmage Character {@link BlackMage} who will be equipped this weapon.
    */
-  Weapon equipToBlackMage(BlackMage blackmage);
+  Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException;
 
   /**
    * Tries to equip this weapon to a {@link WhiteMage}.
    *
    * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
    */
-  Weapon equipToWhiteMage(WhiteMage whitemage);
+  Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException;
 
 }

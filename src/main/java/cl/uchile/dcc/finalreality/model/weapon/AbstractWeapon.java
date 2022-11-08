@@ -54,27 +54,27 @@ public abstract class AbstractWeapon implements Weapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) {
+  public Weapon equipToKnight(Knight knight) throws InvalidStatValueException {
     return this;
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) {
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
     return this;
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) {
+  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
     return this;
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) {
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
     return this;
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) {
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
     return this;
   }
 

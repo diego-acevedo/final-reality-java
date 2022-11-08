@@ -53,17 +53,17 @@ public class Bow extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) {
-    return knight.getEquippedWeapon();
+  public Weapon equipToKnight(Knight knight) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Bow cannot be equiped to knight");
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) {
-    return blackmage.getEquippedWeapon();
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Bow cannot be equiped to black mage");
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) {
-    return whitemage.getEquippedWeapon();
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Bow cannot be equiped to white mage");
   }
 }

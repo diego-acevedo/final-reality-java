@@ -54,12 +54,12 @@ public class Knife extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) {
-    return engineer.getEquippedWeapon();
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Knife cannot be equiped to engineer");
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) {
-    return whitemage.getEquippedWeapon();
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Knife cannot be equiped to white mage");
   }
 }

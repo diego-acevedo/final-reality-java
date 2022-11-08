@@ -71,17 +71,17 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) {
-    return knight.getEquippedWeapon();
+  public Weapon equipToKnight(Knight knight) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Staff cannot be equiped to knight");
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) {
-    return engineer.getEquippedWeapon();
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Staff cannot be equiped to engineer");
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) {
-    return thief.getEquippedWeapon();
+  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Staff cannot be equiped to thief");
   }
 }

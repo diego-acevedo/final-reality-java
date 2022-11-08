@@ -53,17 +53,17 @@ public class Axe extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) {
-    return thief.getEquippedWeapon();
+  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Axe cannot be equiped to thief");
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) {
-    return blackmage.getEquippedWeapon();
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Axe cannot be equiped to black mage");
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) {
-    return whitemage.getEquippedWeapon();
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
+    throw new InvalidStatValueException("Axe cannot be equiped to white mage");
   }
 }
