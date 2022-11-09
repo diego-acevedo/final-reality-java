@@ -15,6 +15,7 @@ import cl.uchile.dcc.finalreality.model.weapon.Weapon;
  * A {@link GameCharacter} that can equip a weapon.
  */
 public interface PlayerCharacter extends GameCharacter {
+
   /**
    * Equips a weapon to the character.
    */
