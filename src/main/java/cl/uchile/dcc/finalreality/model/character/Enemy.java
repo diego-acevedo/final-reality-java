@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+import cl.uchile.dcc.finalreality.model.effect.Effect;
+import cl.uchile.dcc.finalreality.model.effect.NoEffect;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,6 +21,9 @@ public class Enemy extends AbstractCharacter {
 
   private final int weight;
   private final int attack;
+  public Effect burntStatus;
+  public Effect paralysisStatus;
+  public Effect poisonStatus;
 
   /**
    * Creates a new enemy with a name, a weight and the queue with the characters ready to
@@ -42,6 +48,10 @@ public class Enemy extends AbstractCharacter {
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
     this.attack = attack;
+    Effect fine = new NoEffect();
+    this.burntStatus = fine;
+    this.paralysisStatus = fine;
+    this.poisonStatus = fine;
   }
 
   /**
