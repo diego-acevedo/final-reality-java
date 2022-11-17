@@ -6,9 +6,7 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import cl.uchile.dcc.finalreality.model.effect.Effect;
-import cl.uchile.dcc.finalreality.model.effect.NoEffect;
+import cl.uchile.dcc.finalreality.model.effect.*;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -21,9 +19,9 @@ public class Enemy extends AbstractCharacter {
 
   private final int weight;
   private final int attack;
-  public Effect burntStatus;
-  public Effect paralysisStatus;
-  public Effect poisonStatus;
+  public FireEffect burntStatus;
+  public ParalyzableEffect paralysisStatus;
+  public PoisonousEffect poisonStatus;
 
   /**
    * Creates a new enemy with a name, a weight and the queue with the characters ready to
