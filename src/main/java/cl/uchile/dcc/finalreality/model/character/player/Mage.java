@@ -11,4 +11,6 @@ public interface Mage extends PlayerCharacter {
 
   void conjureSpell(Spell spell, GameCharacter character, MagicWeapon weapon)
       throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException;
+
+  int getCurrentMp();
 }

@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.spell;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
@@ -27,7 +28,15 @@ public class Fire extends AbstractSpell {
 
   @Override
   public void conjureByBlackMage(Mage mage, GameCharacter character, MagicWeapon weapon)
-      throws InvalidStatValueException, InvalidTargetCharacterException {
+      throws InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {
+    checkMana(mage.getCurrentMp());
     character.receiveSpell(this, mage, weapon);
+  }
+
+  @Override
+  public void checkMana(int mageMana) throws InvalidManaValueException {
+    if (mageMana < 15) {
+      throw new InvalidManaValueException("There's not enough mana to cast a fire spell.");
+    }
   }
 }

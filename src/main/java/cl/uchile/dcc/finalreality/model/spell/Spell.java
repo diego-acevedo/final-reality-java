@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.spell;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
@@ -18,8 +19,10 @@ public interface Spell {
       throws InvalidStatValueException, InvalidTargetCharacterException;
 
   void conjureByBlackMage(Mage mage, GameCharacter character, MagicWeapon weapon)
-      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException;
+      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
 
   void conjureByWhiteMage(Mage mage, GameCharacter character, MagicWeapon weapon)
-      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException;
+      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
+
+  void checkMana(int mageMana) throws InvalidManaValueException;
 }
