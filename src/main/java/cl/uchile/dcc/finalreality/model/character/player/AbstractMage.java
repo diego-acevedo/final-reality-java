@@ -1,16 +1,19 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
+
+import cl.uchile.dcc.finalreality.model.spell.Spell;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Cointains the common behavior between mages.
  * Its constructor is <b>protected</b>, because it'll only be used by subclasses.
  */
-public abstract class AbstractMage extends AbstractPlayerCharacter {
+public abstract class AbstractMage extends AbstractPlayerCharacter implements Mage {
 
   private int currentMp;
   private final int maxMp;
@@ -63,5 +66,9 @@ public abstract class AbstractMage extends AbstractPlayerCharacter {
    */
   public int getMaxMp() {
     return maxMp;
+  }
+
+  public void useMagic(Spell spell, GameCharacter character) throws InvalidMagicWeaponException {
+    this.getEquippedWeapon().castSpell(character, spell, this);
   }
 }

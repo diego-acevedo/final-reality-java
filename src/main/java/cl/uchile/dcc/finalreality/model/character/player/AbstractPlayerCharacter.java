@@ -8,9 +8,12 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.concurrent.BlockingQueue;
@@ -71,5 +74,10 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   protected void setEquippedWeapon(Weapon weapon) {
     this.equippedWeapon = weapon;
+  }
+
+  public void useMagic(Spell spell, GameCharacter character)
+      throws InvalidMagicWeaponException, NonMagicalCharacterException {
+    throw new NonMagicalCharacterException(this + " is not a magical character.");
   }
 }
