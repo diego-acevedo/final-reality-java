@@ -8,8 +8,7 @@ package cl.uchile.dcc.finalreality.model.character.player;
  * work. If not, see <http://creativecommons.org/licenses/by/4.0/>.
  */
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -29,5 +28,6 @@ public interface PlayerCharacter extends GameCharacter {
    */
   Weapon getEquippedWeapon();
 
-  void useMagic(Spell spell, GameCharacter character) throws InvalidMagicWeaponException, NonMagicalCharacterException;
+  void useMagic(Spell spell, GameCharacter character)
+      throws InvalidMagicWeaponException, NonMagicalCharacterException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException;
 }

@@ -8,13 +8,12 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -77,7 +76,12 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   public void useMagic(Spell spell, GameCharacter character)
-      throws InvalidMagicWeaponException, NonMagicalCharacterException {
+      throws InvalidMagicWeaponException, NonMagicalCharacterException,
+      InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
     throw new NonMagicalCharacterException(this + " is not a magical character.");
+  }
+
+  public void receiveCure(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
+    spell.induceEffect(this, weapon);
   }
 }

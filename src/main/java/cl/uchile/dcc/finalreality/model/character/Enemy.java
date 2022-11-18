@@ -1,12 +1,17 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.effect.*;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -105,5 +110,21 @@ public class Enemy extends AbstractCharacter {
     return "Enemy{maxHp=%d, defense=%d, name='%s', weight=%d, attack=%d}"
             .formatted(this.getMaxHp(), this.getDefense(), this.getName(),
                 this.getWeight(), this.getAttack());
+  }
+
+  public void receiveFire(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
+    spell.induceEffect(this, weapon);
+  }
+
+  public void receivePoison(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
+    spell.induceEffect(this, weapon);
+  }
+
+  public void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
+    spell.induceEffect(this, weapon);
+  }
+
+  public void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
+    spell.induceEffect(this, weapon);
   }
 }

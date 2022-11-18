@@ -1,8 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.*;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
@@ -90,7 +88,8 @@ public abstract class AbstractWeapon implements Weapon {
         .formatted(name, damage, weight);
   }
 
-  public void castSpell(GameCharacter character, Spell spell, Mage mage) throws InvalidMagicWeaponException {
+  public void castSpell(GameCharacter character, Spell spell, Mage mage)
+      throws InvalidMagicWeaponException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
     throw new InvalidMagicWeaponException(this + " cannot cast spells.");
   }
 }

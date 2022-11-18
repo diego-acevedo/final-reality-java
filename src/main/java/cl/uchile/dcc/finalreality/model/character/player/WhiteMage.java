@@ -8,9 +8,12 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
@@ -82,7 +85,8 @@ public class WhiteMage extends AbstractMage implements Mage {
   }
 
   @Override
-  public void conjureSpell(Spell spell, GameCharacter character) {
-
+  public void conjureSpell(Spell spell, GameCharacter character, MagicWeapon weapon)
+      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
+    spell.conjureByWhiteMage(this, character, weapon);
   }
 }

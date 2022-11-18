@@ -1,7 +1,9 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -9,6 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -88,5 +91,30 @@ public abstract class AbstractCharacter implements GameCharacter {
     Require.statValueAtLeast(0, hp, "Current HP");
     Require.statValueAtMost(maxHp, hp, "Current HP");
     currentHp = hp;
+  }
+
+  public void receiveCure(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
+  }
+
+  public void receiveFire(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
+  }
+
+  public void receivePoison(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
+  }
+
+  public void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
+  }
+
+  public void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
   }
 }

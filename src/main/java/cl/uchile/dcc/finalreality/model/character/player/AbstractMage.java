@@ -1,8 +1,6 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 
@@ -68,7 +66,9 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
     return maxMp;
   }
 
-  public void useMagic(Spell spell, GameCharacter character) throws InvalidMagicWeaponException {
+  public void useMagic(Spell spell, GameCharacter character)
+      throws InvalidMagicWeaponException, InvalidMageException,
+      InvalidStatValueException, InvalidTargetCharacterException {
     this.getEquippedWeapon().castSpell(character, spell, this);
   }
 }

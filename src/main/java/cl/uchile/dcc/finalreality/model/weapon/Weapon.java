@@ -1,7 +1,9 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.*;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
@@ -65,6 +67,8 @@ public interface Weapon {
    */
   Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException;
 
-  void castSpell(GameCharacter character, Spell spell, Mage mage) throws InvalidMagicWeaponException;
+  void castSpell(GameCharacter character, Spell spell, Mage mage)
+      throws InvalidMagicWeaponException, InvalidMageException,
+      InvalidStatValueException, InvalidTargetCharacterException;
 
 }

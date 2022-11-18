@@ -1,6 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 
 /**
  * This represents a character from the game.
@@ -40,5 +44,20 @@ public interface GameCharacter {
    * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
    */
   void waitTurn();
+
+  void receiveCure(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
+
+  void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
+
+  void receiveFire(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
+
+  void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
+
+  void receivePoison(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
 
 }

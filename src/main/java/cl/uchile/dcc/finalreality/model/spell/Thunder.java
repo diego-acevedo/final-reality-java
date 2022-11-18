@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.model.spell;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
@@ -16,7 +17,8 @@ public class Thunder extends AbstractSpell {
   }
 
   @Override
-  public void conjureByBlackMage(Mage mage, GameCharacter character) throws InvalidMageException {
-
+  public void conjureByBlackMage(Mage mage, GameCharacter character, MagicWeapon weapon)
+      throws InvalidStatValueException, InvalidTargetCharacterException {
+    character.receiveThunder(this, mage, weapon);
   }
 }
