@@ -1,11 +1,10 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.Engineer;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.Thief;
-import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
 
 /**
  * This represents a weapon equipable by a
@@ -65,5 +64,7 @@ public interface Weapon {
    * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
    */
   Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException;
+
+  void castSpell(GameCharacter character, Spell spell, Mage mage) throws InvalidMagicWeaponException;
 
 }

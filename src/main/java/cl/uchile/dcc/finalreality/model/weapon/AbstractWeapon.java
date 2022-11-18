@@ -1,12 +1,12 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.Engineer;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.Thief;
-import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
+
 import java.util.Objects;
 
 /**
@@ -88,5 +88,9 @@ public abstract class AbstractWeapon implements Weapon {
   public String toString() {
     return "{name='%s', damage=%d, weight=%d}"
         .formatted(name, damage, weight);
+  }
+
+  public void castSpell(GameCharacter character, Spell spell, Mage mage) throws InvalidMagicWeaponException {
+    throw new InvalidMagicWeaponException(this + " cannot cast spells.");
   }
 }
