@@ -112,19 +112,8 @@ public class Enemy extends AbstractCharacter {
                 this.getWeight(), this.getAttack());
   }
 
-  public void receiveFire(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
-    spell.induceEffect(this, weapon);
-  }
-
-  public void receivePoison(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
-    spell.induceEffect(this, weapon);
-  }
-
-  public void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
-    spell.induceEffect(this, weapon);
-  }
-
-  public void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
-    spell.induceEffect(this, weapon);
+  public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidStatValueException, InvalidTargetCharacterException {
+    spell.induceEffectOnEnemy(this, weapon);
   }
 }

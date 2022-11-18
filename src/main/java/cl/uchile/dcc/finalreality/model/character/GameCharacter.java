@@ -45,19 +45,7 @@ public interface GameCharacter {
    */
   void waitTurn();
 
-  void receiveCure(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException;
-
-  void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException;
-
-  void receiveFire(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException;
-
-  void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException;
-
-  void receivePoison(Spell spell, Mage mage, MagicWeapon weapon)
+  void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 
 }

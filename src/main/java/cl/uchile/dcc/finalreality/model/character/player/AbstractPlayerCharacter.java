@@ -81,7 +81,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     throw new NonMagicalCharacterException(this + " is not a magical character.");
   }
 
-  public void receiveCure(Spell spell, Mage mage, MagicWeapon weapon) throws InvalidStatValueException {
-    spell.induceEffect(this, weapon);
+  public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
+      throws InvalidStatValueException, InvalidTargetCharacterException {
+    spell.induceEffectOnPlayerCharacter(this, weapon);
   }
 }

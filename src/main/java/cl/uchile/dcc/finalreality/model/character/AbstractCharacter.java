@@ -92,29 +92,4 @@ public abstract class AbstractCharacter implements GameCharacter {
     Require.statValueAtMost(maxHp, hp, "Current HP");
     currentHp = hp;
   }
-
-  public void receiveCure(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
-    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
-  }
-
-  public void receiveFire(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
-    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
-  }
-
-  public void receivePoison(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
-    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
-  }
-
-  public void receiveParalysis(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
-    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
-  }
-
-  public void receiveThunder(Spell spell, Mage mage, MagicWeapon weapon)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
-    throw new InvalidTargetCharacterException(this + "cannot receive spell " + spell);
-  }
 }
