@@ -3,17 +3,16 @@ package cl.uchile.dcc.finalreality.model.spell;
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
-import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 
-public class Poison extends AbstractSpell {
+public abstract class AbstractSpell implements Spell {
 
   @Override
-  public void induceEffect(GameCharacter character, MagicWeapon weapon) {
-
+  public void conjureByBlackMage(Mage mage, GameCharacter character) throws InvalidMageException {
+    throw new InvalidMageException(mage + " cannot conjure " + this);
   }
 
   @Override
   public void conjureByWhiteMage(Mage mage, GameCharacter character) throws InvalidMageException {
-
+    throw new InvalidMageException(mage + " cannot conjure " + this);
   }
 }
