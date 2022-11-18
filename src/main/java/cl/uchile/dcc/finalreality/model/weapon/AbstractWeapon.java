@@ -89,7 +89,7 @@ public abstract class AbstractWeapon implements Weapon {
   }
 
   public void castSpell(GameCharacter character, Spell spell, Mage mage)
-      throws InvalidMagicWeaponException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
+      throws InvalidMagicWeaponException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {
     throw new InvalidMagicWeaponException(this + " cannot cast spells.");
   }
 }

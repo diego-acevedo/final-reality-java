@@ -77,7 +77,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   public void useMagic(Spell spell, GameCharacter character)
       throws InvalidMagicWeaponException, NonMagicalCharacterException,
-      InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
+      InvalidMageException, InvalidStatValueException,
+      InvalidTargetCharacterException, InvalidManaValueException {
     throw new NonMagicalCharacterException(this + " is not a magical character.");
   }
 

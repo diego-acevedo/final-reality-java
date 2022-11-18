@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
@@ -87,7 +88,8 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   }
 
   public void castSpell(GameCharacter character, Spell spell, Mage mage)
-      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException {
+      throws InvalidMageException, InvalidStatValueException,
+      InvalidTargetCharacterException, InvalidManaValueException {
     mage.conjureSpell(spell, character, this);
   }
 }

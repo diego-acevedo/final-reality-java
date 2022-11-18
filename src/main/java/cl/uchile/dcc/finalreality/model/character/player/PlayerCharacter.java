@@ -29,5 +29,5 @@ public interface PlayerCharacter extends GameCharacter {
   Weapon getEquippedWeapon();
 
   void useMagic(Spell spell, GameCharacter character)
-      throws InvalidMagicWeaponException, NonMagicalCharacterException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException;
+      throws InvalidMagicWeaponException, NonMagicalCharacterException, InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
 }

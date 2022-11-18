@@ -68,7 +68,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
 
   public void useMagic(Spell spell, GameCharacter character)
       throws InvalidMagicWeaponException, InvalidMageException,
-      InvalidStatValueException, InvalidTargetCharacterException {
+      InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {
     this.getEquippedWeapon().castSpell(character, spell, this);
   }
 }
