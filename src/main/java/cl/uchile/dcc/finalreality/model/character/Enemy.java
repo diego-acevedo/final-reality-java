@@ -46,7 +46,7 @@ public class Enemy extends AbstractCharacter {
     Require.statValueAtLeast(1, weight, "Weight");
     this.weight = weight;
     this.attack = attack;
-    Effect fine = new NoEffect();
+    NoEffect fine = new NoEffect();
     this.burntStatus = fine;
     this.paralysisStatus = fine;
     this.poisonStatus = fine;

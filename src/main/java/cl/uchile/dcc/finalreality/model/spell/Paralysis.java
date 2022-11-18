@@ -8,5 +8,6 @@ public class Paralysis implements Spell {
   @Override
   public void induceEffect(GameCharacter character, MagicWeapon weapon) {
 
+
   }
 }

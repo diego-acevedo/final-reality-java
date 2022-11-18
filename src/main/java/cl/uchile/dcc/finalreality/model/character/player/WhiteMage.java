@@ -10,6 +10,7 @@ package cl.uchile.dcc.finalreality.model.character.player;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  * @version 2.0
  */
-public class WhiteMage extends AbstractMage {
+public class WhiteMage extends AbstractMage implements Mage {
 
   /**
    * Creates a new character.
@@ -77,6 +78,11 @@ public class WhiteMage extends AbstractMage {
     } catch (InvalidStatValueException e) {
       System.out.println("Invalid weapon given.");
     }
+
+  }
+
+  @Override
+  public void conjureSpell(Spell spell, GameCharacter character) {
 
   }
 }
