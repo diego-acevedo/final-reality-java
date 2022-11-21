@@ -4,9 +4,23 @@ import cl.uchile.dcc.finalreality.model.character.Enemy;
 
 public class ParalysisEffect implements ParalyzableEffect {
 
+  private Enemy enemy;
+  private int turns;
+
   @Override
-  public void receiveEffect(Enemy enemy) {
-    enemy.paralysisStatus = new NoEffect();
+  public void receiveEffect() {
+    turns++;
+    if (turns > 1) {
+      ParalyzableEffect s = new NoEffect();
+      this.enemy.changeParalysisStatus(s);
+      this.turns = 0;
+    }
+
+  }
+
+  @Override
+  public void setEnemy(Enemy enemy) {
+    this.enemy = enemy;
   }
 
   @Override

@@ -7,16 +7,22 @@ import static java.lang.Math.max;
 
 public class BurntEffect implements FireEffect {
 
-  private int magicDamage;
+  private Enemy enemy;
+  private final int magicDamage;
 
   public BurntEffect(int magicDamage) {
     this.magicDamage = magicDamage;
   }
 
   @Override
-  public void receiveEffect(Enemy enemy) throws InvalidStatValueException {
-    int newHp = max(0, enemy.getCurrentHp() - (magicDamage/2));
-    enemy.setCurrentHp(newHp);
+  public void receiveEffect() throws InvalidStatValueException {
+    int newHp = max(0, this.enemy.getCurrentHp() - (magicDamage/2));
+    this.enemy.setCurrentHp(newHp);
+  }
+
+  @Override
+  public void setEnemy(Enemy enemy) {
+    this.enemy = enemy;
   }
 
   @Override

@@ -52,6 +52,7 @@ public class Enemy extends AbstractCharacter {
     this.weight = weight;
     this.attack = attack;
     NoEffect fine = new NoEffect();
+    fine.setEnemy(this);
     this.burntStatus = fine;
     this.paralysisStatus = fine;
     this.poisonStatus = fine;
@@ -115,5 +116,20 @@ public class Enemy extends AbstractCharacter {
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     spell.induceEffectOnEnemy(this, weapon);
+  }
+
+  public void changeParalysisStatus(ParalyzableEffect s) {
+    this.paralysisStatus = s;
+    s.setEnemy(this);
+  }
+
+  public void changeBurntStatus(FireEffect s) {
+    this.burntStatus = s;
+    s.setEnemy(this);
+  }
+
+  public void changeParalysisStatus(PoisonousEffect s) {
+    this.poisonStatus = s;
+    s.setEnemy(this);
   }
 }

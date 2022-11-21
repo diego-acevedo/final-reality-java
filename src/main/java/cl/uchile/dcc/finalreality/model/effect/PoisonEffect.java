@@ -7,16 +7,22 @@ import static java.lang.Math.max;
 
 public class PoisonEffect implements PoisonousEffect {
 
-  private int magicDamage;
+  private Enemy enemy;
+  private final int magicDamage;
 
   public PoisonEffect(int magicDamage) {
     this.magicDamage = magicDamage;
   }
 
   @Override
-  public void receiveEffect(Enemy enemy) throws InvalidStatValueException {
-    int newHp = max(0, enemy.getCurrentHp() - (magicDamage/3));
-    enemy.setCurrentHp(newHp);
+  public void receiveEffect() throws InvalidStatValueException {
+    int newHp = max(0, this.enemy.getCurrentHp() - (magicDamage/3));
+    this.enemy.setCurrentHp(newHp);
+  }
+
+  @Override
+  public void setEnemy(Enemy enemy) {
+    this.enemy = enemy;
   }
 
   @Override
