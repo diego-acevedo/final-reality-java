@@ -78,10 +78,10 @@ class EngineerTest {
   }
 
   @Test
-  void testEquip() {
-    assertNull(engineer1.getEquippedWeapon());
+  void testEquip() throws InvalidStatValueException {
+    assertEquals(new NullWeapon(), engineer1.getEquippedWeapon());
     engineer1.equip(sword);
-    assertNull(engineer1.getEquippedWeapon());
+    assertEquals(new NullWeapon(), engineer1.getEquippedWeapon());
     engineer1.equip(axe);
     assertEquals(axe, engineer1.getEquippedWeapon());
     engineer1.equip(knife);

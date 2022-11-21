@@ -75,8 +75,8 @@ class ThiefTest {
   }
 
   @Test
-  void testEquip() {
-    assertNull(thief1.getEquippedWeapon());
+  void testEquip() throws InvalidStatValueException {
+    assertEquals(new NullWeapon(), thief1.getEquippedWeapon());
     thief1.equip(sword);
     assertEquals(sword, thief1.getEquippedWeapon());
     thief1.equip(axe);

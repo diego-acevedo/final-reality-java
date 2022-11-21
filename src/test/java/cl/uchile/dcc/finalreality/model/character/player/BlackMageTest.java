@@ -79,11 +79,11 @@ class BlackMageTest {
 
   @Test
   void testEquip() throws InvalidStatValueException {
-    assertNull(blackmage1.getEquippedWeapon());
+    assertEquals(new NullWeapon(), blackmage1.getEquippedWeapon());
     blackmage1.equip(sword);
-    assertNull(blackmage1.getEquippedWeapon());
+    assertEquals(new NullWeapon(), blackmage1.getEquippedWeapon());
     blackmage1.equip(axe);
-    assertNull(blackmage1.getEquippedWeapon());
+    assertEquals(new NullWeapon(), blackmage1.getEquippedWeapon());
     blackmage1.equip(knife);
     assertEquals(knife, blackmage1.getEquippedWeapon());
     blackmage1.equip(staff);
