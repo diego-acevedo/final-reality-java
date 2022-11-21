@@ -14,7 +14,7 @@ public class Paralysis extends AbstractSpell {
 
   @Override
   public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon) {
-    character.paralysisStatus = new ParalysisEffect();
+    character.changeParalysisStatus(new ParalysisEffect());
   }
 
   @Override

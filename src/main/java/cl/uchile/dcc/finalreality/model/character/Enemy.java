@@ -24,9 +24,9 @@ public class Enemy extends AbstractCharacter {
 
   private final int weight;
   private final int attack;
-  public FireEffect burntStatus;
-  public ParalyzableEffect paralysisStatus;
-  public PoisonousEffect poisonStatus;
+  private FireEffect burntStatus;
+  private ParalyzableEffect paralysisStatus;
+  private PoisonousEffect poisonStatus;
 
   /**
    * Creates a new enemy with a name, a weight and the queue with the characters ready to
@@ -128,7 +128,7 @@ public class Enemy extends AbstractCharacter {
     s.setEnemy(this);
   }
 
-  public void changeParalysisStatus(PoisonousEffect s) {
+  public void changePoisonousStatus(PoisonousEffect s) {
     this.poisonStatus = s;
     s.setEnemy(this);
   }

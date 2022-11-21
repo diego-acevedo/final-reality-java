@@ -22,7 +22,7 @@ public class Fire extends AbstractSpell {
     character.setCurrentHp(newHp);
     Random random = new Random();
     if (random.nextFloat() <= 0.2) {
-      character.burntStatus = new BurntEffect(weapon.getMagicDamage());
+      character.changeBurntStatus(new BurntEffect(weapon.getMagicDamage()));
     }
   }
 

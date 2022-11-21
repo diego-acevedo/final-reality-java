@@ -23,7 +23,7 @@ public class Thunder extends AbstractSpell {
     character.setCurrentHp(newHp);
     Random random = new Random();
     if (random.nextFloat() <= 0.3) {
-      character.paralysisStatus = new ParalysisEffect();
+      character.changeParalysisStatus(new ParalysisEffect());
     }
   }
 

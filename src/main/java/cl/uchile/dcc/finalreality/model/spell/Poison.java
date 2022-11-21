@@ -14,7 +14,7 @@ public class Poison extends AbstractSpell {
 
   @Override
   public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon) {
-    character.poisonStatus = new PoisonEffect(weapon.getMagicDamage());
+    character.changePoisonousStatus(new PoisonEffect(weapon.getMagicDamage()));
   }
 
   @Override
