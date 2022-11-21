@@ -1,7 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
 import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.spell.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterTest {
   GameCharacter enemy;
-  GameCharacter blackMage;
-  GameCharacter engineer;
-  GameCharacter knight;
-  GameCharacter thief;
-  GameCharacter whiteMage;
+  PlayerCharacter blackMage;
+  PlayerCharacter engineer;
+  PlayerCharacter knight;
+  PlayerCharacter thief;
+  PlayerCharacter whiteMage;
   BlockingQueue<GameCharacter> queue;
 
   @BeforeEach
@@ -29,6 +32,17 @@ class CharacterTest {
     knight = new Knight("character", 10, 10, queue);
     thief = new Thief("character", 10, 10, queue);
     whiteMage = new WhiteMage("character", 10, 10, 10, queue);
+  }
+
+  @Test
+  void SpellTest() {
+    Spell cure = new Cure();
+    Spell fire = new Fire();
+    Spell paralysis = new Paralysis();
+    Spell poison = new Poison();
+    Spell thunder = new Thunder();
+    assertThrows(NonMagicalCharacterException.class, () -> engineer.useMagic(cure, blackMage));
+    assertThrows(InvalidMagicWeaponException.class, () -> blackMage.useMagic(cure, enemy));
   }
 
   @Test
