@@ -1,10 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.player.*;
 import cl.uchile.dcc.finalreality.model.spell.*;
+import cl.uchile.dcc.finalreality.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ class CharacterTest {
   }
 
   @Test
-  void SpellTest() {
+  void SpellTest() throws InvalidStatValueException {
     Spell cure = new Cure();
     Spell fire = new Fire();
     Spell paralysis = new Paralysis();
@@ -43,6 +43,15 @@ class CharacterTest {
     Spell thunder = new Thunder();
     assertThrows(NonMagicalCharacterException.class, () -> engineer.useMagic(cure, blackMage));
     assertThrows(InvalidMagicWeaponException.class, () -> blackMage.useMagic(cure, enemy));
+    Weapon staff = new Staff("Staff",100,100,6);
+    blackMage.equip(staff);
+    assertThrows(InvalidMageException.class, () -> blackMage.useMagic(cure, enemy));
+    whiteMage.equip(staff);
+    assertThrows(InvalidManaValueException.class, () -> whiteMage.useMagic(cure, enemy));
+    Mage whiteMage2 = new WhiteMage("WhiteMage", 10, 10, 100, queue);
+    whiteMage2.equip(staff);
+    assertThrows(InvalidTargetCharacterException.class, () -> whiteMage2.useMagic(cure, enemy));
+
   }
 
   @Test
