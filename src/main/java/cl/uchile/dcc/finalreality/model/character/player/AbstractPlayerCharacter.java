@@ -14,6 +14,7 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.AbstractWeapon;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
+import cl.uchile.dcc.finalreality.model.weapon.NullWeapon;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -33,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractPlayerCharacter extends AbstractCharacter implements
     PlayerCharacter {
 
-  private Weapon equippedWeapon = null;
+  private Weapon equippedWeapon;
 
   /**
    * Creates a new character.
@@ -52,6 +53,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       final int defense, @NotNull final BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
     super(name, maxHp, defense, turnsQueue);
+    this.equippedWeapon = new NullWeapon();
   }
 
   /**
