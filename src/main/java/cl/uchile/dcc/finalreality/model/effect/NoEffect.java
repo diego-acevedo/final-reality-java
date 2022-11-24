@@ -2,9 +2,13 @@ package cl.uchile.dcc.finalreality.model.effect;
 
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 
+/**
+ * An {@link Effect} that represents the {@link Enemy} is fine.
+ */
 public class NoEffect implements ParalyzableEffect, FireEffect, PoisonousEffect {
 
   private Enemy enemy;
+
   @Override
   public void receiveEffect() {
 

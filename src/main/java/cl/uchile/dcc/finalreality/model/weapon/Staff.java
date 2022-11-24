@@ -5,13 +5,17 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.character.player.Thief;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
-
 import java.util.Objects;
 
 /**
  * A class that holds the information of a {@link Weapon} that's a Staff.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 
 public class Staff extends AbstractWeapon implements MagicWeapon {

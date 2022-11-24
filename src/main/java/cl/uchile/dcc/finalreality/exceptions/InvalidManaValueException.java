@@ -1,5 +1,11 @@
 package cl.uchile.dcc.finalreality.exceptions;
 
+/**
+ * This error is used to represent that a mage doesn't have enough mana to cast certain spell.
+ *
+ * @author <a href="https://github.com/r8vnhill">R8V</a>
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public class InvalidManaValueException extends Exception {
 
   /**

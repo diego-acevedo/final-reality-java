@@ -45,6 +45,17 @@ public interface GameCharacter {
    */
   void waitTurn();
 
+  /**
+   * Makes the {@link Character} recieve the effect of a {@link Spell}.
+   *
+   * @param spell The {@link Spell} being cast.
+   * @param mage The {@link Mage} who cast the {@link Spell}.
+   * @param weapon The {@link cl.uchile.dcc.finalreality.model.weapon.Weapon}
+   *               used to cast the {@link Spell}.
+   * @throws InvalidTargetCharacterException The targeted {@link Character}
+   *                                         must be able to receive the {@link Spell}.
+   * @throws InvalidStatValueException The HP and MP values changed must be valid.
+   */
   void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 

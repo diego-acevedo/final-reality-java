@@ -3,15 +3,17 @@ package cl.uchile.dcc.finalreality.model.character;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.effect.FireEffect;
+import cl.uchile.dcc.finalreality.model.effect.NoEffect;
+import cl.uchile.dcc.finalreality.model.effect.ParalyzableEffect;
+import cl.uchile.dcc.finalreality.model.effect.PoisonousEffect;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import cl.uchile.dcc.finalreality.model.character.player.Mage;
-import cl.uchile.dcc.finalreality.model.effect.*;
-import cl.uchile.dcc.finalreality.model.spell.Spell;
-import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import org.jetbrains.annotations.NotNull;
 
 /**

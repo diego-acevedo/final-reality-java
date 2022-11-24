@@ -10,6 +10,11 @@ import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 
+/**
+ * A class that holds all the information of a spell.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public abstract class AbstractSpell implements Spell {
 
   @Override
@@ -26,13 +31,15 @@ public abstract class AbstractSpell implements Spell {
 
   @Override
   public void conjureByBlackMage(Mage mage, GameCharacter character, MagicWeapon weapon)
-      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {
+      throws InvalidMageException, InvalidStatValueException,
+      InvalidTargetCharacterException, InvalidManaValueException {
     throw new InvalidMageException(mage + " cannot conjure " + this);
   }
 
   @Override
   public void conjureByWhiteMage(Mage mage, GameCharacter character, MagicWeapon weapon)
-      throws InvalidMageException, InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {
+      throws InvalidMageException, InvalidStatValueException,
+      InvalidTargetCharacterException, InvalidManaValueException {
     throw new InvalidMageException(mage + " cannot conjure " + this);
   }
 }

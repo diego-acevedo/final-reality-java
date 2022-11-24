@@ -1,8 +1,17 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.*;
+import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 
 /**
@@ -64,6 +73,19 @@ public interface Weapon {
    */
   Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException;
 
+  /**
+   * Tries to cast a {@link Spell} by a {@link Mage} to some {@link Character}.
+   *
+   * @param character Character who will receive the effect of the spell.
+   * @param spell Spell being cast.
+   * @param mage Mage who is casting the spell.
+   * @throws InvalidMagicWeaponException Weapon used must be a {@link MagicWeapon}.
+   * @throws InvalidMageException The {@link Mage} used does not know the {@link Spell} used.
+   * @throws InvalidStatValueException The MP and HP changed needs to be valid.
+   * @throws InvalidTargetCharacterException The {@link Character} being target cannot receive
+   *     this {@link Spell}.
+   * @throws InvalidManaValueException The {@link Mage} does not have enough MP.
+   */
   void castSpell(GameCharacter character, Spell spell, Mage mage)
       throws InvalidMagicWeaponException, InvalidMageException,
       InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
