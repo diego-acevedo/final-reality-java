@@ -87,6 +87,7 @@ public abstract class AbstractCharacter implements GameCharacter {
     Require.statValueAtLeast(0, hp, "Current HP");
     Require.statValueAtMost(maxHp, hp, "Current HP");
     currentHp = hp;
+    this.checkHealth();
   }
 
   @Override
