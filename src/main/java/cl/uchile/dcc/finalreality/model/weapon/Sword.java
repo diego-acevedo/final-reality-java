@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
@@ -55,17 +56,17 @@ public class Sword extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Sword cannot be equiped to engineer");
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Sword cannot be equiped to engineer");
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Sword cannot be equiped to black mage");
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Sword cannot be equiped to black mage");
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Sword cannot be equiped to white mage");
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Sword cannot be equiped to white mage");
   }
 }

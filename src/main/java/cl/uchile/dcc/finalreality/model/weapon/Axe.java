@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.Thief;
@@ -53,17 +54,17 @@ public class Axe extends AbstractWeapon {
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Axe cannot be equiped to thief");
+  public Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Axe cannot be equiped to thief");
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Axe cannot be equiped to black mage");
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Axe cannot be equiped to black mage");
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Axe cannot be equiped to white mage");
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Axe cannot be equiped to white mage");
   }
 }

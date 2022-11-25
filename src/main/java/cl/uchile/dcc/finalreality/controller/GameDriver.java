@@ -10,10 +10,13 @@ import cl.uchile.dcc.finalreality.controller.factories.enemy.AbstractEnemyFactor
 import cl.uchile.dcc.finalreality.controller.factories.enemy.EnemyFactory;
 import cl.uchile.dcc.finalreality.controller.player.Player;
 import cl.uchile.dcc.finalreality.controller.states.GameState;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model.weapon.Weapon;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -57,6 +60,47 @@ public class GameDriver {
     AbstractEnemyFactory factory = new EnemyFactory();
     for (int i = 0; i < 5; i++) {
       enemyList.add(factory.create(turnsQueue));
+    }
+  }
+
+  public void addCharacterToParty(int n) {
+    PlayerCharacter character = playerCharacterList.get(n);
+    player.addCharacter(character);
+  }
+
+  public void equip(Weapon weapon, PlayerCharacter character) {
+    try {
+      character.equip(weapon);
+    } catch (InvalidEquipableWeaponException e) {
+      System.out.println("You cannot equip this weapon to this character.");
+    }
+  }
+
+  public void attack(GameCharacter attacker, GameCharacter target) {
+    try {
+      attacker.attack(target);
+    } catch (InvalidTargetCharacterException e1) {
+      System.out.println("You cannot attack this character.");
+    } catch (InvalidStatValueException e2) {
+      System.out.println("There's been a problem setting new Hp value.");
+    }
+  }
+
+  public void useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
+    try {
+      attacker.useMagic(spell, target);
+    } catch (InvalidTargetCharacterException invalidTarget) {
+      System.out.println("You cannot use this spell on the selected character.");
+    } catch (InvalidMagicWeaponException invalidWeapon) {
+      System.out.println("You have to have equipped a magic weapon to cast spells.");
+    } catch (NonMagicalCharacterException nonMagical) {
+      System.out.println("This is a non-magical character. They can't cast spells.");
+    } catch (InvalidMageException invalidMage) {
+      System.out.println("This mage doesn't know how to cast this spell. Try another one.");
+    } catch (InvalidManaValueException invalidMana) {
+      System.out.println("This mage has run out of mana. The spell is too expensive.");
+    } catch (InvalidStatValueException invalidStat) {
+      System.out.println("There's been a problem setting new Hp value.");
     }
   }
 

@@ -1,10 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
@@ -43,35 +39,35 @@ public interface Weapon {
    *
    * @param knight Character {@link Knight} who will be equipped this weapon.
    */
-  Weapon equipToKnight(Knight knight) throws InvalidStatValueException;
+  Weapon equipToKnight(Knight knight) throws InvalidEquipableWeaponException;
 
   /**
    * Tries to equip this weapon to a {@link Engineer}.
    *
    * @param engineer Character {@link Engineer} who will be equipped this weapon.
    */
-  Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException;
+  Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException;
 
   /**
    * Tries to equip this weapon to a {@link Thief}.
    *
    * @param thief Character {@link Thief} who will be equipped this weapon.
    */
-  Weapon equipToThief(Thief thief) throws InvalidStatValueException;
+  Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException;
 
   /**
    * Tries to equip this weapon to a {@link BlackMage}.
    *
    * @param blackmage Character {@link BlackMage} who will be equipped this weapon.
    */
-  Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException;
+  Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException;
 
   /**
    * Tries to equip this weapon to a {@link WhiteMage}.
    *
    * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
    */
-  Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException;
+  Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException;
 
   /**
    * Tries to cast a {@link Spell} by a {@link Mage} to some {@link Character}.

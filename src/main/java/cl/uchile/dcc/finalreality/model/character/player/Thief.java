@@ -8,6 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -70,12 +71,8 @@ public class Thief extends AbstractPlayerCharacter {
   }
 
   @Override
-  public void equip(Weapon weapon) {
-    try {
-      this.setEquippedWeapon(weapon.equipToThief(this));
-    } catch (InvalidStatValueException e) {
-      System.out.println("Invalid weapon given.");
-    }
+  public void equip(Weapon weapon) throws InvalidEquipableWeaponException {
+    this.setEquippedWeapon(weapon.equipToThief(this));
 
   }
 }

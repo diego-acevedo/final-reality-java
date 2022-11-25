@@ -1,11 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
-import cl.uchile.dcc.finalreality.exceptions.Require;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
@@ -60,27 +55,27 @@ public abstract class AbstractWeapon implements Weapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) throws InvalidStatValueException {
+  public Weapon equipToKnight(Knight knight) throws InvalidEquipableWeaponException {
     return this;
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException {
     return this;
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
+  public Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException {
     return this;
   }
 
   @Override
-  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidStatValueException {
+  public Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException {
     return this;
   }
 
   @Override
-  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidStatValueException {
+  public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException {
     return this;
   }
 

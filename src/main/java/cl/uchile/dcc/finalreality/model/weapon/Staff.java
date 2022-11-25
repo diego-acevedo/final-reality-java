@@ -1,9 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
 import cl.uchile.dcc.finalreality.model.character.player.Knight;
@@ -77,18 +74,18 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   }
 
   @Override
-  public Weapon equipToKnight(Knight knight) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Staff cannot be equiped to knight");
+  public Weapon equipToKnight(Knight knight) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Staff cannot be equiped to knight");
   }
 
   @Override
-  public Weapon equipToEngineer(Engineer engineer) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Staff cannot be equiped to engineer");
+  public Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Staff cannot be equiped to engineer");
   }
 
   @Override
-  public Weapon equipToThief(Thief thief) throws InvalidStatValueException {
-    throw new InvalidStatValueException("Staff cannot be equiped to thief");
+  public Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException {
+    throw new InvalidEquipableWeaponException("Staff cannot be equiped to thief");
   }
 
   public void castSpell(GameCharacter character, Spell spell, Mage mage)
