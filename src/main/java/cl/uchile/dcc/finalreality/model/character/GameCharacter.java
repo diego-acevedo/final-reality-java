@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.character;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 
@@ -59,4 +60,9 @@ public interface GameCharacter {
   void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 
+  void attack(GameCharacter character);
+
+  void getAttackFromPlayerCharacter(PlayerCharacter character);
+
+  void getAttackFromEnemy(Enemy enemy);
 }
