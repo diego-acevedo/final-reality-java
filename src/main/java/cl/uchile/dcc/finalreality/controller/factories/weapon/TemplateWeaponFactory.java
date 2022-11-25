@@ -44,7 +44,7 @@ public abstract class TemplateWeaponFactory implements AbstractWeaponFactory {
 
   @Override
   public Weapon create() throws InvalidStatValueException {
-    setValues();
-    return newWeapon();
+    this.setValues();
+    return this.newWeapon();
   }
 }
