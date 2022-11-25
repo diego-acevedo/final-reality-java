@@ -122,7 +122,8 @@ public class Enemy extends AbstractCharacter {
   }
 
   @Override
-  public void attack(GameCharacter character) throws InvalidTargetCharacterException {
+  public void attack(GameCharacter character)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
     character.getAttackFromEnemy(this);
   }
 
