@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.controller;
 
+import cl.uchile.dcc.finalreality.controller.player.Player;
 import cl.uchile.dcc.finalreality.controller.states.GameState;
 
 /**
@@ -8,6 +9,7 @@ import cl.uchile.dcc.finalreality.controller.states.GameState;
 public class GameDriver {
 
   private GameState gameState;
+  private Player player;
 
   public void setGameState(GameState gameState) {
     this.gameState = gameState;
