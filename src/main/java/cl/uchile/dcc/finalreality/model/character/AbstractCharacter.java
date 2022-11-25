@@ -21,6 +21,7 @@ public abstract class AbstractCharacter implements GameCharacter {
   private final int defense;
   private final BlockingQueue<GameCharacter> turnsQueue;
   private final String name;
+  private boolean alive;
   protected ScheduledExecutorService scheduledExecutor;
 
   /**
@@ -46,6 +47,7 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.defense = defense;
     this.turnsQueue = turnsQueue;
     this.name = name;
+    this.alive = true;
   }
 
   /**
@@ -98,5 +100,17 @@ public abstract class AbstractCharacter implements GameCharacter {
       throws InvalidTargetCharacterException, InvalidStatValueException {
     throw new InvalidTargetCharacterException("This character cannot be attacked by"
         + "a player character");
+  }
+
+  @Override
+  public boolean isAlive() {
+    return this.alive;
+  }
+
+  @Override
+  public void checkHealth() {
+    if (this.currentHp == 0) {
+      this.alive = false;
+    }
   }
 }

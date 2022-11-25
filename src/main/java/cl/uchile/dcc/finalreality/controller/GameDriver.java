@@ -1,6 +1,11 @@
 package cl.uchile.dcc.finalreality.controller;
 
-import cl.uchile.dcc.finalreality.controller.factories.character.*;
+import cl.uchile.dcc.finalreality.controller.factories.character.AbstractCharacterFactory;
+import cl.uchile.dcc.finalreality.controller.factories.character.BlackMageFactory;
+import cl.uchile.dcc.finalreality.controller.factories.character.EngineerFactory;
+import cl.uchile.dcc.finalreality.controller.factories.character.KnightFactory;
+import cl.uchile.dcc.finalreality.controller.factories.character.ThiefFactory;
+import cl.uchile.dcc.finalreality.controller.factories.character.WhiteMageFactory;
 import cl.uchile.dcc.finalreality.controller.factories.enemy.AbstractEnemyFactory;
 import cl.uchile.dcc.finalreality.controller.factories.enemy.EnemyFactory;
 import cl.uchile.dcc.finalreality.controller.player.Player;
@@ -9,7 +14,6 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;

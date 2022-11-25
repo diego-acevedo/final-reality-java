@@ -75,4 +75,8 @@ public interface GameCharacter {
 
   void getAttackFromEnemy(Enemy enemy)
       throws InvalidTargetCharacterException, InvalidStatValueException;
+
+  boolean isAlive();
+
+  void checkHealth();
 }
