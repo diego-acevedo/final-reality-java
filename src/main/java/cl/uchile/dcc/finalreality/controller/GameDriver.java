@@ -44,6 +44,8 @@ public class GameDriver {
     this.initializeEnemies();
   }
 
+
+
   private void initializePlayerCharacters(AbstractCharacterFactory factory)
       throws InvalidStatValueException {
     for (int i = 0; i < 3; i++) {
@@ -61,5 +63,17 @@ public class GameDriver {
   public void setGameState(GameState gameState) {
     this.gameState = gameState;
     gameState.setGameDriver(this);
+  }
+
+  public boolean enemiesAlive() {
+    boolean alive = false;
+    for (Enemy enemy : enemyList) {
+      alive = alive | enemy.isAlive();
+    }
+    return alive;
+  }
+
+  public boolean playerAlive() {
+    return player.alive();
   }
 }

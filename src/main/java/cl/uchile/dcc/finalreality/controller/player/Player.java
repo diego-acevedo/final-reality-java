@@ -11,4 +11,8 @@ public class Player {
     this.inventory = new Inventory();
     this.party = new Party(5);
   }
+
+  public boolean alive() {
+    return party.alive();
+  }
 }
