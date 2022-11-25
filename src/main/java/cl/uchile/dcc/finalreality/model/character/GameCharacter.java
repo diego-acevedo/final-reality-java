@@ -60,6 +60,13 @@ public interface GameCharacter {
   void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 
+  /**
+   * Attacks the targeted {@link Character}.
+   *
+   * @param character The {@link Character} being targeted.
+   * @throws InvalidTargetCharacterException Characters cannot attack their own kind.
+   * @throws InvalidStatValueException New Hp value needs to be valid.
+   */
   void attack(GameCharacter character)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 
