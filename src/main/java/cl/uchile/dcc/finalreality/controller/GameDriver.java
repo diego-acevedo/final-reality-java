@@ -16,7 +16,6 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -28,7 +27,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class GameDriver {
 
   private GameState gameState;
-  private Player player;
+  private final Player player;
   private final List<PlayerCharacter> playerCharacterList;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
@@ -47,8 +46,6 @@ public class GameDriver {
     this.initializeEnemies();
   }
 
-
-
   private void initializePlayerCharacters(AbstractCharacterFactory factory)
       throws InvalidStatValueException {
     for (int i = 0; i < 3; i++) {
@@ -59,13 +56,16 @@ public class GameDriver {
   private void initializeEnemies() throws InvalidStatValueException {
     AbstractEnemyFactory factory = new EnemyFactory();
     for (int i = 0; i < 5; i++) {
-      enemyList.add(factory.create(turnsQueue));
+      Enemy enemy = factory.create(turnsQueue);
+      enemyList.add(enemy);
+      turnsQueue.add(enemy);
     }
   }
 
   public void addCharacterToParty(int n) {
     PlayerCharacter character = playerCharacterList.get(n);
     player.addCharacter(character);
+    turnsQueue.add(character);
   }
 
   public void equip(Weapon weapon, PlayerCharacter character) {
