@@ -60,9 +60,12 @@ public interface GameCharacter {
   void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidTargetCharacterException, InvalidStatValueException;
 
-  void attack(GameCharacter character);
+  void attack(GameCharacter character)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
 
-  void getAttackFromPlayerCharacter(PlayerCharacter character);
+  void getAttackFromPlayerCharacter(PlayerCharacter character)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
 
-  void getAttackFromEnemy(Enemy enemy);
+  void getAttackFromEnemy(Enemy enemy)
+      throws InvalidTargetCharacterException, InvalidStatValueException;
 }

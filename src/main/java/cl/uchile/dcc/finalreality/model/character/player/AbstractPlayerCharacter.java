@@ -15,6 +15,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
+import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
@@ -79,6 +80,18 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   protected void setEquippedWeapon(Weapon weapon) {
     this.equippedWeapon = weapon;
+  }
+
+  @Override
+  public void attack(GameCharacter character)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    character.getAttackFromPlayerCharacter(this);
+  }
+
+  @Override
+  public void getAttackFromEnemy(Enemy enemy) throws InvalidStatValueException {
+    int newHp = Math.max(0, this.getCurrentHp() - (enemy.getAttack() - this.getDefense()));
+    this.setCurrentHp(newHp);
   }
 
   public void useMagic(Spell spell, GameCharacter character)

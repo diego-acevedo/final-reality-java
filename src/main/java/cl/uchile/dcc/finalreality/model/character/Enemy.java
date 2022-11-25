@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.effect.FireEffect;
 import cl.uchile.dcc.finalreality.model.effect.NoEffect;
 import cl.uchile.dcc.finalreality.model.effect.ParalyzableEffect;
@@ -118,6 +119,18 @@ public class Enemy extends AbstractCharacter {
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     spell.induceEffectOnEnemy(this, weapon);
+  }
+
+  @Override
+  public void attack(GameCharacter character) throws InvalidTargetCharacterException {
+    character.getAttackFromEnemy(this);
+  }
+
+  @Override
+  public void getAttackFromPlayerCharacter(PlayerCharacter character)
+      throws InvalidStatValueException {
+    int newHp = Math.max(0, this.getCurrentHp() - character.getEquippedWeapon().getDamage());
+    this.setCurrentHp(newHp);
   }
 
   public void changeParalysisStatus(ParalyzableEffect s) {
