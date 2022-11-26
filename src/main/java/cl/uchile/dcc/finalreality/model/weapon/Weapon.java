@@ -1,73 +1,94 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import java.util.Objects;
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model.character.player.Mage;
+import cl.uchile.dcc.finalreality.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model.spell.Spell;
 
 /**
- * A class that holds all the information of a weapon.
+ * This represents a weapon equipable by a
+ * {@link cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter PlayerCharacter}.
  *
- * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
-public class Weapon {
 
-  private final String name;
-  private final int damage;
-  private final int weight;
-  private final WeaponType type;
+public interface Weapon {
 
   /**
-   * Creates a weapon with a name, a base damage, speed, and it's type.
+   * Returns this weapon's name.
    */
-  public Weapon(final String name, final int damage, final int weight,
-      final WeaponType type) {
-    this.name = name;
-    this.damage = damage;
-    this.weight = weight;
-    this.type = type;
-  }
-
-  private String getName() {
-    return name;
-  }
-
-  private int getDamage() {
-    return damage;
-  }
+  String getName();
 
   /**
-   * Returns the weight of the weapon.
+   * Returns this weapon's damage.
    */
-  public int getWeight() {
-    return weight;
-  }
+  int getDamage();
 
-  private WeaponType getType() {
-    return type;
-  }
+  /**
+   * Returns this weapon's weight.
+   */
+  int getWeight();
 
-  @Override
-  public boolean equals(final Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof final Weapon weapon)) {
-      return false;
-    }
-    return hashCode() == weapon.hashCode()
-        && damage == weapon.damage
-        && weight == weapon.weight
-        && name.equals(weapon.name)
-        && type == weapon.type;
-  }
+  /**
+   * Tries to equip this weapon to a {@link Knight}.
+   *
+   * @param knight Character {@link Knight} who will be equipped this weapon.
+   */
+  Weapon equipToKnight(Knight knight) throws InvalidEquipableWeaponException;
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(Weapon.class, name, damage, weight, type);
-  }
+  /**
+   * Tries to equip this weapon to a {@link Engineer}.
+   *
+   * @param engineer Character {@link Engineer} who will be equipped this weapon.
+   */
+  Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException;
 
-  @Override
-  public String toString() {
-    return "Weapon{name='%s', damage=%d, weight=%d, type=%s}"
-        .formatted(name, damage, weight, type);
-  }
+  /**
+   * Tries to equip this weapon to a {@link Thief}.
+   *
+   * @param thief Character {@link Thief} who will be equipped this weapon.
+   */
+  Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException;
+
+  /**
+   * Tries to equip this weapon to a {@link BlackMage}.
+   *
+   * @param blackmage Character {@link BlackMage} who will be equipped this weapon.
+   */
+  Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException;
+
+  /**
+   * Tries to equip this weapon to a {@link WhiteMage}.
+   *
+   * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
+   */
+  Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException;
+
+  /**
+   * Tries to cast a {@link Spell} by a {@link Mage} to some {@link Character}.
+   *
+   * @param character Character who will receive the effect of the spell.
+   * @param spell Spell being cast.
+   * @param mage Mage who is casting the spell.
+   * @throws InvalidMagicWeaponException Weapon used must be a {@link MagicWeapon}.
+   * @throws InvalidMageException The {@link Mage} used does not know the {@link Spell} used.
+   * @throws InvalidStatValueException The MP and HP changed needs to be valid.
+   * @throws InvalidTargetCharacterException The {@link Character} being target cannot receive
+   *     this {@link Spell}.
+   * @throws InvalidManaValueException The {@link Mage} does not have enough MP.
+   */
+  void castSpell(GameCharacter character, Spell spell, Mage mage)
+      throws InvalidMagicWeaponException, InvalidMageException,
+      InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
+
 }
