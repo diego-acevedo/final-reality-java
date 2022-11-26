@@ -2,20 +2,22 @@ package cl.uchile.dcc.finalreality.controller.factories.weapon;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
-
 import java.util.Random;
 
+/**
+ * A class that holds the basic {@link AbstractWeaponFactory} logic.
+ */
 public abstract class TemplateWeaponFactory implements AbstractWeaponFactory {
 
-  private int n = 1;
+  private int weaponsCreated = 1;
   private String name;
   private int damage;
   private int weight;
   protected final Random rnd = new Random();
 
   protected void setName(String weaponClass) {
-    this.name = "%s %d".formatted(weaponClass, this.n);
-    this.n++;
+    this.name = "%s %d".formatted(weaponClass, this.weaponsCreated);
+    this.weaponsCreated++;
   }
 
   protected void setDamage() {

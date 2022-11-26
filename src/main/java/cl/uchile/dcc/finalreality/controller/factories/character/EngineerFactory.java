@@ -4,9 +4,11 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * A class that represents an {@link AbstractCharacterFactory} that creates a {@link Engineer}.
+ */
 public class EngineerFactory extends TemplateCharacterFactory {
 
   @Override

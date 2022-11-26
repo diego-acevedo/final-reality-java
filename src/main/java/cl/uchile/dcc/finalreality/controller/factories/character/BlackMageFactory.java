@@ -4,9 +4,11 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * A class that represents an {@link AbstractCharacterFactory} that creates a {@link BlackMage}.
+ */
 public class BlackMageFactory extends TemplateCharacterFactory {
 
   private int maxMp;
@@ -30,6 +32,7 @@ public class BlackMageFactory extends TemplateCharacterFactory {
   @Override
   protected PlayerCharacter newCharacter(BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
-    return new BlackMage(this.getName(), this.getMaxHp(), this.getDefense(), this.getMaxMp(), turnsQueue);
+    return new BlackMage(this.getName(), this.getMaxHp(), this.getDefense(),
+        this.getMaxMp(), turnsQueue);
   }
 }

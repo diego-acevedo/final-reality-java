@@ -3,13 +3,15 @@ package cl.uchile.dcc.finalreality.controller.factories.enemy;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * A class that represents an {@link AbstractEnemyFactory} that creates an {@link Enemy}.
+ */
 public class EnemyFactory implements AbstractEnemyFactory {
 
-  private int n = 1;
+  private int enemiesCreated = 1;
   private String name;
   private int weight;
   private int maxHp;
@@ -18,8 +20,8 @@ public class EnemyFactory implements AbstractEnemyFactory {
   protected Random rnd = new Random();
 
   protected void setName() {
-    this.name = "Enemy %d".formatted(this.n);
-    this.n++;
+    this.name = "Enemy %d".formatted(this.enemiesCreated);
+    this.enemiesCreated++;
   }
 
   protected void setWeight() {

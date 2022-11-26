@@ -1,6 +1,10 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Engineer;
 import cl.uchile.dcc.finalreality.model.character.player.Knight;

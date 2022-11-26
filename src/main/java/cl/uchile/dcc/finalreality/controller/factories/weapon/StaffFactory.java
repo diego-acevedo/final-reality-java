@@ -4,16 +4,19 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.weapon.Staff;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
+/**
+ * A {@link AbstractWeaponFactory} that creates an {@link Staff}.
+ */
 public class StaffFactory extends TemplateWeaponFactory {
 
-  private int Mp;
+  private int mp;
 
   public int getMp() {
-    return this.Mp;
+    return this.mp;
   }
 
   private void setMp() {
-    this.Mp = this.rnd.nextInt(20, 50);
+    this.mp = this.rnd.nextInt(20, 50);
   }
 
   @Override

@@ -4,9 +4,11 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
-
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * A class that represents an {@link AbstractCharacterFactory} that creates a {@link WhiteMage}.
+ */
 public class WhiteMageFactory extends TemplateCharacterFactory {
 
   private int maxMp;
@@ -30,6 +32,7 @@ public class WhiteMageFactory extends TemplateCharacterFactory {
   @Override
   protected PlayerCharacter newCharacter(BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException {
-    return new WhiteMage(this.getName(), this.getMaxHp(), this.getDefense(), this.getMaxMp(), turnsQueue);
+    return new WhiteMage(this.getName(), this.getMaxHp(), this.getDefense(),
+        this.getMaxMp(), turnsQueue);
   }
 }

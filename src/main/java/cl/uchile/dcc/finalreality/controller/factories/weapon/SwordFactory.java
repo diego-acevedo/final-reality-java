@@ -4,6 +4,9 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.weapon.Sword;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
+/**
+ * A {@link AbstractWeaponFactory} that creates an {@link Sword}.
+ */
 public class SwordFactory extends TemplateWeaponFactory {
 
   @Override
