@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.character;
 
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
@@ -7,6 +8,8 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import org.jetbrains.annotations.NotNull;
+
+import static cl.uchile.dcc.finalreality.controller.GameDriver.DRIVER;
 
 /**
  * An abstract class that holds the common behaviour of all the characters in the game.
@@ -22,6 +25,7 @@ public abstract class AbstractCharacter implements GameCharacter {
   private final BlockingQueue<GameCharacter> turnsQueue;
   private final String name;
   private boolean alive;
+  private final GameDriver driver;
   protected ScheduledExecutorService scheduledExecutor;
 
   /**
@@ -48,6 +52,7 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.turnsQueue = turnsQueue;
     this.name = name;
     this.alive = true;
+    this.driver = DRIVER;
   }
 
   /**
@@ -112,6 +117,7 @@ public abstract class AbstractCharacter implements GameCharacter {
   public void checkHealth() {
     if (this.currentHp == 0) {
       this.alive = false;
+      driver.checkGameStatus();
     }
   }
 }

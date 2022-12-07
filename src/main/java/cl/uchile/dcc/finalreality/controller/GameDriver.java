@@ -34,11 +34,13 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class GameDriver {
 
+  public static GameDriver DRIVER;
   private GameState gameState;
   private final Player player;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
   private int cursor;
+  private boolean gameOver;
   public static final int MAX_CHARACTERS = 5;
   public static final int MAX_ENEMIES = 6;
   public static Random RANDOM_GENERATOR;
@@ -50,6 +52,7 @@ public class GameDriver {
    */
   public GameDriver(long seed) throws InvalidStatValueException {
     this.cursor = 0;
+    this.gameOver = false;
     setGameState(new Preparation(this));
     this.player = new Player();
     this.enemyList = new ArrayList<>();
@@ -58,6 +61,8 @@ public class GameDriver {
 
     this.initializePlayerCharacters();
     this.initializeEnemies();
+
+    DRIVER = this;
   }
 
   /**
@@ -190,6 +195,10 @@ public class GameDriver {
    */
   public boolean playerAlive() {
     return player.alive();
+  }
+
+  public void checkGameStatus() {
+    this.gameOver = !(playerAlive() && enemiesAlive());
   }
 
   /**
