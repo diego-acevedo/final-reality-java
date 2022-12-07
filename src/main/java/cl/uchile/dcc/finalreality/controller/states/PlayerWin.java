@@ -5,12 +5,6 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 /**
  * A {@link GameState} that represents the game is over and the player has won.
  */
-public class PlayerWin implements GameState {
+public class PlayerWin extends AbstractState {
 
-  private GameDriver gameDriver;
-
-  @Override
-  public void setGameDriver(GameDriver gameDriver) {
-    this.gameDriver = gameDriver;
-  }
 }

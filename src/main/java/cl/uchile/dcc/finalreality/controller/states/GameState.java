@@ -8,4 +8,6 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 public interface GameState {
 
   void setGameDriver(GameDriver gameDriver);
+
+  GameDriver getGameDriver();
 }
