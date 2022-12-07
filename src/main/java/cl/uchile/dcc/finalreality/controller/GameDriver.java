@@ -37,6 +37,7 @@ public class GameDriver {
   private final Player player;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
+  private int cursor;
   public static final int MAX_CHARACTERS = 5;
   public static final int MAX_ENEMIES = 6;
   public static Random RANDOM_GENERATOR;
@@ -47,6 +48,7 @@ public class GameDriver {
    * @throws InvalidStatValueException Characters and weapons must be created with the right values.
    */
   public GameDriver(long seed) throws InvalidStatValueException {
+    this.cursor = 0;
     this.player = new Player();
     this.enemyList = new ArrayList<>();
     this.turnsQueue = new LinkedBlockingQueue<>();
@@ -186,5 +188,30 @@ public class GameDriver {
    */
   public boolean playerAlive() {
     return player.alive();
+  }
+
+  /**
+   * Returns the position of the cursor.
+   *
+   * @return Position of the cursor.
+   */
+  public int getCursor() {
+    return cursor;
+  }
+
+  /**
+   * Moves the cursor n positions (typically 1 or -1).
+   *
+   * @param n Spaces the cursor must move.
+   */
+  public void moveCursor(int n) {
+    this.cursor += n;
+  }
+
+  /**
+   * Moves the cursor to the initial position (0).
+   */
+  public void resetCursor() {
+    this.cursor = 0;
   }
 }
