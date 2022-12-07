@@ -10,4 +10,8 @@ public interface GameState {
   void setGameDriver(GameDriver gameDriver);
 
   GameDriver getGameDriver();
+
+  void nextState();
+
+
 }

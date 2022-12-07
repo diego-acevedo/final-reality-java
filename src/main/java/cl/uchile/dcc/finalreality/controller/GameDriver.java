@@ -50,7 +50,7 @@ public class GameDriver {
    */
   public GameDriver(long seed) throws InvalidStatValueException {
     this.cursor = 0;
-    setGameState(new Preparation());
+    setGameState(new Preparation(this));
     this.player = new Player();
     this.enemyList = new ArrayList<>();
     this.turnsQueue = new LinkedBlockingQueue<>();

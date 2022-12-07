@@ -4,7 +4,7 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 
 public abstract class AbstractState implements GameState {
 
-  private GameDriver gameDriver;
+  protected GameDriver gameDriver;
   protected GameState nextState;
   protected GameState failedState;
 
@@ -25,5 +25,10 @@ public abstract class AbstractState implements GameState {
   @Override
   public GameDriver getGameDriver() {
     return this.gameDriver;
+  }
+
+  @Override
+  public void nextState() {
+    gameDriver.setGameState(nextState);
   }
 }
