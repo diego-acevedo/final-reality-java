@@ -24,6 +24,7 @@ import cl.uchile.dcc.finalreality.model.spell.Spell;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -34,39 +35,41 @@ public class GameDriver {
 
   private GameState gameState;
   private final Player player;
-  private final List<PlayerCharacter> playerCharacterList;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
+  public static final int MAX_CHARACTERS = 5;
+  public static final int MAX_ENEMIES = 6;
+  public static Random RANDOM_GENERATOR;
 
   /**
    * Creates a game controller with all characters and weapons initialized.
    *
    * @throws InvalidStatValueException Characters and weapons must be created with the right values.
    */
-  public GameDriver() throws InvalidStatValueException {
+  public GameDriver(long seed) throws InvalidStatValueException {
     this.player = new Player();
-    this.playerCharacterList = new ArrayList<>();
     this.enemyList = new ArrayList<>();
     this.turnsQueue = new LinkedBlockingQueue<>();
+    RANDOM_GENERATOR = new Random(seed);
 
-    this.initializePlayerCharacters(new BlackMageFactory());
-    this.initializePlayerCharacters(new EngineerFactory());
-    this.initializePlayerCharacters(new ThiefFactory());
-    this.initializePlayerCharacters(new KnightFactory());
-    this.initializePlayerCharacters(new WhiteMageFactory());
+    this.initializePlayerCharacters();
     this.initializeEnemies();
   }
 
   /**
    * Creates all characters the player has to choose for their party.
    *
-   * @param factory A factory for a certain type of {@link PlayerCharacter}
    * @throws InvalidStatValueException Characters must be created with the right values.
    */
-  private void initializePlayerCharacters(AbstractCharacterFactory factory)
+  private void initializePlayerCharacters()
       throws InvalidStatValueException {
-    for (int i = 0; i < 3; i++) {
-      playerCharacterList.add(factory.create(turnsQueue));
+    AbstractCharacterFactory[] factories = {new EngineerFactory(), new KnightFactory(),
+        new ThiefFactory(), new BlackMageFactory(), new WhiteMageFactory()};
+    for (int i = 0; i < MAX_CHARACTERS; i++) {
+      int n = RANDOM_GENERATOR.nextInt(0, 5);
+      PlayerCharacter character = factories[n].create(turnsQueue);
+      player.addCharacter(character);
+      turnsQueue.add(character);
     }
   }
 
@@ -77,7 +80,7 @@ public class GameDriver {
    */
   private void initializeEnemies() throws InvalidStatValueException {
     AbstractEnemyFactory factory = new EnemyFactory();
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < MAX_ENEMIES; i++) {
       Enemy enemy = factory.create(turnsQueue);
       enemyList.add(enemy);
       turnsQueue.add(enemy);

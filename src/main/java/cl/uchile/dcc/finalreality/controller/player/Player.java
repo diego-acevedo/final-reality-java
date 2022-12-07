@@ -1,7 +1,10 @@
 package cl.uchile.dcc.finalreality.controller.player;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.MAX_CHARACTERS;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+
 
 /**
  * A class that represents a player. It has an {@link Inventory} and a {@link Party}.
@@ -9,7 +12,7 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 public class Player {
 
   private Inventory inventory;
-  private Party party;
+  private final Party party;
 
   /**
    * Creates a new player with an initialized {@link Inventory} and an empty {@link Party}.
@@ -18,7 +21,7 @@ public class Player {
    */
   public Player() throws InvalidStatValueException {
     this.inventory = new Inventory();
-    this.party = new Party(5);
+    this.party = new Party(MAX_CHARACTERS);
   }
 
   /**
