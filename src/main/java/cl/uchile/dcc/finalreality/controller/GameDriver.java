@@ -85,13 +85,12 @@ public class GameDriver {
   }
 
   /**
-   * Choose a character by thier index from the available
+   * Choose a character from the available
    * characters and puts it into the player's party.
    *
-   * @param n Index of the character from the characters list.
+   * @param character Character from available character to be added..
    */
-  public void addCharacterToParty(int n) {
-    PlayerCharacter character = playerCharacterList.get(n);
+  public void addCharacterToParty(PlayerCharacter character) {
     player.addCharacter(character);
     turnsQueue.add(character);
   }
@@ -102,11 +101,12 @@ public class GameDriver {
    * @param weapon {@link Weapon} to be equipped.
    * @param character {@link PlayerCharacter} who will recieve the {@link Weapon}.
    */
-  public void equip(Weapon weapon, PlayerCharacter character) {
+  public String equip(Weapon weapon, PlayerCharacter character) {
     try {
       character.equip(weapon);
+      return "%s succesfully equipped to %s.".formatted(weapon.getClass(), character.getClass());
     } catch (InvalidEquipableWeaponException e) {
-      System.out.println("You cannot equip this weapon to this character.");
+      return "You cannot equip this %s to this %s.".formatted(weapon.getClass(), character.getClass());
     }
   }
 
@@ -116,13 +116,14 @@ public class GameDriver {
    * @param attacker {@link GameCharacter} who attacks.
    * @param target {@link GameCharacter} who gets attacked.
    */
-  public void attack(GameCharacter attacker, GameCharacter target) {
+  public String attack(GameCharacter attacker, GameCharacter target) {
     try {
       attacker.attack(target);
+      return "%s has attacked %s".formatted(attacker.getClass(), target.getClass());
     } catch (InvalidTargetCharacterException e1) {
-      System.out.println("You cannot attack this character.");
+      return "%s cannot attack this %s.".formatted(attacker.getClass(), target.getClass());
     } catch (InvalidStatValueException e2) {
-      System.out.println("There's been a problem setting new Hp value.");
+      return "There's been a problem setting new Hp value.";
     }
   }
 
@@ -133,21 +134,22 @@ public class GameDriver {
    * @param spell {@link Spell} being cast.
    * @param target {@link GameCharacter} who gets attacked.
    */
-  public void useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
+  public String useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
     try {
       attacker.useMagic(spell, target);
+      return "%s has used %s on %s".formatted(attacker.getClass(), spell.getClass(), target.getClass());
     } catch (InvalidTargetCharacterException invalidTarget) {
-      System.out.println("You cannot use this spell on the selected character.");
+      return "%s cannot use %s on %s.".formatted(attacker.getClass(), spell.getClass(), target.getClass());
     } catch (InvalidMagicWeaponException invalidWeapon) {
-      System.out.println("You have to have equipped a magic weapon to cast spells.");
+      return "You have to have equipped a magic weapon to cast spells.";
     } catch (NonMagicalCharacterException nonMagical) {
-      System.out.println("This is a non-magical character. They can't cast spells.");
+      return "This is a non-magical character. %s can't cast spells.".formatted(attacker.getClass());
     } catch (InvalidMageException invalidMage) {
-      System.out.println("This mage doesn't know how to cast this spell. Try another one.");
+      return "%s doesn't know how to cast %s.".formatted(attacker.getClass(), spell.getClass());
     } catch (InvalidManaValueException invalidMana) {
-      System.out.println("This mage has run out of mana. The spell is too expensive.");
+      return "This mage has run out of mana. The spell is too expensive.";
     } catch (InvalidStatValueException invalidStat) {
-      System.out.println("There's been a problem setting new Hp value.");
+      return "There's been a problem setting new Hp value.";
     }
   }
 
