@@ -79,4 +79,6 @@ public interface GameCharacter {
   boolean isAlive();
 
   void checkHealth();
+
+  boolean isPlayable();
 }

@@ -105,4 +105,9 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
       throws InvalidStatValueException, InvalidTargetCharacterException {
     spell.induceEffectOnPlayerCharacter(this, weapon);
   }
+
+  @Override
+  public boolean isPlayable() {
+    return true;
+  }
 }

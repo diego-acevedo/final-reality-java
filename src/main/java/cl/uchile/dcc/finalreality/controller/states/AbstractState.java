@@ -7,6 +7,7 @@ public abstract class AbstractState implements GameState {
   protected GameDriver gameDriver;
   protected GameState nextState;
   protected GameState failedState;
+  private boolean finished = false;
 
   public AbstractState(GameDriver driver, GameState failed) {
     this.gameDriver = driver;
@@ -30,5 +31,20 @@ public abstract class AbstractState implements GameState {
   @Override
   public void nextState() {
     gameDriver.setGameState(nextState);
+  }
+
+  @Override
+  public void goBack() {
+    gameDriver.setGameState(failedState);
+  }
+
+  @Override
+  public void allowContinue() {
+    this.finished = true;
+  }
+
+  @Override
+  public boolean isFinished() {
+    return this.finished;
   }
 }

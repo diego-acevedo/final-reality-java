@@ -39,6 +39,7 @@ public class GameDriver {
   private final Player player;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
+  private GameCharacter currentCharacter;
   private int cursor;
   private boolean gameOver;
   public static final int MAX_CHARACTERS = 5;
@@ -224,5 +225,47 @@ public class GameDriver {
    */
   public void resetCursor() {
     this.cursor = 0;
+  }
+
+  public BlockingQueue<GameCharacter> getTurnsQueue() {
+    return turnsQueue;
+  }
+
+  public void setCurrentCharacter(GameCharacter character) {
+    this.currentCharacter = character;
+  }
+
+  public GameCharacter getCurrentCharacter() {
+    return this.currentCharacter;
+  }
+
+  public List<Enemy> getEnemyList() {
+    return enemyList;
+  }
+
+  public List<PlayerCharacter> getPlayerCharacters() {
+    return this.player.getParty().getCharacters();
+  }
+
+  public List<Enemy> getAliveEnemies() {
+    List<Enemy> enemies = getEnemyList();
+    List<Enemy> aliveEnemies = new ArrayList<>();
+    for (Enemy enemy: enemies) {
+      if (enemy.isAlive()) {
+        aliveEnemies.add(enemy);
+      }
+    }
+    return aliveEnemies;
+  }
+
+  public List<PlayerCharacter> getAliveCharacters() {
+    List<PlayerCharacter> characters = getPlayerCharacters();
+    List<PlayerCharacter> aliveCharacters = new ArrayList<>();
+    for (PlayerCharacter character : characters) {
+      if (character.isAlive()) {
+        aliveCharacters.add(character);
+      }
+    }
+    return aliveCharacters;
   }
 }

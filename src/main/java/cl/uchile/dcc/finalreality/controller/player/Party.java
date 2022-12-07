@@ -55,4 +55,8 @@ public class Party {
     }
     return alive;
   }
+
+  public List<PlayerCharacter> getCharacters() {
+    return characters;
+  }
 }

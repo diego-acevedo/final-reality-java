@@ -120,4 +120,9 @@ public abstract class AbstractCharacter implements GameCharacter {
       driver.checkGameStatus();
     }
   }
+
+  @Override
+  public boolean isPlayable() {
+    return false;
+  }
 }

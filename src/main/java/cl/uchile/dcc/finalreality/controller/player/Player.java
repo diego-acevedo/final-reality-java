@@ -41,4 +41,8 @@ public class Player {
   public void addCharacter(PlayerCharacter character) {
     this.party.addCharacter(character);
   }
+
+  public Party getParty() {
+    return party;
+  }
 }
