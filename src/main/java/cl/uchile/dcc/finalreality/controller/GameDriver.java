@@ -10,6 +10,7 @@ import cl.uchile.dcc.finalreality.controller.factories.enemy.AbstractEnemyFactor
 import cl.uchile.dcc.finalreality.controller.factories.enemy.EnemyFactory;
 import cl.uchile.dcc.finalreality.controller.player.Player;
 import cl.uchile.dcc.finalreality.controller.states.GameState;
+import cl.uchile.dcc.finalreality.controller.states.Preparation;
 import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
@@ -49,6 +50,7 @@ public class GameDriver {
    */
   public GameDriver(long seed) throws InvalidStatValueException {
     this.cursor = 0;
+    setGameState(new Preparation());
     this.player = new Player();
     this.enemyList = new ArrayList<>();
     this.turnsQueue = new LinkedBlockingQueue<>();
