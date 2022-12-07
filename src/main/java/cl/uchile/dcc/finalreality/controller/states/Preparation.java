@@ -7,4 +7,8 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
  */
 public class Preparation extends AbstractState {
 
+  public Preparation(GameDriver driver) {
+    super(driver);
+    this.nextState = new NewTurn(driver);
+  }
 }
