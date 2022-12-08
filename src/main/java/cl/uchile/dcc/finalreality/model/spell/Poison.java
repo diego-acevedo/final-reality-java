@@ -34,4 +34,9 @@ public class Poison extends AbstractSpell {
       throw new InvalidManaValueException("There's not enough mana to cast a poison spell.");
     }
   }
+
+  @Override
+  public String toString() {
+    return "Poison";
+  }
 }

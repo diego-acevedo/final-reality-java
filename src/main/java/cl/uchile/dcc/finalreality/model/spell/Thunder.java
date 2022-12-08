@@ -10,6 +10,8 @@ import cl.uchile.dcc.finalreality.model.effect.ParalysisEffect;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import java.util.Random;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 /**
  * A class thah holds the information of a {@link Spell} that throws thunderes towards enemies.
  *
@@ -23,7 +25,7 @@ public class Thunder extends AbstractSpell {
     int newHp = Math.max(0, character.getCurrentHp() - weapon.getMagicDamage());
     character.setCurrentHp(newHp);
     Random random = new Random();
-    if (random.nextFloat() <= 0.3) {
+    if (RANDOM_GENERATOR.nextFloat() <= 0.3) {
       character.changeParalysisStatus(new ParalysisEffect());
     }
   }
@@ -40,5 +42,10 @@ public class Thunder extends AbstractSpell {
     if (mageMana < 15) {
       throw new InvalidManaValueException("There's not enough mana to cast a thunder spell.");
     }
+  }
+
+  @Override
+  public String toString() {
+    return "Thunder";
   }
 }

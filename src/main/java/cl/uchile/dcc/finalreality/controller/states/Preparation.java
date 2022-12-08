@@ -16,7 +16,7 @@ public class Preparation extends AbstractState {
   }
 
   @Override
-  public void executes() {
+  public void execute() {
     this.nextState();
   }
 

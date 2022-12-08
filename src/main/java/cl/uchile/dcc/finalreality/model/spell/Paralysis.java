@@ -34,4 +34,9 @@ public class Paralysis extends AbstractSpell {
       throw new InvalidManaValueException("There's not enough mana to cast a paralysing spell.");
     }
   }
+
+  @Override
+  public String toString() {
+    return "Paralysis";
+  }
 }

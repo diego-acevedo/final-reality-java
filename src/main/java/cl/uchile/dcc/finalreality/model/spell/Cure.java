@@ -36,4 +36,9 @@ public class Cure extends AbstractSpell {
       throw new InvalidManaValueException("There's not enough mana to cast a healing spell.");
     }
   }
+
+  @Override
+  public String toString() {
+    return "Cure";
+  }
 }

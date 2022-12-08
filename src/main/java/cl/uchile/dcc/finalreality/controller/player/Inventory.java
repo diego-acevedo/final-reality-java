@@ -63,4 +63,8 @@ public class Inventory {
       this.addItem(factory.create());
     }
   }
+
+  public List<Weapon> getItems() {
+    return items;
+  }
 }

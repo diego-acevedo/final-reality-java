@@ -45,4 +45,8 @@ public class Player {
   public Party getParty() {
     return party;
   }
+
+  public Inventory getInventory() {
+    return inventory;
+  }
 }

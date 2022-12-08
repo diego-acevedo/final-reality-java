@@ -16,11 +16,17 @@ public class EnemyPlay extends AbstractState {
   }
 
   @Override
-  public void executes() {
+  public void execute() {
     List<PlayerCharacter> characters = gameDriver.getAliveCharacters();
     int n = RANDOM_GENERATOR.nextInt(0, characters.size());
-    gameDriver.attack(gameDriver.getCurrentCharacter(), characters.get(n));
-    nextState();
+    String status = gameDriver.attack(gameDriver.getCurrentCharacter(), characters.get(n));
+    System.out.println(status);
+    if (gameDriver.isTransitionSucceeded()) {
+      nextState();
+    } else {
+      this.execute();
+    }
+
   }
 
   @Override

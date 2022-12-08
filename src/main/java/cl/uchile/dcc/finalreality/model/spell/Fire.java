@@ -10,6 +10,8 @@ import cl.uchile.dcc.finalreality.model.effect.BurntEffect;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 import java.util.Random;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 /**
  * A class thah holds the information of a {@link Spell} that burns enemies.
  *
@@ -22,8 +24,7 @@ public class Fire extends AbstractSpell {
       throws InvalidStatValueException {
     int newHp = Math.max(0, character.getCurrentHp() - weapon.getMagicDamage());
     character.setCurrentHp(newHp);
-    Random random = new Random();
-    if (random.nextFloat() <= 0.2) {
+    if (RANDOM_GENERATOR.nextFloat() <= 0.2) {
       character.changeBurntStatus(new BurntEffect(weapon.getMagicDamage()));
     }
   }
@@ -40,5 +41,10 @@ public class Fire extends AbstractSpell {
     if (mageMana < 15) {
       throw new InvalidManaValueException("There's not enough mana to cast a fire spell.");
     }
+  }
+
+  @Override
+  public String toString() {
+    return "Fire";
   }
 }

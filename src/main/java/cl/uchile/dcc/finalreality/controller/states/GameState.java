@@ -21,7 +21,9 @@ public interface GameState {
 
   boolean isFinished();
 
-  void executes();
+  void execute();
 
   List<String> options();
+
+  boolean executeAutomatically();
 }

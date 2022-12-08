@@ -36,6 +36,7 @@ public class GameDriver {
 
   public static GameDriver DRIVER;
   private GameState gameState;
+  private boolean transitionSucceeded;
   private final Player player;
   private final List<Enemy> enemyList;
   private final BlockingQueue<GameCharacter> turnsQueue;
@@ -98,17 +99,6 @@ public class GameDriver {
   }
 
   /**
-   * Choose a character from the available
-   * characters and puts it into the player's party.
-   *
-   * @param character Character from available character to be added..
-   */
-  public void addCharacterToParty(PlayerCharacter character) {
-    player.addCharacter(character);
-    turnsQueue.add(character);
-  }
-
-  /**
    * Equips a {@code weapon} to the {@code character} if possible.
    *
    * @param weapon {@link Weapon} to be equipped.
@@ -117,6 +107,7 @@ public class GameDriver {
   public String equip(Weapon weapon, PlayerCharacter character) {
     try {
       character.equip(weapon);
+      setTransitionSucceeded(true);
       return "%s succesfully equipped to %s.".formatted(weapon.getClass(), character.getClass());
     } catch (InvalidEquipableWeaponException e) {
       return "You cannot equip this %s to this %s.".formatted(weapon.getClass(), character.getClass());
@@ -132,6 +123,7 @@ public class GameDriver {
   public String attack(GameCharacter attacker, GameCharacter target) {
     try {
       attacker.attack(target);
+      setTransitionSucceeded(true);
       return "%s has attacked %s".formatted(attacker.getClass(), target.getClass());
     } catch (InvalidTargetCharacterException e1) {
       return "%s cannot attack this %s.".formatted(attacker.getClass(), target.getClass());
@@ -150,6 +142,7 @@ public class GameDriver {
   public String useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
     try {
       attacker.useMagic(spell, target);
+      setTransitionSucceeded(true);
       return "%s has used %s on %s".formatted(attacker.getClass(), spell.getClass(), target.getClass());
     } catch (InvalidTargetCharacterException invalidTarget) {
       return "%s cannot use %s on %s.".formatted(attacker.getClass(), spell.getClass(), target.getClass());
@@ -174,6 +167,11 @@ public class GameDriver {
   public void setGameState(GameState gameState) {
     this.gameState = gameState;
     gameState.setGameDriver(this);
+    this.transitionSucceeded = false;
+    this.resetCursor();
+    if (this.gameState.executeAutomatically()) {
+      this.gameState.execute();
+    }
   }
 
   /**
@@ -200,6 +198,10 @@ public class GameDriver {
 
   public void checkGameStatus() {
     this.gameOver = !(playerAlive() && enemiesAlive());
+  }
+
+  public boolean isGameOver() {
+    return gameOver;
   }
 
   /**
@@ -267,5 +269,17 @@ public class GameDriver {
       }
     }
     return aliveCharacters;
+  }
+
+  public List<Weapon> getWeapons() {
+    return this.player.getInventory().getItems();
+  }
+
+  public boolean isTransitionSucceeded() {
+    return transitionSucceeded;
+  }
+
+  public void setTransitionSucceeded(boolean transitionSucceeded) {
+    this.transitionSucceeded = transitionSucceeded;
   }
 }
