@@ -148,4 +148,26 @@ public class Enemy extends AbstractCharacter {
     this.poisonStatus = s;
     s.setEnemy(this);
   }
+
+  public FireEffect getBurntStatus() {
+    return burntStatus;
+  }
+
+  public ParalyzableEffect getParalysisStatus() {
+    return paralysisStatus;
+  }
+
+  public PoisonousEffect getPoisonStatus() {
+    return poisonStatus;
+  }
+
+  public void receiveEffect() throws InvalidStatValueException {
+    this.getPoisonStatus().receiveEffect();
+    this.getBurntStatus().receiveEffect();
+    this.getParalysisStatus().receiveEffect();
+  }
+
+  public boolean isParalysed() {
+    return this.getParalysisStatus().isParalyzed();
+  }
 }

@@ -8,7 +8,7 @@ import cl.uchile.dcc.finalreality.model.character.Enemy;
 public class ParalysisEffect implements ParalyzableEffect {
 
   private Enemy enemy;
-  private int turns;
+  private int turns = 0;
 
   @Override
   public void receiveEffect() {

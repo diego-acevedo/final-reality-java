@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 
 import java.util.ArrayList;
@@ -17,16 +19,24 @@ public class EnemyPlay extends AbstractState {
 
   @Override
   public void execute() {
-    List<PlayerCharacter> characters = gameDriver.getAliveCharacters();
-    int n = RANDOM_GENERATOR.nextInt(0, characters.size());
-    String status = gameDriver.attack(gameDriver.getCurrentCharacter(), characters.get(n));
-    System.out.println(status);
-    if (gameDriver.isTransitionSucceeded()) {
+    Enemy enemy = (Enemy) gameDriver.getCurrentCharacter();
+    try {
+      enemy.receiveEffect();
+    } catch (InvalidStatValueException e) {
       nextState();
-    } else {
-      this.execute();
     }
-
+    if (enemy.isAlive() && !enemy.isParalysed()) {
+      List<PlayerCharacter> characters = gameDriver.getAliveCharacters();
+      int n = RANDOM_GENERATOR.nextInt(0, characters.size());
+      String status = gameDriver.attack(gameDriver.getCurrentCharacter(), characters.get(n));
+      System.out.println(status);
+      if (gameDriver.isTransitionSucceeded()) {
+        nextState();
+      } else {
+        this.execute();
+      }
+    }
+    this.nextState();
   }
 
   @Override

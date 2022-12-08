@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 
 import java.util.List;
 
