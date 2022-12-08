@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.*;
@@ -45,7 +46,7 @@ class ThiefTest {
   }
 
   @Test
-  void testWaitTurn() throws InterruptedException, InvalidStatValueException {
+  void testWaitTurn() throws InterruptedException, InvalidStatValueException, InvalidEquipableWeaponException {
     thief1.equip(new Bow("Bow", 10, 10));
     thief2.equip(new Bow("Bow", 10, 20));
     thief3.equip(new Bow("Bow", 10, 30));
@@ -75,7 +76,7 @@ class ThiefTest {
   }
 
   @Test
-  void testEquip() throws InvalidStatValueException {
+  void testEquip() throws InvalidStatValueException, InvalidEquipableWeaponException {
     assertEquals(new NullWeapon(), thief1.getEquippedWeapon());
     thief1.equip(sword);
     assertEquals(sword, thief1.getEquippedWeapon());

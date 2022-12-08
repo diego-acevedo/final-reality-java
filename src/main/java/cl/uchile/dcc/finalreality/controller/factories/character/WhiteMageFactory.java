@@ -6,6 +6,8 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
 import java.util.concurrent.BlockingQueue;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 /**
  * A class that represents an {@link AbstractCharacterFactory} that creates a {@link WhiteMage}.
  */
@@ -14,7 +16,7 @@ public class WhiteMageFactory extends TemplateCharacterFactory {
   private int maxMp;
 
   protected void setMaxMp() {
-    this.maxMp = this.rnd.nextInt(50, 150);
+    this.maxMp = RANDOM_GENERATOR.nextInt(50, 150);
   }
 
   protected int getMaxMp() {

@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.*;
@@ -48,7 +49,7 @@ class WhiteMageTest {
   }
 
   @Test
-  void testWaitTurn() throws InterruptedException, InvalidStatValueException {
+  void testWaitTurn() throws InterruptedException, InvalidStatValueException, InvalidEquipableWeaponException {
     whitemage1.equip(new Staff("Staff", 10, 10, 20));
     whitemage2.equip(new Staff("Staff", 10, 20, 20));
     whitemage3.equip(new Staff("Staff", 10, 30, 20));
@@ -78,7 +79,7 @@ class WhiteMageTest {
   }
 
   @Test
-  void testEquip() throws InvalidStatValueException {
+  void testEquip() throws InvalidStatValueException, InvalidEquipableWeaponException {
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());
     whitemage1.equip(sword);
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());

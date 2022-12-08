@@ -1,11 +1,11 @@
 package cl.uchile.dcc.finalreality.controller.factories.character;
 
-import cl.uchile.dcc.finalreality.controller.factories.weapon.AbstractWeaponFactory;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-import java.util.Random;
 import java.util.concurrent.BlockingQueue;
+
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
 
 /**
  * A class that holds the basic {@link AbstractCharacterFactory} logic.
@@ -16,7 +16,6 @@ public abstract class TemplateCharacterFactory implements AbstractCharacterFacto
   private String name;
   private int maxHp;
   private int defense;
-  protected final Random rnd = new Random();
 
   protected void setName(String characterClass) {
     this.name = "%s %d".formatted(characterClass, this.charactersCreated);
@@ -24,11 +23,11 @@ public abstract class TemplateCharacterFactory implements AbstractCharacterFacto
   }
 
   protected void setMaxHp() {
-    this.maxHp = this.rnd.nextInt(1000, 2000);
+    this.maxHp = RANDOM_GENERATOR.nextInt(1000, 2000);
   }
 
   protected void setDefense() {
-    this.defense = this.rnd.nextInt(0, 40);
+    this.defense = RANDOM_GENERATOR.nextInt(0, 40);
   }
 
   protected String getName() {

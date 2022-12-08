@@ -3,7 +3,6 @@ package cl.uchile.dcc.finalreality.controller.factories.enemy;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
 import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
@@ -19,7 +18,6 @@ public class EnemyFactory implements AbstractEnemyFactory {
   private int maxHp;
   private int defense;
   private int attack;
-  protected Random rnd = new Random();
 
   protected void setName() {
     this.name = "Enemy %d".formatted(this.enemiesCreated);

@@ -45,7 +45,7 @@ public class GameDriver {
   private boolean gameOver;
   public static final int MAX_CHARACTERS = 5;
   public static final int MAX_ENEMIES = 6;
-  public static Random RANDOM_GENERATOR;
+  public static Random RANDOM_GENERATOR = new Random();
 
   /**
    * Creates a game controller with all characters and weapons initialized.

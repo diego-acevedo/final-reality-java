@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.weapon.*;
@@ -48,7 +49,7 @@ class BlackMageTest {
   }
 
   @Test
-  void testWaitTurn() throws InterruptedException, InvalidStatValueException {
+  void testWaitTurn() throws InterruptedException, InvalidStatValueException, InvalidEquipableWeaponException {
     blackmage1.equip(new Knife("Knife", 10, 10));
     blackmage2.equip(new Knife("Knife", 10, 20));
     blackmage3.equip(new Knife("Knife", 10, 30));
@@ -78,7 +79,7 @@ class BlackMageTest {
   }
 
   @Test
-  void testEquip() throws InvalidStatValueException {
+  void testEquip() throws InvalidStatValueException, InvalidEquipableWeaponException {
     assertEquals(new NullWeapon(), blackmage1.getEquippedWeapon());
     blackmage1.equip(sword);
     assertEquals(new NullWeapon(), blackmage1.getEquippedWeapon());
