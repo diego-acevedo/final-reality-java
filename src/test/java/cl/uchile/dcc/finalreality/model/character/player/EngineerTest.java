@@ -81,13 +81,13 @@ class EngineerTest {
   @Test
   void testEquip() throws InvalidStatValueException, InvalidEquipableWeaponException {
     assertEquals(new NullWeapon(), engineer1.getEquippedWeapon());
-    engineer1.equip(sword);
+    assertThrows(InvalidEquipableWeaponException.class, () -> engineer1.equip(sword));
     assertEquals(new NullWeapon(), engineer1.getEquippedWeapon());
     engineer1.equip(axe);
     assertEquals(axe, engineer1.getEquippedWeapon());
-    engineer1.equip(knife);
+    assertThrows(InvalidEquipableWeaponException.class, () -> engineer1.equip(knife));
     assertEquals(axe, engineer1.getEquippedWeapon());
-    engineer1.equip(staff);
+    assertThrows(InvalidEquipableWeaponException.class, () -> engineer1.equip(staff));
     assertEquals(axe, engineer1.getEquippedWeapon());
     engineer1.equip(bow);
     assertEquals(bow, engineer1.getEquippedWeapon());

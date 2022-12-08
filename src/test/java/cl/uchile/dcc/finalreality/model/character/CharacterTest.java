@@ -35,7 +35,7 @@ class CharacterTest {
   }
 
   @Test
-  void SpellTest() throws InvalidStatValueException, InvalidEquipableWeaponException {
+  void spellTest() throws InvalidStatValueException, InvalidEquipableWeaponException {
     Spell cure = new Cure();
     Spell fire = new Fire();
     Spell paralysis = new Paralysis();

@@ -85,9 +85,9 @@ class KnightTest {
     assertEquals(axe, knight1.getEquippedWeapon());
     knight1.equip(knife);
     assertEquals(knife, knight1.getEquippedWeapon());
-    knight1.equip(staff);
+    assertThrows(InvalidEquipableWeaponException.class, () -> knight1.equip(staff));
     assertEquals(knife, knight1.getEquippedWeapon());
-    knight1.equip(bow);
+    assertThrows(InvalidEquipableWeaponException.class, () -> knight1.equip(bow));
     assertEquals(knife, knight1.getEquippedWeapon());
   }
 

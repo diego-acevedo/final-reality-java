@@ -81,15 +81,15 @@ class WhiteMageTest {
   @Test
   void testEquip() throws InvalidStatValueException, InvalidEquipableWeaponException {
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());
-    whitemage1.equip(sword);
+    assertThrows(InvalidEquipableWeaponException.class, () -> whitemage1.equip(sword));
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());
-    whitemage1.equip(axe);
+    assertThrows(InvalidEquipableWeaponException.class, () -> whitemage1.equip(axe));
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());
-    whitemage1.equip(knife);
+    assertThrows(InvalidEquipableWeaponException.class, () -> whitemage1.equip(knife));
     assertEquals(new NullWeapon(), whitemage1.getEquippedWeapon());
     whitemage1.equip(staff);
     assertEquals(staff, whitemage1.getEquippedWeapon());
-    whitemage1.equip(bow);
+    assertThrows(InvalidEquipableWeaponException.class, () -> whitemage1.equip(bow));
     assertEquals(staff, whitemage1.getEquippedWeapon());
   }
 

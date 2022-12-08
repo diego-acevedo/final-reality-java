@@ -80,11 +80,11 @@ class ThiefTest {
     assertEquals(new NullWeapon(), thief1.getEquippedWeapon());
     thief1.equip(sword);
     assertEquals(sword, thief1.getEquippedWeapon());
-    thief1.equip(axe);
+    assertThrows(InvalidEquipableWeaponException.class, () -> thief1.equip(axe));
     assertEquals(sword, thief1.getEquippedWeapon());
     thief1.equip(knife);
     assertEquals(knife, thief1.getEquippedWeapon());
-    thief1.equip(staff);
+    assertThrows(InvalidEquipableWeaponException.class, () -> thief1.equip(staff));
     assertEquals(knife, thief1.getEquippedWeapon());
     thief1.equip(bow);
     assertEquals(bow, thief1.getEquippedWeapon());
