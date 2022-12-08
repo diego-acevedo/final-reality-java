@@ -6,6 +6,8 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 /**
  * A class that represents an {@link AbstractEnemyFactory} that creates an {@link Enemy}.
  */
@@ -25,19 +27,19 @@ public class EnemyFactory implements AbstractEnemyFactory {
   }
 
   protected void setWeight() {
-    this.weight = this.rnd.nextInt(10, 100);
+    this.weight = RANDOM_GENERATOR.nextInt(10, 100);
   }
 
   protected void setmaxHp() {
-    this.maxHp = this.rnd.nextInt(1000, 2000);
+    this.maxHp = RANDOM_GENERATOR.nextInt(1000, 2000);
   }
 
   protected void setDefense() {
-    this.defense = this.rnd.nextInt(0, 40);
+    this.defense = RANDOM_GENERATOR.nextInt(0, 40);
   }
 
   protected void setAttack() {
-    this.attack = this.rnd.nextInt(50, 100);
+    this.attack = RANDOM_GENERATOR.nextInt(50, 100);
   }
 
   @Override

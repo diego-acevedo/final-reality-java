@@ -52,19 +52,24 @@ public class GameDriver {
    *
    * @throws InvalidStatValueException Characters and weapons must be created with the right values.
    */
-  public GameDriver(long seed) throws InvalidStatValueException {
+  private GameDriver(long seed) throws InvalidStatValueException {
     this.cursor = 0;
     this.gameOver = false;
     setGameState(new Preparation(this));
     this.player = new Player();
     this.enemyList = new ArrayList<>();
     this.turnsQueue = new LinkedBlockingQueue<>();
-    RANDOM_GENERATOR = new Random(seed);
 
     this.initializePlayerCharacters();
     this.initializeEnemies();
+  }
 
-    DRIVER = this;
+  public static GameDriver getGameDriver(long seed) throws InvalidStatValueException {
+    if (DRIVER == null) {
+      DRIVER = new GameDriver(seed);
+    }
+    RANDOM_GENERATOR = new Random(seed);
+    return DRIVER;
   }
 
   /**
