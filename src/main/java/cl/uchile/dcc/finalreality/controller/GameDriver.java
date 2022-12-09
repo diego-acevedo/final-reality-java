@@ -11,13 +11,7 @@ import cl.uchile.dcc.finalreality.controller.factories.enemy.EnemyFactory;
 import cl.uchile.dcc.finalreality.controller.player.Player;
 import cl.uchile.dcc.finalreality.controller.states.GameState;
 import cl.uchile.dcc.finalreality.controller.states.Preparation;
-import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
@@ -120,10 +114,12 @@ public class GameDriver {
       if (!oldWeapon.isNull()) {
         this.player.getInventory().addItem(oldWeapon);
       }
-      return "%s succesfully equipped to %s.".formatted(weapon.getClass(), character.getClass());
+      return "%s succesfully equipped to %s."
+          .formatted(weapon.getClass().getSimpleName(), character.getClass().getSimpleName());
     } catch (InvalidEquipableWeaponException e) {
       this.player.getInventory().addItem(weapon);
-      return "You cannot equip this %s to this %s.".formatted(weapon.getClass(), character.getClass());
+      return "You cannot equip this %s to this %s."
+          .formatted(weapon.getClass().getSimpleName(), character.getClass().getSimpleName());
     }
   }
 
@@ -137,11 +133,16 @@ public class GameDriver {
     try {
       attacker.attack(target);
       setTransitionSucceeded(true);
-      return "%s has attacked %s".formatted(attacker.getClass(), target.getClass());
+      return "%s has attacked %s"
+          .formatted(attacker.getClass().getSimpleName(), target.getClass().getSimpleName());
     } catch (InvalidTargetCharacterException e1) {
-      return "%s cannot attack this %s.".formatted(attacker.getClass(), target.getClass());
+      return "%s cannot attack this %s."
+          .formatted(attacker.getClass().getSimpleName(), target.getClass().getSimpleName());
     } catch (InvalidStatValueException e2) {
       return "There's been a problem setting new Hp value.";
+    } catch (NullWeaponException e3) {
+      return "%s has no weapon equipped."
+          .formatted(attacker.getClass().getSimpleName());
     }
   }
 
@@ -156,15 +157,24 @@ public class GameDriver {
     try {
       attacker.useMagic(spell, target);
       setTransitionSucceeded(true);
-      return "%s has used %s on %s".formatted(attacker.getClass(), spell.getClass(), target.getClass());
+      return "%s has used %s on %s"
+          .formatted(attacker.getClass().getSimpleName(),
+              spell.getClass().getSimpleName(),
+              target.getClass().getSimpleName());
     } catch (InvalidTargetCharacterException invalidTarget) {
-      return "%s cannot use %s on %s.".formatted(attacker.getClass(), spell.getClass(), target.getClass());
+      return "%s cannot use %s on %s."
+          .formatted(attacker.getClass().getSimpleName(),
+              spell.getClass().getSimpleName(),
+              target.getClass().getSimpleName());
     } catch (InvalidMagicWeaponException invalidWeapon) {
       return "You have to have equipped a magic weapon to cast spells.";
     } catch (NonMagicalCharacterException nonMagical) {
-      return "This is a non-magical character. %s can't cast spells.".formatted(attacker.getClass());
+      return "This is a non-magical character. %s can't cast spells."
+          .formatted(attacker.getClass().getSimpleName());
     } catch (InvalidMageException invalidMage) {
-      return "%s doesn't know how to cast %s.".formatted(attacker.getClass(), spell.getClass());
+      return "%s doesn't know how to cast %s."
+          .formatted(attacker.getClass().getSimpleName(),
+              spell.getClass().getSimpleName());
     } catch (InvalidManaValueException invalidMana) {
       return "This mage has run out of mana. The spell is too expensive.";
     } catch (InvalidStatValueException invalidStat) {

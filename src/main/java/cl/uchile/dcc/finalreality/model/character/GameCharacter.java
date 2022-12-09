@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.model.character;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
@@ -68,7 +69,7 @@ public interface GameCharacter {
    * @throws InvalidStatValueException New Hp value needs to be valid.
    */
   void attack(GameCharacter character)
-      throws InvalidTargetCharacterException, InvalidStatValueException;
+      throws InvalidTargetCharacterException, InvalidStatValueException, NullWeaponException;
 
   void getAttackFromPlayerCharacter(PlayerCharacter character)
       throws InvalidTargetCharacterException, InvalidStatValueException;

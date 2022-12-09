@@ -51,7 +51,6 @@ class CharacterTest {
     Mage whiteMage2 = new WhiteMage("WhiteMage", 10, 10, 100, queue);
     whiteMage2.equip(staff);
     assertThrows(InvalidTargetCharacterException.class, () -> whiteMage2.useMagic(cure, enemy));
-
   }
 
   @Test

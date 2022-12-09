@@ -8,12 +8,7 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
@@ -84,7 +79,10 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
   @Override
   public void attack(GameCharacter character)
-      throws InvalidTargetCharacterException, InvalidStatValueException {
+      throws InvalidTargetCharacterException, InvalidStatValueException, NullWeaponException {
+    if (this.equippedWeapon.isNull()) {
+      throw new NullWeaponException(this + "has no weapon equipped.");
+    }
     character.getAttackFromPlayerCharacter(this);
   }
 
