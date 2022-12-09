@@ -34,16 +34,6 @@ public class Party {
   }
 
   /**
-   * Returns a {@link PlayerCharacter} with an index n.
-   *
-   * @param n Index of the {@link PlayerCharacter}.
-   * @return A {@link PlayerCharacter} with an index n.
-   */
-  public PlayerCharacter getCharacter(int n) {
-    return characters.get(n);
-  }
-
-  /**
    * Checks if at least one {@link PlayerCharacter} is still alive.
    *
    * @return True if at least one character is alive.

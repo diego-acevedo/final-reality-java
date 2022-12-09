@@ -11,7 +11,7 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
  */
 public class Player {
 
-  private Inventory inventory;
+  private final Inventory inventory;
   private final Party party;
 
   /**
