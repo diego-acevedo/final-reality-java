@@ -25,7 +25,6 @@ public abstract class AbstractCharacter implements GameCharacter {
   private final BlockingQueue<GameCharacter> turnsQueue;
   private final String name;
   private boolean alive;
-  private final GameDriver driver;
   protected ScheduledExecutorService scheduledExecutor;
 
   /**
@@ -52,7 +51,6 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.turnsQueue = turnsQueue;
     this.name = name;
     this.alive = true;
-    this.driver = DRIVER;
   }
 
   /**
@@ -117,7 +115,7 @@ public abstract class AbstractCharacter implements GameCharacter {
   public void checkHealth() {
     if (this.currentHp == 0) {
       this.alive = false;
-      driver.checkGameStatus();
+      DRIVER.checkGameStatus();
     }
   }
 

@@ -4,7 +4,6 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,5 +41,10 @@ public class EnemyPlay extends AbstractState {
   @Override
   public List<String> options() {
     return new ArrayList<>();
+  }
+
+  @Override
+  public boolean executeAutomatically() {
+    return true;
   }
 }

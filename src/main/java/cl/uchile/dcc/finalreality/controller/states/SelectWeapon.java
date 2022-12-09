@@ -26,7 +26,7 @@ public class SelectWeapon extends AbstractState {
     } else {
       select_pos = gameDriver.getCursor() % items.size();
     }
-    Weapon weapon = items.get(select_pos);
+    Weapon weapon = items.remove(select_pos);
     String status = gameDriver.equip(weapon, (PlayerCharacter) gameDriver.getCurrentCharacter());
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {

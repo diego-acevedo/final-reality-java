@@ -91,4 +91,5 @@ public interface Weapon {
       throws InvalidMagicWeaponException, InvalidMageException,
       InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
 
+  boolean isNull();
 }

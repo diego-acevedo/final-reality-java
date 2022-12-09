@@ -32,6 +32,8 @@ class PlayerTest {
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
+    GameDriver.resetDriver();
+    this.driver = getGameDriver(seed);
     this.driver = getGameDriver(seed);
     this.player = new Player();
 

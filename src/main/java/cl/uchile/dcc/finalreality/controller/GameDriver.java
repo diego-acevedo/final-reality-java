@@ -52,7 +52,7 @@ public class GameDriver {
    *
    * @throws InvalidStatValueException Characters and weapons must be created with the right values.
    */
-  private GameDriver(long seed) throws InvalidStatValueException {
+  private GameDriver() throws InvalidStatValueException {
     this.cursor = 0;
     this.gameOver = false;
     setGameState(new Preparation(this));
@@ -65,11 +65,15 @@ public class GameDriver {
   }
 
   public static GameDriver getGameDriver(long seed) throws InvalidStatValueException {
-    if (DRIVER == null) {
-      DRIVER = new GameDriver(seed);
-    }
     RANDOM_GENERATOR = new Random(seed);
+    if (DRIVER == null) {
+      DRIVER = new GameDriver();
+    }
     return DRIVER;
+  }
+
+  public static void resetDriver() {
+    DRIVER = null;
   }
 
   /**
@@ -111,10 +115,14 @@ public class GameDriver {
    */
   public String equip(Weapon weapon, PlayerCharacter character) {
     try {
+      Weapon oldWeapon = character.getEquippedWeapon();
       character.equip(weapon);
-      setTransitionSucceeded(true);
+      if (!oldWeapon.isNull()) {
+        this.player.getInventory().addItem(oldWeapon);
+      }
       return "%s succesfully equipped to %s.".formatted(weapon.getClass(), character.getClass());
     } catch (InvalidEquipableWeaponException e) {
+      this.player.getInventory().addItem(weapon);
       return "You cannot equip this %s to this %s.".formatted(weapon.getClass(), character.getClass());
     }
   }
@@ -177,6 +185,14 @@ public class GameDriver {
     if (this.gameState.executeAutomatically()) {
       this.gameState.execute();
     }
+  }
+
+  public GameState getGameState() {
+    return gameState;
+  }
+
+  public void execute() {
+    this.gameState.execute();
   }
 
   /**

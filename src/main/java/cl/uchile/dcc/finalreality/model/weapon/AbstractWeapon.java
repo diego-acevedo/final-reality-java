@@ -102,4 +102,9 @@ public abstract class AbstractWeapon implements Weapon {
       InvalidTargetCharacterException, InvalidManaValueException {
     throw new InvalidMagicWeaponException(this + " cannot cast spells.");
   }
+
+  @Override
+  public boolean isNull() {
+    return false;
+  }
 }

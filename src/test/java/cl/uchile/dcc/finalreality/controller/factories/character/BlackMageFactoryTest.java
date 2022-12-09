@@ -21,13 +21,15 @@ class BlackMageFactoryTest {
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
+    GameDriver.resetDriver();
     long seed = 2411269062697659106L;
+    driver = GameDriver.getGameDriver(seed);
     driver = GameDriver.getGameDriver(seed);
     this.factory = new BlackMageFactory();
   }
 
   @Test
-  void createWhiteMageTest() throws InvalidStatValueException {
+  void createBlackMageTest() throws InvalidStatValueException {
     PlayerCharacter character = factory.create(turnsQueue);
     assertEquals(new BlackMage("BlackMage 1", 1860, 20, 131, turnsQueue), character);
     character = factory.create(turnsQueue);

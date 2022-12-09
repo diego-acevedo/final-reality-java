@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.controller.player;
 
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.controller.factories.weapon.*;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
@@ -18,6 +19,7 @@ class InventoryTest {
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
+    GameDriver.resetDriver();
     getGameDriver(seed);
     getGameDriver(seed);
     inventory = new Inventory();

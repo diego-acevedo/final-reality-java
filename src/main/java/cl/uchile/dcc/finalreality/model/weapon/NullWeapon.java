@@ -47,4 +47,9 @@ public class NullWeapon extends AbstractWeapon {
       throws InvalidMagicWeaponException {
     throw new InvalidMagicWeaponException(this + " cannot cast spells.");
   }
+
+  @Override
+  public boolean isNull() {
+    return true;
+  }
 }

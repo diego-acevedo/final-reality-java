@@ -18,10 +18,6 @@ public interface GameState {
 
   void goBack();
 
-  void allowContinue();
-
-  boolean isFinished();
-
   void execute();
 
   List<String> options();

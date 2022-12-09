@@ -21,7 +21,9 @@ class ThiefFactoryTest {
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
+    GameDriver.resetDriver();
     long seed = 2411269062697659106L;
+    driver = GameDriver.getGameDriver(seed);
     driver = GameDriver.getGameDriver(seed);
     this.factory = new ThiefFactory();
   }
