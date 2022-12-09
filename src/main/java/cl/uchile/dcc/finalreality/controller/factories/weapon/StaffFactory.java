@@ -4,6 +4,8 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.weapon.Staff;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 /**
  * A {@link AbstractWeaponFactory} that creates an {@link Staff}.
  */
@@ -16,7 +18,7 @@ public class StaffFactory extends TemplateWeaponFactory {
   }
 
   private void setMp() {
-    this.mp = this.rnd.nextInt(20, 50);
+    this.mp = RANDOM_GENERATOR.nextInt(20, 50);
   }
 
   @Override
