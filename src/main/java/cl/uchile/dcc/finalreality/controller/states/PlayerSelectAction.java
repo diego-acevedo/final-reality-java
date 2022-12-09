@@ -23,8 +23,14 @@ public class PlayerSelectAction extends AbstractState {
 
   @Override
   public void execute() {
-    this.nextState = possibleNextTransitions.get(gameDriver.getCursor()
-        % possibleNextTransitions.size());
+    int select_pos;
+    if (gameDriver.getCursor() < 0) {
+      select_pos = (gameDriver.getCursor() % possibleNextTransitions.size())
+          + possibleNextTransitions.size();
+    } else {
+      select_pos = gameDriver.getCursor() % possibleNextTransitions.size();
+    }
+    this.nextState = possibleNextTransitions.get(select_pos);
     nextState();
   }
 

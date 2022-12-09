@@ -25,7 +25,14 @@ public class SelectSpellTarget extends AbstractState {
 
   @Override
   public void execute() {
-    GameCharacter target = characters.get(gameDriver.getCursor() % characters.size());
+    int select_pos;
+    if (gameDriver.getCursor() < 0) {
+      select_pos = (gameDriver.getCursor() % characters.size())
+          + characters.size();
+    } else {
+      select_pos = gameDriver.getCursor() % characters.size();
+    }
+    GameCharacter target = characters.get(select_pos);
     String status = gameDriver.useMagic((PlayerCharacter) gameDriver.getCurrentCharacter(), selectedSpell, target);
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {

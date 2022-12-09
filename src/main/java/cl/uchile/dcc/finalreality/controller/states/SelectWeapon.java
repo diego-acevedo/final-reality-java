@@ -19,7 +19,14 @@ public class SelectWeapon extends AbstractState {
 
   @Override
   public void execute() {
-    Weapon weapon = items.get(gameDriver.getCursor() % items.size());
+    int select_pos;
+    if (gameDriver.getCursor() < 0) {
+      select_pos = (gameDriver.getCursor() % items.size())
+          + items.size();
+    } else {
+      select_pos = gameDriver.getCursor() % items.size();
+    }
+    Weapon weapon = items.get(select_pos);
     String status = gameDriver.equip(weapon, (PlayerCharacter) gameDriver.getCurrentCharacter());
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {

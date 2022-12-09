@@ -18,7 +18,14 @@ public class SelectAttackTarget extends AbstractState {
 
   @Override
   public void execute() {
-    Enemy target = aliveEnemies.get(gameDriver.getCursor() % aliveEnemies.size());
+    int select_pos;
+    if (gameDriver.getCursor() < 0) {
+      select_pos = (gameDriver.getCursor() % aliveEnemies.size())
+          + aliveEnemies.size();
+    } else {
+      select_pos = gameDriver.getCursor() % aliveEnemies.size();
+    }
+    Enemy target = aliveEnemies.get(select_pos);
     String status = gameDriver.attack(gameDriver.getCurrentCharacter(), target);
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {
