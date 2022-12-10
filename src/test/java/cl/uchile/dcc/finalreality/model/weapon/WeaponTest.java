@@ -12,6 +12,7 @@ class WeaponTest {
   Weapon knife;
   Weapon staff;
   Weapon sword;
+  Weapon nullWeapon;
 
   @BeforeEach
   void setUp() throws InvalidStatValueException {
@@ -20,6 +21,7 @@ class WeaponTest {
     knife = new Knife("weapon", 10, 10);
     staff = new Staff("weapon", 10, 10, 10);
     sword = new Sword("weapon", 10, 10);
+    nullWeapon = new NullWeapon();
   }
 
   @Test
@@ -48,6 +50,12 @@ class WeaponTest {
     assertNotEquals(sword, bow);
     assertNotEquals(sword, knife);
     assertNotEquals(sword, staff);
+
+    assertNotEquals(nullWeapon, axe);
+    assertNotEquals(nullWeapon, bow);
+    assertNotEquals(nullWeapon, knife);
+    assertNotEquals(nullWeapon, staff);
+    assertNotEquals(nullWeapon, sword);
   }
 
 }
