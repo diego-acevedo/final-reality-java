@@ -43,12 +43,6 @@ public class NullWeapon extends AbstractWeapon {
   }
 
   @Override
-  public void castSpell(GameCharacter character, Spell spell, Mage mage)
-      throws InvalidMagicWeaponException {
-    throw new InvalidMagicWeaponException(this + " cannot cast spells.");
-  }
-
-  @Override
   public boolean isNull() {
     return true;
   }

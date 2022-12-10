@@ -37,10 +37,6 @@ class CharacterTest {
   @Test
   void spellTest() throws InvalidStatValueException, InvalidEquipableWeaponException {
     Spell cure = new Cure();
-    Spell fire = new Fire();
-    Spell paralysis = new Paralysis();
-    Spell poison = new Poison();
-    Spell thunder = new Thunder();
     assertThrows(NonMagicalCharacterException.class, () -> engineer.useMagic(cure, blackMage));
     assertThrows(InvalidMagicWeaponException.class, () -> blackMage.useMagic(cure, enemy));
     Weapon staff = new Staff("Staff",100,100,6);
@@ -90,6 +86,16 @@ class CharacterTest {
     assertNotEquals(whiteMage, engineer);
     assertNotEquals(whiteMage, knight);
     assertNotEquals(whiteMage, thief);
+  }
+
+  @Test
+  void isPlayableTest() {
+    assertTrue(blackMage.isPlayable());
+    assertTrue(engineer.isPlayable());
+    assertTrue(knight.isPlayable());
+    assertTrue(thief.isPlayable());
+    assertTrue(whiteMage.isPlayable());
+    assertFalse(enemy.isPlayable());
   }
 
 }
