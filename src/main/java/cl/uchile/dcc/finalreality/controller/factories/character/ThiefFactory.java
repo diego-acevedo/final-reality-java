@@ -7,7 +7,10 @@ import cl.uchile.dcc.finalreality.model.character.player.Thief;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * A class that represents an {@link AbstractCharacterFactory} that creates a {@link Thief}.
+ * A class that represents a {@link AbstractCharacterFactory factory} that
+ * creates a {@link Thief thief}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class ThiefFactory extends TemplateCharacterFactory {
 

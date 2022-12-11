@@ -1,5 +1,7 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
@@ -7,10 +9,19 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
-
+/**
+ * A {@link GameState} that represents an {@link Enemy enemy} is playing their turn.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public class EnemyPlay extends AbstractState {
 
+  /**
+   * Creates a {@link EnemyPlay "enemy play" state}. It doesn't have a failed state.
+   * Its next state is a {@link NewTurn "new turn" state}.
+   *
+   * @param driver The {@link GameDriver driver} this {@link EnemyPlay state} belongs to.
+   */
   public EnemyPlay(GameDriver driver) {
     super(driver);
     this.nextState = new NewTurn(driver);

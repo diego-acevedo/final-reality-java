@@ -70,6 +70,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
     return maxMp;
   }
 
+  @Override
   public void useMagic(Spell spell, GameCharacter character)
       throws InvalidMagicWeaponException, InvalidMageException,
       InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException {

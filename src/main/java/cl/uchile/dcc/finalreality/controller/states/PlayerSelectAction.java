@@ -1,14 +1,25 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A {@link GameState} that represents the player is selecting an action.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public class PlayerSelectAction extends AbstractState {
 
   private final List<GameState> possibleNextTransitions;
   private final List<String> phasesName;
+
+  /**
+   * Creates a {@link PlayerSelectAction "player select action" state}. It doesn't have a failed
+   * state. Its next state depends on what was selected.
+   *
+   * @param driver The {@link GameDriver driver} this {@link PlayerSelectAction state} belongs to.
+   */
   public PlayerSelectAction(GameDriver driver) {
     super(driver);
     this.phasesName = new ArrayList<>();

@@ -62,7 +62,7 @@ public class Enemy extends AbstractCharacter {
   }
 
   /**
-   * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
+   * Starts a cooldown for an {@link Enemy enemy} to be able to attack again.
    * Cooldown depends on the enemy's weight.
    */
   public void waitTurn() {
@@ -116,6 +116,7 @@ public class Enemy extends AbstractCharacter {
                 this.getWeight(), this.getAttack());
   }
 
+  @Override
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     spell.induceEffectOnEnemy(this, weapon);
@@ -134,39 +135,80 @@ public class Enemy extends AbstractCharacter {
     this.setCurrentHp(newHp);
   }
 
+  /**
+   * Changes the paralysis status of this enemy.
+   *
+   * @param s New status.
+   */
   public void changeParalysisStatus(ParalyzableEffect s) {
     this.paralysisStatus = s;
     s.setEnemy(this);
   }
 
+  /**
+   * Changes the burnt status of this enemy.
+   *
+   * @param s New status.
+   */
   public void changeBurntStatus(FireEffect s) {
     this.burntStatus = s;
     s.setEnemy(this);
   }
 
+  /**
+   * Changes the poisonous status of this enemy.
+   *
+   * @param s New status.
+   */
   public void changePoisonousStatus(PoisonousEffect s) {
     this.poisonStatus = s;
     s.setEnemy(this);
   }
 
+  /**
+   * Returns the {@link FireEffect burnt status}.
+   *
+   * @return The {@link FireEffect burnt status}.
+   */
   public FireEffect getBurntStatus() {
     return burntStatus;
   }
 
+  /**
+   * Returns the {@link ParalyzableEffect paralysis status}.
+   *
+   * @return The {@link ParalyzableEffect paralysis status}.
+   */
   public ParalyzableEffect getParalysisStatus() {
     return paralysisStatus;
   }
 
+  /**
+   * Returns the {@link PoisonousEffect poisonous status}.
+   *
+   * @return The {@link PoisonousEffect poisonous status}.
+   */
   public PoisonousEffect getPoisonStatus() {
     return poisonStatus;
   }
 
+  /**
+   * Makes the enemy receive all the effects from their
+   * {@link cl.uchile.dcc.finalreality.model.effect.Effect effects}.
+   *
+   * @throws InvalidStatValueException Values must be valid.
+   */
   public void receiveEffect() throws InvalidStatValueException {
     this.getPoisonStatus().receiveEffect();
     this.getBurntStatus().receiveEffect();
     this.getParalysisStatus().receiveEffect();
   }
 
+  /**
+   * Checks if the {@link Enemy enemy} is paralyzed.
+   *
+   * @return True if the enemy is paralyzed, false if it's not.
+   */
   public boolean isParalysed() {
     return this.getParalysisStatus().isParalyzed();
   }

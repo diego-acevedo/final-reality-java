@@ -5,7 +5,9 @@ import cl.uchile.dcc.finalreality.model.weapon.Knife;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 /**
- * A {@link AbstractWeaponFactory} that creates an {@link Knife}.
+ * A {@link AbstractWeaponFactory factory} that creates a {@link Knife knife}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class KnifeFactory extends TemplateWeaponFactory {
 

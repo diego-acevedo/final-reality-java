@@ -17,7 +17,7 @@ import cl.uchile.dcc.finalreality.model.spell.Spell;
 
 /**
  * This represents a weapon equipable by a
- * {@link cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter PlayerCharacter}.
+ * {@link cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter player character}.
  *
  * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
@@ -40,56 +40,63 @@ public interface Weapon {
   int getWeight();
 
   /**
-   * Tries to equip this weapon to a {@link Knight}.
+   * Tries to equip this weapon to a {@link Knight knight}.
    *
-   * @param knight Character {@link Knight} who will be equipped this weapon.
+   * @param knight Character {@link Knight knight} who will be equipped this weapon.
    */
   Weapon equipToKnight(Knight knight) throws InvalidEquipableWeaponException;
 
   /**
-   * Tries to equip this weapon to a {@link Engineer}.
+   * Tries to equip this weapon to a {@link Engineer engineer}.
    *
-   * @param engineer Character {@link Engineer} who will be equipped this weapon.
+   * @param engineer Character {@link Engineer engineer} who will be equipped this weapon.
    */
   Weapon equipToEngineer(Engineer engineer) throws InvalidEquipableWeaponException;
 
   /**
-   * Tries to equip this weapon to a {@link Thief}.
+   * Tries to equip this weapon to a {@link Thief thief}.
    *
-   * @param thief Character {@link Thief} who will be equipped this weapon.
+   * @param thief Character {@link Thief thief} who will be equipped this weapon.
    */
   Weapon equipToThief(Thief thief) throws InvalidEquipableWeaponException;
 
   /**
-   * Tries to equip this weapon to a {@link BlackMage}.
+   * Tries to equip this weapon to a {@link BlackMage black mage}.
    *
-   * @param blackmage Character {@link BlackMage} who will be equipped this weapon.
+   * @param blackmage Character {@link BlackMage black mage} who will be equipped this weapon.
    */
   Weapon equipToBlackMage(BlackMage blackmage) throws InvalidEquipableWeaponException;
 
   /**
-   * Tries to equip this weapon to a {@link WhiteMage}.
+   * Tries to equip this weapon to a {@link WhiteMage white mage}.
    *
-   * @param whitemage Character {@link WhiteMage} who will be equipped this weapon.
+   * @param whitemage Character {@link WhiteMage white mage} who will be equipped this weapon.
    */
   Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException;
 
   /**
-   * Tries to cast a {@link Spell} by a {@link Mage} to some {@link Character}.
+   * Tries to cast a {@link Spell spell} by a {@link Mage mage} to some
+   * {@link GameCharacter character}.
    *
-   * @param character Character who will receive the effect of the spell.
-   * @param spell Spell being cast.
-   * @param mage Mage who is casting the spell.
-   * @throws InvalidMagicWeaponException Weapon used must be a {@link MagicWeapon}.
-   * @throws InvalidMageException The {@link Mage} used does not know the {@link Spell} used.
+   * @param character {@link GameCharacter character} who will receive the effect of the spell.
+   * @param spell {@link Spell Spell} being cast.
+   * @param mage {@link Mage Mage} who is casting the spell.
+   * @throws InvalidMagicWeaponException Weapon used must be a {@link MagicWeapon magic weapon}.
+   * @throws InvalidMageException The {@link Mage mage} used does not know the
+   *                              {@link Spell spell} used.
    * @throws InvalidStatValueException The MP and HP changed needs to be valid.
-   * @throws InvalidTargetCharacterException The {@link Character} being target cannot receive
-   *     this {@link Spell}.
-   * @throws InvalidManaValueException The {@link Mage} does not have enough MP.
+   * @throws InvalidTargetCharacterException The {@link GameCharacter character} being target
+   *                                         cannot receive this {@link Spell}.
+   * @throws InvalidManaValueException The {@link Mage mage} does not have enough MP.
    */
   void castSpell(GameCharacter character, Spell spell, Mage mage)
       throws InvalidMagicWeaponException, InvalidMageException,
       InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
 
+  /**
+   * Returns true if the weapon is {@link NullWeapon null}.
+   *
+   * @return True if the weapon is {@link NullWeapon null}.
+   */
   boolean isNull();
 }

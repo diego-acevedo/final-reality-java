@@ -7,7 +7,10 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * A class that represents an {@link AbstractCharacterFactory} that creates a {@link Engineer}.
+ * A class that represents a {@link AbstractCharacterFactory factory} that creates
+ * an {@link Engineer engineer}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class EngineerFactory extends TemplateCharacterFactory {
 

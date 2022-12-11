@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.character;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
+import static cl.uchile.dcc.finalreality.controller.GameDriver.DRIVER;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
@@ -8,8 +9,6 @@ import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import org.jetbrains.annotations.NotNull;
-
-import static cl.uchile.dcc.finalreality.controller.GameDriver.DRIVER;
 
 /**
  * An abstract class that holds the common behaviour of all the characters in the game.

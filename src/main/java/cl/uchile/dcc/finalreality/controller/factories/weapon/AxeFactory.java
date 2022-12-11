@@ -5,7 +5,9 @@ import cl.uchile.dcc.finalreality.model.weapon.Axe;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 /**
- * A {@link AbstractWeaponFactory} that creates an {@link Axe}.
+ * A {@link AbstractWeaponFactory factory} that creates an {@link Axe axe}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class AxeFactory extends TemplateWeaponFactory {
 

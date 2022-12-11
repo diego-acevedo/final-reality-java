@@ -48,14 +48,17 @@ public abstract class AbstractWeapon implements Weapon {
     this.weight = weight;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public int getDamage() {
     return damage;
   }
 
+  @Override
   public int getWeight() {
     return weight;
   }
@@ -97,6 +100,7 @@ public abstract class AbstractWeapon implements Weapon {
         .formatted(name, damage, weight);
   }
 
+  @Override
   public void castSpell(GameCharacter character, Spell spell, Mage mage)
       throws InvalidMagicWeaponException, InvalidMageException, InvalidStatValueException,
       InvalidTargetCharacterException, InvalidManaValueException {

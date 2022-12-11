@@ -11,7 +11,14 @@ import cl.uchile.dcc.finalreality.controller.factories.enemy.EnemyFactory;
 import cl.uchile.dcc.finalreality.controller.player.Player;
 import cl.uchile.dcc.finalreality.controller.states.GameState;
 import cl.uchile.dcc.finalreality.controller.states.Preparation;
-import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
@@ -25,6 +32,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * A class that controls the logic of the game.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class GameDriver {
 
@@ -42,7 +51,8 @@ public class GameDriver {
   public static Random RANDOM_GENERATOR = new Random();
 
   /**
-   * Creates a game controller with all characters and weapons initialized.
+   * Creates a {@link GameDriver game controller} with all {@link GameCharacter characters}
+   * and {@link Weapon weapons} initialized.
    *
    * @throws InvalidStatValueException Characters and weapons must be created with the right values.
    */
@@ -58,6 +68,14 @@ public class GameDriver {
     this.initializeEnemies();
   }
 
+  /**
+   * If a {@link GameDriver driver} has already been created, it returns that driver.
+   * If there isn't a driver created, it creates one and returns it.
+   *
+   * @param seed A seed to randomly generate the game's values.
+   * @return The sigleton object {@link GameDriver game driver}.
+   * @throws InvalidStatValueException Values must be valid.
+   */
   public static GameDriver getGameDriver(long seed) throws InvalidStatValueException {
     RANDOM_GENERATOR = new Random(seed);
     if (DRIVER == null) {
@@ -66,14 +84,18 @@ public class GameDriver {
     return DRIVER;
   }
 
+  /**
+   * Deletes the current {@link GameDriver driver}.
+   */
   public static void resetDriver() {
     DRIVER = null;
   }
 
   /**
-   * Creates all characters the player has to choose for their party.
+   * Creates all {@link PlayerCharacter characters} the {@link Player player} will hold
+   * in their {@link cl.uchile.dcc.finalreality.controller.player.Party party}.
    *
-   * @throws InvalidStatValueException Characters must be created with the right values.
+   * @throws InvalidStatValueException Characters must be created with valid values.
    */
   private void initializePlayerCharacters()
       throws InvalidStatValueException {
@@ -88,9 +110,9 @@ public class GameDriver {
   }
 
   /**
-   * Creates all enemies the player has to fight against.
+   * Creates all {@link Enemy enemies} the player has to fight against.
    *
-   * @throws InvalidStatValueException Enemies must be created with the right values.
+   * @throws InvalidStatValueException Enemies must be created with valid values.
    */
   private void initializeEnemies() throws InvalidStatValueException {
     AbstractEnemyFactory factory = new EnemyFactory();
@@ -102,10 +124,10 @@ public class GameDriver {
   }
 
   /**
-   * Equips a {@code weapon} to the {@code character} if possible.
+   * Equips a {@link Weapon weapon} to the {@link PlayerCharacter character} if possible.
    *
-   * @param weapon {@link Weapon} to be equipped.
-   * @param character {@link PlayerCharacter} who will recieve the {@link Weapon}.
+   * @param weapon {@link Weapon Weapon} to be equipped.
+   * @param character {@link PlayerCharacter Character} who will recieve the {@link Weapon weapon}.
    */
   public String equip(Weapon weapon, PlayerCharacter character) {
     try {
@@ -124,10 +146,11 @@ public class GameDriver {
   }
 
   /**
-   * Attacks a {@link GameCharacter} using a {@link GameCharacter} if possible.
+   * Attacks a {@link GameCharacter character} using another {@link GameCharacter character}
+   * if possible.
    *
-   * @param attacker {@link GameCharacter} who attacks.
-   * @param target {@link GameCharacter} who gets attacked.
+   * @param attacker {@link GameCharacter Character} who attacks.
+   * @param target {@link GameCharacter Character} who gets attacked.
    */
   public String attack(GameCharacter attacker, GameCharacter target) {
     try {
@@ -148,11 +171,12 @@ public class GameDriver {
   }
 
   /**
-   * Cast a {@link Spell} on a {@link GameCharacter} by another {@link GameCharacter}.
+   * Cast a {@link Spell spell} on a {@link GameCharacter character} by another
+   * {@link GameCharacter character}.
    *
-   * @param attacker {@link GameCharacter} who attacks.
-   * @param spell {@link Spell} being cast.
-   * @param target {@link GameCharacter} who gets attacked.
+   * @param attacker {@link GameCharacter Character} who attacks.
+   * @param spell {@link Spell Spell} being cast.
+   * @param target {@link GameCharacter Character} who gets attacked.
    */
   public String useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
     try {
@@ -185,9 +209,9 @@ public class GameDriver {
   }
 
   /**
-   * Sets a new state to the game.
+   * Sets a new {@link GameState state} to the game.
    *
-   * @param gameState New {@link GameState}.
+   * @param gameState New {@link GameState state}.
    */
   public void setGameState(GameState gameState) {
     this.gameState = gameState;
@@ -199,16 +223,24 @@ public class GameDriver {
     }
   }
 
+  /**
+   * Returns the current {@link GameState state}.
+   *
+   * @return The current {@link GameState state}.
+   */
   public GameState getGameState() {
     return gameState;
   }
 
+  /**
+   * Executes the action the game should do in the current {@link GameState state}.
+   */
   public void execute() {
     this.gameState.execute();
   }
 
   /**
-   * Checks if the enemies are still alive. If they're all dead, the game should end.
+   * Checks if the {@link Enemy enemies} are still alive. If they're all dead, the game should end.
    *
    * @return True if at least one enemy is alive. False if they're all dead.
    */
@@ -221,7 +253,8 @@ public class GameDriver {
   }
 
   /**
-   * Checks if the player's characters are still alive. If they're all dead, the game should end.
+   * Checks if the {@link Player player}'s {@link PlayerCharacter characters} are still alive.
+   * If they're all dead, the game should end.
    *
    * @return True if at least one character is alive. False if they're all dead.
    */
@@ -229,10 +262,18 @@ public class GameDriver {
     return player.alive();
   }
 
+  /**
+   * Checks if the game is over.
+   */
   public void checkGameStatus() {
     this.gameOver = !(playerAlive() && enemiesAlive());
   }
 
+  /**
+   * Returns the game current status.
+   *
+   * @return The game current status.
+   */
   public boolean isGameOver() {
     return gameOver;
   }
@@ -262,30 +303,62 @@ public class GameDriver {
     this.cursor = 0;
   }
 
+  /**
+   * Returns the {@link GameDriver driver}'s turns queue.
+   *
+   * @return The {@link GameDriver driver}'s turns queue.
+   */
   public BlockingQueue<GameCharacter> getTurnsQueue() {
     return turnsQueue;
   }
 
+  /**
+   * Sets a new {@link GameCharacter character} as the current character playing.
+   *
+   * @param character The {@link GameCharacter character} being set.
+   */
   public void setCurrentCharacter(GameCharacter character) {
     this.currentCharacter = character;
   }
 
+  /**
+   * Returns the current {@link GameCharacter character} playing.
+   *
+   * @return The current {@link GameCharacter character} playing.
+   */
   public GameCharacter getCurrentCharacter() {
     return this.currentCharacter;
   }
 
+  /**
+   * Returns the list of {@link Enemy enemies} in the game.
+   *
+   * @return The list of {@link Enemy enemies} in the game.
+   */
   public List<Enemy> getEnemyList() {
     return enemyList;
   }
 
+  /**
+   * Returns the list of {@link PlayerCharacter characters} in the
+   * {@link cl.uchile.dcc.finalreality.controller.player.Party party}.
+   *
+   * @return The list of {@link PlayerCharacter characters} in the
+   *     {@link cl.uchile.dcc.finalreality.controller.player.Party party}.
+   */
   public List<PlayerCharacter> getPlayerCharacters() {
     return this.player.getParty().getCharacters();
   }
 
+  /**
+   * Returns the list of {@link Enemy enemies} that are still alive.
+   *
+   * @return The list of {@link Enemy enemies} that are still alive.
+   */
   public List<Enemy> getAliveEnemies() {
     List<Enemy> enemies = getEnemyList();
     List<Enemy> aliveEnemies = new ArrayList<>();
-    for (Enemy enemy: enemies) {
+    for (Enemy enemy : enemies) {
       if (enemy.isAlive()) {
         aliveEnemies.add(enemy);
       }
@@ -293,6 +366,11 @@ public class GameDriver {
     return aliveEnemies;
   }
 
+  /**
+   * Returns the list of {@link PlayerCharacter characters} that are still alive.
+   *
+   * @return The list of {@link PlayerCharacter characters} that are still alive.
+   */
   public List<PlayerCharacter> getAliveCharacters() {
     List<PlayerCharacter> characters = getPlayerCharacters();
     List<PlayerCharacter> aliveCharacters = new ArrayList<>();
@@ -304,14 +382,31 @@ public class GameDriver {
     return aliveCharacters;
   }
 
+  /**
+   * Returns the list of {@link Weapon weapons} in the
+   * {@link cl.uchile.dcc.finalreality.controller.player.Inventory inventory}.
+   *
+   * @return The list of {@link Weapon weapons} in the
+   *     {@link cl.uchile.dcc.finalreality.controller.player.Inventory inventory}.
+   */
   public List<Weapon> getWeapons() {
     return this.player.getInventory().getItems();
   }
 
+  /**
+   * Returns true if the action was succefully executed and, therefore, the transition can occur.
+   *
+   * @return True if the action was succefully executed, false if not.
+   */
   public boolean isTransitionSucceeded() {
     return transitionSucceeded;
   }
 
+  /**
+   * Change the status of the transition.
+   *
+   * @param transitionSucceeded New status of the transition.
+   */
   public void setTransitionSucceeded(boolean transitionSucceeded) {
     this.transitionSucceeded = transitionSucceeded;
   }

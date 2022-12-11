@@ -18,69 +18,72 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public interface Spell {
 
   /**
-   * Induce the {@link Spell}'s effect to an {@link Enemy}.
+   * Induce the {@link Spell spell}'s effect to an {@link Enemy enemy}.
    *
-   * @param character {@link Enemy} being affected by the {@link Spell}.
-   * @param weapon {@link MagicWeapon} being used to cast the spell.
+   * @param character {@link Enemy Spell} being affected by the {@link Spell spell}.
+   * @param weapon {@link MagicWeapon Weapon} being used to cast the spell.
    * @throws InvalidStatValueException The HP and MP values changed need to be valid.
-   * @throws InvalidTargetCharacterException The {@link Spell} needs to work on an {@link Enemy}.
+   * @throws InvalidTargetCharacterException The {@link Spell spell} needs to work on an
+   *                                         {@link Enemy enemy}.
    */
   void induceEffectOnEnemy(Enemy character, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException;
 
   /**
-   * Induce the {@link Spell}'s effect to an {@link PlayerCharacter}.
+   * Induce the {@link Spell spell}'s effect to an {@link PlayerCharacter player's character}.
    *
-   * @param character {@link PlayerCharacter} being affected by the {@link Spell}.
-   * @param weapon {@link MagicWeapon} being used to cast the spell.
+   * @param character {@link PlayerCharacter character} being affected by the {@link Spell spell}.
+   * @param weapon {@link MagicWeapon weapon} being used to cast the spell.
    * @throws InvalidStatValueException The HP and MP values changed need to be valid.
-   * @throws InvalidTargetCharacterException The {@link Spell} needs to work on an
-   *     {@link PlayerCharacter}.
+   * @throws InvalidTargetCharacterException The {@link Spell spell} needs to work on an
+   *                                         {@link PlayerCharacter character}.
    */
   void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException;
 
   /**
-   * Check if the {@link Spell} can be cast by a
-   * {@link cl.uchile.dcc.finalreality.model.character.player.BlackMage}. Throws exception if not.
+   * Check if the {@link Spell spell} can be cast by a
+   * {@link cl.uchile.dcc.finalreality.model.character.player.BlackMage black mage}.
+   * Throws exception if not.
    *
-   * @param mage The {@link Mage} who cast the {@link Spell}.
-   * @param character The {@link Character} being affeted by the {@link Spell}.
-   * @param weapon The {@link cl.uchile.dcc.finalreality.model.weapon.Weapon} being used to cast
-   *               the {@link Spell}
-   * @throws InvalidMageException The {@link Mage} needs to know the {@link Spell}.
+   * @param mage The {@link Mage mage} who cast the {@link Spell spell}.
+   * @param character The {@link GameCharacter character} being affeted by the {@link Spell spell}.
+   * @param weapon The {@link cl.uchile.dcc.finalreality.model.weapon.Weapon weapon} being used to
+   *               cast the {@link Spell spell}
+   * @throws InvalidMageException The {@link Mage mage} needs to know the {@link Spell spell}.
    * @throws InvalidStatValueException The HP and MP values changed need to be valid.
-   * @throws InvalidTargetCharacterException The {@link Character} being targeted cannot
-   *                                         receive this {@link Spell}.
-   * @throws InvalidManaValueException The {@link Mage} does not have enough mana.
+   * @throws InvalidTargetCharacterException The {@link GameCharacter character} being targeted
+   *                                         cannot receive this {@link Spell spell}.
+   * @throws InvalidManaValueException The {@link Mage mage} does not have enough mana.
    */
   void conjureByBlackMage(Mage mage, GameCharacter character, MagicWeapon weapon)
       throws InvalidMageException, InvalidStatValueException,
       InvalidTargetCharacterException, InvalidManaValueException;
 
   /**
-   * Check if the {@link Spell} can be cast by a
-   * {@link cl.uchile.dcc.finalreality.model.character.player.WhiteMage}. Throws exception if not.
+   * Check if the {@link Spell spell} can be cast by a
+   * {@link cl.uchile.dcc.finalreality.model.character.player.WhiteMage white mage}.
+   * Throws exception if not.
    *
-   * @param mage The {@link Mage} who cast the {@link Spell}.
-   * @param character The {@link Character} being affeted by the {@link Spell}.
-   * @param weapon The {@link cl.uchile.dcc.finalreality.model.weapon.Weapon} being used to cast
-   *               the {@link Spell}
-   * @throws InvalidMageException The {@link Mage} needs to know the {@link Spell}.
+   * @param mage The {@link Mage mage} who cast the {@link Spell spell}.
+   * @param character The {@link GameCharacter character} being affeted by the {@link Spell spell}.
+   * @param weapon The {@link cl.uchile.dcc.finalreality.model.weapon.Weapon weapon}
+   *               being used to cast the {@link Spell spell}
+   * @throws InvalidMageException The {@link Mage mage} needs to know the {@link Spell spell}.
    * @throws InvalidStatValueException The HP and MP values changed need to be valid.
-   * @throws InvalidTargetCharacterException The {@link Character} being targeted cannot
-   *                                         receive this {@link Spell}.
-   * @throws InvalidManaValueException The {@link Mage} does not have enough mana.
+   * @throws InvalidTargetCharacterException The {@link GameCharacter character} being targeted
+   *                                         cannot receive this {@link Spell spell}.
+   * @throws InvalidManaValueException The {@link Mage mage} does not have enough mana.
    */
   void conjureByWhiteMage(Mage mage, GameCharacter character, MagicWeapon weapon)
       throws InvalidMageException, InvalidStatValueException,
       InvalidTargetCharacterException, InvalidManaValueException;
 
   /**
-   * Checks if the {@link Mage} casting the {@link Spell} has enough Mp to summon it.
+   * Checks if the {@link Mage mage} casting the {@link Spell spell} has enough Mp to summon it.
    *
-   * @param mageMana The {@link Mage}'s Mp.
-   * @throws InvalidManaValueException The {@link Mage} does not have enough Mp.
+   * @param mageMana The {@link Mage mage}'s Mp.
+   * @throws InvalidManaValueException The {@link Mage mage} does not have enough Mp.
    */
   void checkMana(int mageMana) throws InvalidManaValueException;
 }

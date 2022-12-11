@@ -12,16 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that holds all the information of the {@link Player}'s inventory.
+ * A class that holds all the information of the {@link Player player}'s
+ * {@link Inventory inventory}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class Inventory {
 
   private final List<Weapon> items;
 
   /**
-   * Initialize all weapons in the inventory randomly.
+   * Initialize all {@link Weapon weapons} in the {@link Inventory inventory} randomly.
    *
-   * @throws InvalidStatValueException Weapons values must be valid.
+   * @throws InvalidStatValueException {@link Weapon Weapons} values must be valid.
    */
   public Inventory() throws InvalidStatValueException {
     this.items = new ArrayList<>();
@@ -33,28 +36,28 @@ public class Inventory {
   }
 
   /**
-   * Adds a new item to the inventory.
+   * Adds a new {@link Weapon item} to the {@link Inventory inventory}.
    *
-   * @param weapon Weapon being added to the inventory.
+   * @param weapon {@link Weapon Item} being added to the {@link Inventory inventory}.
    */
   public void addItem(Weapon weapon) {
     items.add(weapon);
   }
 
   /**
-   * Returns a {@link Weapon} with the right index given.
+   * Returns a {@link Weapon weapon} with the right index given.
    *
-   * @param n Index of the {@link Weapon}.
-   * @return A {@link Weapon} from the {@link Inventory} with an index n.
+   * @param n Index of the {@link Weapon weapon}.
+   * @return A {@link Weapon weapon} from the {@link Inventory inventory} with an index n.
    */
   public Weapon getWeapon(int n) {
     return items.get(n);
   }
 
   /**
-   * Creates a series of {@link Weapon} to be added to the inventory.
+   * Creates a series of {@link Weapon weapons} to be added to the {@link Inventory inventory}.
    *
-   * @param factory Factory that creates the {@link Weapon}
+   * @param factory Factory that creates the {@link Weapon weapons}.
    * @throws InvalidStatValueException Values must be valid.
    */
   public void initialize(AbstractWeaponFactory factory)
@@ -64,6 +67,11 @@ public class Inventory {
     }
   }
 
+  /**
+   * Returns the {@link Weapon items} being hold by the {@link Inventory inventory}.
+   *
+   * @return The {@link Weapon items} being hold by the {@link Inventory inventory}.
+   */
   public List<Weapon> getItems() {
     return items;
   }

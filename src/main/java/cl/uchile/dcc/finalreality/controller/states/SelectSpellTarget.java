@@ -1,19 +1,32 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import cl.uchile.dcc.finalreality.model.spell.Spell;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A {@link GameState} that represents the player is selecting a {@link GameCharacter character}
+ * to use the {@link Spell spell} on.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public class SelectSpellTarget extends AbstractState {
 
   private final Spell selectedSpell;
   private final List<GameCharacter> characters;
 
+  /**
+   * Creates a {@link SelectSpellTarget "select spell target" state}. Its failed state is
+   * {@link PlayerSelectAction "player select action" state} Its next state is
+   * {@link NewTurn "new turn" state}.
+   *
+   * @param driver The {@link GameDriver driver} this {@link SelectSpellTarget state} belongs to.
+   * @param failed The {@link GameState state} the game should go back to when something fails.
+   * @param selectedSpell The {@link Spell spell} that's going to be used.
+   */
   public SelectSpellTarget(GameDriver driver, GameState failed, Spell selectedSpell) {
     super(driver, failed);
     this.nextState = new NewTurn(driver);

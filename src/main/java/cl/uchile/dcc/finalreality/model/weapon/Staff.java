@@ -14,7 +14,7 @@ import cl.uchile.dcc.finalreality.model.spell.Spell;
 import java.util.Objects;
 
 /**
- * A class that holds the information of a {@link Weapon} that's a Staff.
+ * A class that holds the information of a {@link Weapon weapon} that's a Staff.
  *
  * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
@@ -92,6 +92,7 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
     throw new InvalidEquipableWeaponException("Staff cannot be equiped to thief");
   }
 
+  @Override
   public void castSpell(GameCharacter character, Spell spell, Mage mage)
       throws InvalidMageException, InvalidStatValueException,
       InvalidTargetCharacterException, InvalidManaValueException {

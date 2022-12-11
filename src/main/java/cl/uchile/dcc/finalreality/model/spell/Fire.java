@@ -1,5 +1,7 @@
 package cl.uchile.dcc.finalreality.model.spell;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
@@ -8,9 +10,6 @@ import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.Mage;
 import cl.uchile.dcc.finalreality.model.effect.BurntEffect;
 import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
-import java.util.Random;
-
-import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
 
 /**
  * A class thah holds the information of a {@link Spell} that burns enemies.

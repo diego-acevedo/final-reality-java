@@ -1,14 +1,16 @@
 package cl.uchile.dcc.finalreality.controller.factories.character;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
 
-import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
-
 /**
- * A class that holds the basic {@link AbstractCharacterFactory} logic.
+ * A class that holds the basic {@link AbstractCharacterFactory factory} logic.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public abstract class TemplateCharacterFactory implements AbstractCharacterFactory {
 
@@ -17,33 +19,70 @@ public abstract class TemplateCharacterFactory implements AbstractCharacterFacto
   private int maxHp;
   private int defense;
 
+  /**
+   * Sets the name to a random value.
+   *
+   * @param characterClass The name of the {@link PlayerCharacter character}'s class.
+   */
   protected void setName(String characterClass) {
     this.name = "%s %d".formatted(characterClass, this.charactersCreated);
     this.charactersCreated++;
   }
 
+  /**
+   * Sets the maxHp to a random value.
+   */
   protected void setMaxHp() {
     this.maxHp = RANDOM_GENERATOR.nextInt(1000, 2000);
   }
 
+  /**
+   * Sets the defense to a random value.
+   */
   protected void setDefense() {
     this.defense = RANDOM_GENERATOR.nextInt(0, 40);
   }
 
+  /**
+   * Returns the value generated for name.
+   *
+   * @return The random generated value for name.
+   */
   protected String getName() {
     return this.name;
   }
 
+  /**
+   * Returns the value generated for maxHp.
+   *
+   * @return The random generated value for maxHp.
+   */
   protected int getMaxHp() {
     return this.maxHp;
   }
 
+  /**
+   * Returns the value generated for defense.
+   *
+   * @return The random generated value for defense.
+   */
   protected int getDefense() {
     return this.defense;
   }
 
+  /**
+   * Assigns a new random generated value to all parameters.
+   */
   protected abstract void setValues();
 
+  /**
+   * Creates a new {@link PlayerCharacter character} with random parameters.
+   *
+   * @param turnsQueue Turns queue of the
+   *     {@link cl.uchile.dcc.finalreality.controller.GameDriver game driver}.
+   * @return New {@link PlayerCharacter character} with random generated attributes.
+   * @throws InvalidStatValueException Values must be valid.
+   */
   protected abstract PlayerCharacter newCharacter(BlockingQueue<GameCharacter> turnsQueue)
       throws InvalidStatValueException;
 

@@ -5,7 +5,9 @@ import cl.uchile.dcc.finalreality.model.weapon.Bow;
 import cl.uchile.dcc.finalreality.model.weapon.Weapon;
 
 /**
- * A {@link AbstractWeaponFactory} that creates an {@link Bow}.
+ * A {@link AbstractWeaponFactory factory} that creates a {@link Bow bow}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class BowFactory extends TemplateWeaponFactory {
 

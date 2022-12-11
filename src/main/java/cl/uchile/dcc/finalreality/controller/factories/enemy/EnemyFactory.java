@@ -1,14 +1,17 @@
 package cl.uchile.dcc.finalreality.controller.factories.enemy;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.concurrent.BlockingQueue;
 
-import static cl.uchile.dcc.finalreality.controller.GameDriver.RANDOM_GENERATOR;
-
 /**
- * A class that represents an {@link AbstractEnemyFactory} that creates an {@link Enemy}.
+ * A class that represents a {@link AbstractEnemyFactory factory} that
+ * creates an {@link Enemy enemy}.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class EnemyFactory implements AbstractEnemyFactory {
 
@@ -19,23 +22,38 @@ public class EnemyFactory implements AbstractEnemyFactory {
   private int defense;
   private int attack;
 
+  /**
+   * Sets name to a random value.
+   */
   protected void setName() {
     this.name = "Enemy %d".formatted(this.enemiesCreated);
     this.enemiesCreated++;
   }
 
+  /**
+   * Sets weight to a random value.
+   */
   protected void setWeight() {
     this.weight = RANDOM_GENERATOR.nextInt(10, 100);
   }
 
+  /**
+   * Sets maxHp to a random value.
+   */
   protected void setmaxHp() {
     this.maxHp = RANDOM_GENERATOR.nextInt(1000, 2000);
   }
 
+  /**
+   * Sets defense to a random value.
+   */
   protected void setDefense() {
     this.defense = RANDOM_GENERATOR.nextInt(0, 40);
   }
 
+  /**
+   * Sets attack to a random value.
+   */
   protected void setAttack() {
     this.attack = RANDOM_GENERATOR.nextInt(50, 100);
   }

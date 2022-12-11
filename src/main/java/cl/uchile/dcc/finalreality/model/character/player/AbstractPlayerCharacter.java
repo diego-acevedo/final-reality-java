@@ -8,7 +8,13 @@
 
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMageException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidMagicWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidManaValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicalCharacterException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.character.AbstractCharacter;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
@@ -57,8 +63,8 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   }
 
   /**
-   * Starts a cooldown for a {@link GameCharacter} to be able to attack again.
-   * Cooldown depends on the PlayerCharacter's equipped weapon's weight.
+   * Starts a cooldown for a {@link GameCharacter player character} to be able to
+   * attack again. Cooldown depends on the PlayerCharacter's equipped weapon's weight.
    */
   public void waitTurn() {
     scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
@@ -73,6 +79,11 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     return equippedWeapon;
   }
 
+  /**
+   * Sets a new {@link Weapon weapon} to the character.
+   *
+   * @param weapon {@link Weapon Weapon} being equipped.
+   */
   protected void setEquippedWeapon(Weapon weapon) {
     this.equippedWeapon = weapon;
   }
@@ -92,6 +103,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     this.setCurrentHp(newHp);
   }
 
+  @Override
   public void useMagic(Spell spell, GameCharacter character)
       throws InvalidMagicWeaponException, NonMagicalCharacterException,
       InvalidMageException, InvalidStatValueException,
@@ -99,6 +111,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     throw new NonMagicalCharacterException(this + " is not a magical character.");
   }
 
+  @Override
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     spell.induceEffectOnPlayerCharacter(this, weapon);
