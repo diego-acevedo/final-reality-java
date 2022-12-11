@@ -22,10 +22,14 @@ public class NewTurn extends AbstractState {
       if (!gameDriver.getTurnsQueue().isEmpty()) {
         GameCharacter character = gameDriver.getTurnsQueue().poll();
         gameDriver.setCurrentCharacter(character);
-        if (gameDriver.getCurrentCharacter().isPlayable()) {
-          this.nextState = new PlayerSelectAction(gameDriver);
+        if (gameDriver.getCurrentCharacter().isAlive()) {
+          if (gameDriver.getCurrentCharacter().isPlayable()) {
+            this.nextState = new PlayerSelectAction(gameDriver);
+          } else {
+            this.nextState = new EnemyPlay(gameDriver);
+          }
         } else {
-          this.nextState = new EnemyPlay(gameDriver);
+          this.nextState = new NewTurn(gameDriver);
         }
       }
     }

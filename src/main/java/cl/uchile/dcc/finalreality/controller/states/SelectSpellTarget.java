@@ -25,15 +25,16 @@ public class SelectSpellTarget extends AbstractState {
 
   @Override
   public void execute() {
-    int select_pos;
+    int selectPos;
     if (gameDriver.getCursor() < 0) {
-      select_pos = (gameDriver.getCursor() % characters.size())
+      selectPos = (gameDriver.getCursor() % characters.size())
           + characters.size();
     } else {
-      select_pos = gameDriver.getCursor() % characters.size();
+      selectPos = gameDriver.getCursor() % characters.size();
     }
-    GameCharacter target = characters.get(select_pos);
-    String status = gameDriver.useMagic((PlayerCharacter) gameDriver.getCurrentCharacter(), selectedSpell, target);
+    GameCharacter target = characters.get(selectPos);
+    PlayerCharacter attacker = (PlayerCharacter) gameDriver.getCurrentCharacter();
+    String status = gameDriver.useMagic(attacker, selectedSpell, target);
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {
       nextState();
@@ -44,9 +45,16 @@ public class SelectSpellTarget extends AbstractState {
 
   @Override
   public List<String> options() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % characters.size())
+          + characters.size();
+    } else {
+      selectPos = gameDriver.getCursor() % characters.size();
+    }
     List<String> options = new ArrayList<>();
     for (int i = 0; i < characters.size(); i++) {
-      if (i == gameDriver.getCursor() % characters.size()) {
+      if (i == selectPos) {
         options.add("-> " + characters.get(i).getName());
       } else {
         options.add(characters.get(i).getName());

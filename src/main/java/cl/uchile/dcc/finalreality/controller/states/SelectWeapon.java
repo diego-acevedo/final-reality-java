@@ -19,14 +19,14 @@ public class SelectWeapon extends AbstractState {
 
   @Override
   public void execute() {
-    int select_pos;
+    int selectPos;
     if (gameDriver.getCursor() < 0) {
-      select_pos = (gameDriver.getCursor() % items.size())
+      selectPos = (gameDriver.getCursor() % items.size())
           + items.size();
     } else {
-      select_pos = gameDriver.getCursor() % items.size();
+      selectPos = gameDriver.getCursor() % items.size();
     }
-    Weapon weapon = items.remove(select_pos);
+    Weapon weapon = items.remove(selectPos);
     String status = gameDriver.equip(weapon, (PlayerCharacter) gameDriver.getCurrentCharacter());
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {
@@ -38,9 +38,16 @@ public class SelectWeapon extends AbstractState {
 
   @Override
   public List<String> options() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % items.size())
+          + items.size();
+    } else {
+      selectPos = gameDriver.getCursor() % items.size();
+    }
     List<String> options = new ArrayList<>();
     for (int i = 0; i < items.size(); i++) {
-      if (i == gameDriver.getCursor() % items.size()) {
+      if (i == selectPos) {
         options.add("-> " + items.get(i).getName());
       } else {
         options.add(items.get(i).getName());

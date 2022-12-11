@@ -132,6 +132,7 @@ public class GameDriver {
   public String attack(GameCharacter attacker, GameCharacter target) {
     try {
       attacker.attack(target);
+      attacker.waitTurn();
       setTransitionSucceeded(true);
       return "%s has attacked %s"
           .formatted(attacker.getClass().getSimpleName(), target.getClass().getSimpleName());
@@ -156,6 +157,7 @@ public class GameDriver {
   public String useMagic(PlayerCharacter attacker, Spell spell, GameCharacter target) {
     try {
       attacker.useMagic(spell, target);
+      attacker.waitTurn();
       setTransitionSucceeded(true);
       return "%s has used %s on %s"
           .formatted(attacker.getClass().getSimpleName(),

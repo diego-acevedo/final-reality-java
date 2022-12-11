@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +19,16 @@ public class SelectAttackTarget extends AbstractState {
 
   @Override
   public void execute() {
-    int select_pos;
+    int selectPos;
     if (gameDriver.getCursor() < 0) {
-      select_pos = (gameDriver.getCursor() % aliveEnemies.size())
+      selectPos = (gameDriver.getCursor() % aliveEnemies.size())
           + aliveEnemies.size();
     } else {
-      select_pos = gameDriver.getCursor() % aliveEnemies.size();
+      selectPos = gameDriver.getCursor() % aliveEnemies.size();
     }
-    Enemy target = aliveEnemies.get(select_pos);
-    String status = gameDriver.attack(gameDriver.getCurrentCharacter(), target);
+    Enemy target = aliveEnemies.get(selectPos);
+    GameCharacter attacker = gameDriver.getCurrentCharacter();
+    String status = gameDriver.attack(attacker, target);
     System.out.println(status);
     if (gameDriver.isTransitionSucceeded()) {
       nextState();
@@ -37,9 +39,16 @@ public class SelectAttackTarget extends AbstractState {
 
   @Override
   public List<String> options() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % aliveEnemies.size())
+          + aliveEnemies.size();
+    } else {
+      selectPos = gameDriver.getCursor() % aliveEnemies.size();
+    }
     List<String> options = new ArrayList<>();
     for (int i = 0; i < aliveEnemies.size(); i++) {
-      if (i == gameDriver.getCursor() % aliveEnemies.size()) {
+      if (i == selectPos) {
         options.add("-> " + aliveEnemies.get(i).getName());
       } else {
         options.add(aliveEnemies.get(i).getName());

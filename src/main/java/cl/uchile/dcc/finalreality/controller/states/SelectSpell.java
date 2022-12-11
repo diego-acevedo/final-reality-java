@@ -22,23 +22,30 @@ public class SelectSpell extends AbstractState {
 
   @Override
   public void execute() {
-    int select_pos;
+    int selectPos;
     if (gameDriver.getCursor() < 0) {
-      select_pos = (gameDriver.getCursor() % spells.size())
+      selectPos = (gameDriver.getCursor() % spells.size())
           + spells.size();
     } else {
-      select_pos = gameDriver.getCursor() % spells.size();
+      selectPos = gameDriver.getCursor() % spells.size();
     }
-    Spell spellSelected = spells.get(select_pos);
+    Spell spellSelected = spells.get(selectPos);
     this.nextState = new SelectSpellTarget(this.gameDriver, this.failedState, spellSelected);
     nextState();
   }
 
   @Override
   public List<String> options() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % spells.size())
+          + spells.size();
+    } else {
+      selectPos = gameDriver.getCursor() % spells.size();
+    }
     List<String> options = new ArrayList<>();
     for (int i = 0; i < spells.size(); i++) {
-      if (i == gameDriver.getCursor() % spells.size()) {
+      if (i == selectPos) {
         options.add("-> " + spells.get(i));
       } else {
         options.add(spells.get(i).toString());

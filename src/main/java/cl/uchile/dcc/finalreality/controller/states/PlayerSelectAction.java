@@ -23,22 +23,29 @@ public class PlayerSelectAction extends AbstractState {
 
   @Override
   public void execute() {
-    int select_pos;
+    int selectPos;
     if (gameDriver.getCursor() < 0) {
-      select_pos = (gameDriver.getCursor() % possibleNextTransitions.size())
+      selectPos = (gameDriver.getCursor() % possibleNextTransitions.size())
           + possibleNextTransitions.size();
     } else {
-      select_pos = gameDriver.getCursor() % possibleNextTransitions.size();
+      selectPos = gameDriver.getCursor() % possibleNextTransitions.size();
     }
-    this.nextState = possibleNextTransitions.get(select_pos);
+    this.nextState = possibleNextTransitions.get(selectPos);
     nextState();
   }
 
   @Override
   public List<String> options() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % possibleNextTransitions.size())
+          + possibleNextTransitions.size();
+    } else {
+      selectPos = gameDriver.getCursor() % possibleNextTransitions.size();
+    }
     List<String> options = new ArrayList<>();
     for (int i = 0; i < phasesName.size(); i++) {
-      if (i == gameDriver.getCursor() % phasesName.size()) {
+      if (i == selectPos) {
         options.add("-> " + phasesName.get(i));
       } else {
         options.add(phasesName.get(i));

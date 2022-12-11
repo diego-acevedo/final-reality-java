@@ -27,15 +27,16 @@ public class EnemyPlay extends AbstractState {
     if (enemy.isAlive() && !enemy.isParalysed()) {
       List<PlayerCharacter> characters = gameDriver.getAliveCharacters();
       int n = RANDOM_GENERATOR.nextInt(0, characters.size());
-      String status = gameDriver.attack(gameDriver.getCurrentCharacter(), characters.get(n));
+      String status = gameDriver.attack(enemy, characters.get(n));
       System.out.println(status);
       if (gameDriver.isTransitionSucceeded()) {
         nextState();
       } else {
         this.execute();
       }
+    } else {
+      nextState();
     }
-    this.nextState();
   }
 
   @Override
