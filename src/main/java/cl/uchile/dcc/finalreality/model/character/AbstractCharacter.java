@@ -1,28 +1,30 @@
 package cl.uchile.dcc.finalreality.model.character;
 
+import static cl.uchile.dcc.finalreality.controller.GameDriver.DRIVER;
+
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetCharacterException;
 import cl.uchile.dcc.finalreality.exceptions.Require;
 import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * An abstract class that holds the common behaviour of all the characters in the game.
  *
  * @author <a href="https://www.github.com/r8vnhill">R8V</a>
- * @author ~Your name~
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public abstract class AbstractCharacter implements GameCharacter {
 
   private int currentHp;
-  protected int maxHp;
-  protected int defense;
-  protected final BlockingQueue<GameCharacter> turnsQueue;
-  protected final String name;
-  private ScheduledExecutorService scheduledExecutor;
+  private final int maxHp;
+  private final int defense;
+  private final BlockingQueue<GameCharacter> turnsQueue;
+  private final String name;
+  private boolean alive;
+  protected ScheduledExecutorService scheduledExecutor;
 
   /**
    * Creates a new character.
@@ -35,6 +37,8 @@ public abstract class AbstractCharacter implements GameCharacter {
    *     the character's defense
    * @param turnsQueue
    *     the queue with the characters waiting for their turn
+   * @throws InvalidStatValueException maxHp must be greater than 1
+   *     and defense must be greater than 0
    */
   protected AbstractCharacter(@NotNull String name, int maxHp, int defense,
       @NotNull BlockingQueue<GameCharacter> turnsQueue) throws InvalidStatValueException {
@@ -45,29 +49,13 @@ public abstract class AbstractCharacter implements GameCharacter {
     this.defense = defense;
     this.turnsQueue = turnsQueue;
     this.name = name;
-  }
-
-  @Override
-  public void waitTurn() {
-    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    if (this instanceof PlayerCharacter player) {
-      scheduledExecutor.schedule(
-          /* command = */ this::addToQueue,
-          /* delay = */ player.getEquippedWeapon().getWeight() / 10,
-          /* unit = */ TimeUnit.SECONDS);
-    } else {
-      var enemy = (Enemy) this;
-      scheduledExecutor.schedule(
-          /* command = */ this::addToQueue,
-          /* delay = */ enemy.getWeight() / 10,
-          /* unit = */ TimeUnit.SECONDS);
-    }
+    this.alive = true;
   }
 
   /**
    * Adds this character to the turns queue.
    */
-  private void addToQueue() {
+  protected void addToQueue() {
     try {
       turnsQueue.put(this);
     } catch (Exception e) {
@@ -101,5 +89,37 @@ public abstract class AbstractCharacter implements GameCharacter {
     Require.statValueAtLeast(0, hp, "Current HP");
     Require.statValueAtMost(maxHp, hp, "Current HP");
     currentHp = hp;
+    this.checkHealth();
+  }
+
+  @Override
+  public void getAttackFromEnemy(Enemy enemy)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException("This character cannot be attack by an enemy");
+  }
+
+  @Override
+  public void getAttackFromPlayerCharacter(PlayerCharacter character)
+      throws InvalidTargetCharacterException, InvalidStatValueException {
+    throw new InvalidTargetCharacterException("This character cannot be attacked by"
+        + "a player character");
+  }
+
+  @Override
+  public boolean isAlive() {
+    return this.alive;
+  }
+
+  @Override
+  public void checkHealth() {
+    if (this.currentHp == 0) {
+      this.alive = false;
+      DRIVER.checkGameStatus();
+    }
+  }
+
+  @Override
+  public boolean isPlayable() {
+    return false;
   }
 }
