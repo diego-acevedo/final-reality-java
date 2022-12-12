@@ -1,4 +1,4 @@
-<div style="width:400px">
+<div style="width:300px">
 
 ![](img/FinalReality.png)
 
