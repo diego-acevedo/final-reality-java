@@ -61,11 +61,16 @@ public class SelectWeapon extends AbstractState {
     List<String> options = new ArrayList<>();
     for (int i = 0; i < items.size(); i++) {
       if (i == selectPos) {
-        options.add("-> " + items.get(i).getName());
+        options.add("> " + items.get(i).getName());
       } else {
-        options.add(items.get(i).getName());
+        options.add("  " + items.get(i).getName());
       }
     }
     return options;
+  }
+
+  @Override
+  public String stateInstruction() {
+    return "Select a weapon";
   }
 }

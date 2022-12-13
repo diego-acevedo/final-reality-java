@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Final Fantasy';
+    src: url('fonts/finalf.ttf');
+}
+
+@font-face {
+    font-family: 'Pixeloid Sans';
+    src: url('fonts/PixeloidSans-nR3g1.ttf');
+}
+
+.gametitle {
+    -fx-font-family: "Final Fantasy";
+    -fx-font-size: 100;
+}
+
+.gamesubtitle {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 20;
+}
+
+.button {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+}

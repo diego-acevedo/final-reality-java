@@ -57,4 +57,9 @@ public abstract class AbstractState implements GameState {
   public boolean executeAutomatically() {
     return false;
   }
+
+  @Override
+  public String stateInstruction() {
+    return "";
+  }
 }

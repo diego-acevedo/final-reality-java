@@ -68,11 +68,16 @@ public class SelectSpellTarget extends AbstractState {
     List<String> options = new ArrayList<>();
     for (int i = 0; i < characters.size(); i++) {
       if (i == selectPos) {
-        options.add("-> " + characters.get(i).getName());
+        options.add("> " + characters.get(i).getName());
       } else {
-        options.add(characters.get(i).getName());
+        options.add("  " + characters.get(i).getName());
       }
     }
     return options;
+  }
+
+  @Override
+  public String stateInstruction() {
+    return "Select a target";
   }
 }

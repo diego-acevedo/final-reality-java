@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Pixeloid Sans';
+    src: url('fonts/PixeloidSans-nR3g1.ttf');
+}
+
+.label {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+}
+
+.instruction {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+}
+
+.current-char {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+}

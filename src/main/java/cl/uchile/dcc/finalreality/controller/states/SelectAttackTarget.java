@@ -62,11 +62,16 @@ public class SelectAttackTarget extends AbstractState {
     List<String> options = new ArrayList<>();
     for (int i = 0; i < aliveEnemies.size(); i++) {
       if (i == selectPos) {
-        options.add("-> " + aliveEnemies.get(i).getName());
+        options.add("> " + aliveEnemies.get(i).getName());
       } else {
-        options.add(aliveEnemies.get(i).getName());
+        options.add("  " + aliveEnemies.get(i).getName());
       }
     }
     return options;
+  }
+
+  @Override
+  public String stateInstruction() {
+    return "Select a target";
   }
 }

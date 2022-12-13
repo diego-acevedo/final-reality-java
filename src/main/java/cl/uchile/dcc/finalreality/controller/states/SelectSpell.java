@@ -64,11 +64,16 @@ public class SelectSpell extends AbstractState {
     List<String> options = new ArrayList<>();
     for (int i = 0; i < spells.size(); i++) {
       if (i == selectPos) {
-        options.add("-> " + spells.get(i));
+        options.add("> " + spells.get(i));
       } else {
-        options.add(spells.get(i).toString());
+        options.add("  " + spells.get(i).toString());
       }
     }
     return options;
+  }
+
+  @Override
+  public String stateInstruction() {
+    return "Select a spell";
   }
 }

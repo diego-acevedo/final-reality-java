@@ -410,4 +410,17 @@ public class GameDriver {
   public void setTransitionSucceeded(boolean transitionSucceeded) {
     this.transitionSucceeded = transitionSucceeded;
   }
+
+  /**
+   * Returns the options that can be executed in the current state.
+   *
+   * @return The game state options.
+   */
+  public List<String> getOptions() {
+    return gameState.options();
+  }
+
+  public String getInstructions() {
+    return gameState.stateInstruction();
+  }
 }

@@ -24,6 +24,7 @@ public class Preparation extends AbstractState {
 
   @Override
   public void execute() {
+    System.out.println("Game has started");
     this.nextState();
   }
 

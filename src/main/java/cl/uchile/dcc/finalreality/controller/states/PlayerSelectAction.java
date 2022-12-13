@@ -57,11 +57,16 @@ public class PlayerSelectAction extends AbstractState {
     List<String> options = new ArrayList<>();
     for (int i = 0; i < phasesName.size(); i++) {
       if (i == selectPos) {
-        options.add("-> " + phasesName.get(i));
+        options.add("> " + phasesName.get(i));
       } else {
-        options.add(phasesName.get(i));
+        options.add("  " + phasesName.get(i));
       }
     }
     return options;
+  }
+
+  @Override
+  public String stateInstruction() {
+    return "Select an action for this " + gameDriver.getCurrentCharacter().getClass().getSimpleName();
   }
 }

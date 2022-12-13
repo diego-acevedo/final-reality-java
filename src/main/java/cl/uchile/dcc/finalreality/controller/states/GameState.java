@@ -54,4 +54,6 @@ public interface GameState {
    * @return True if the state must be executed automatically, false if not.
    */
   boolean executeAutomatically();
+
+  String stateInstruction();
 }

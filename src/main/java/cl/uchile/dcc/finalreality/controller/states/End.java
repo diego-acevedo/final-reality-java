@@ -28,6 +28,11 @@ public class End extends AbstractState {
 
   @Override
   public List<String> options() {
+    return new ArrayList<>();
+  }
+
+  @Override
+  public String stateInstruction() {
     String winner;
     if (gameDriver.enemiesAlive()) {
       winner = "Enemies won this fight...";
@@ -36,6 +41,6 @@ public class End extends AbstractState {
     } else {
       winner = "Nobody won";
     }
-    return new ArrayList<>(Collections.singleton(winner));
+    return winner;
   }
 }
