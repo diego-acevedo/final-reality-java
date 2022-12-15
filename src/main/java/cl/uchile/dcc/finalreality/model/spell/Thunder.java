@@ -45,7 +45,7 @@ public class Thunder extends AbstractSpell {
   @Override
   public String description() {
     return """
-        Reduces opponent's life in <magicDamage> HP and there's a 30% chance they'll paralyze.
+        Reduces opponent's life with a 30% chance of paralysis.
         Type: Black
         Cost: 15 MP""";
   }

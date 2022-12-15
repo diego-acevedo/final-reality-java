@@ -43,4 +43,9 @@ public class End extends AbstractState {
     }
     return winner;
   }
+
+  @Override
+  public boolean executeAutomatically() {
+    return true;
+  }
 }

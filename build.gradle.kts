@@ -33,7 +33,7 @@ dependencies {
 
 javafx {
     version = "14-ea+6"
-    modules = mutableListOf("javafx.controls")
+    modules = mutableListOf("javafx.controls", "javafx.media")
 }
 
 tasks.named<Test>("test") {

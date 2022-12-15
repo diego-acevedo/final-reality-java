@@ -19,10 +19,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.File;
 import java.util.Random;
 
 import static cl.uchile.dcc.finalreality.controller.GameDriver.MAX_CHARACTERS;
@@ -32,6 +37,7 @@ public class FinalReality extends Application {
 
   private Stage window;
   private Scene scene1, scene2;
+  private AnimationTimer timer1, timer2;
   private final int height = 600;
   private final int width = 1200;
   private final String resource_path = "src/main/resources/";
@@ -43,11 +49,23 @@ public class FinalReality extends Application {
   private final Image[] enemySprites = {new Image("file:" + resource_path + "sprites/sprites-enemy1.png"),
                                   new Image("file:" + resource_path + "sprites/sprites-enemy2.png"),
                                   new Image("file:" + resource_path + "sprites/sprites-enemy3.png")};
-  private ImageView currentCharacterSprite = new ImageView();
+  private final ImageView currentCharacterSprite = new ImageView();
   private final ImageView[] charactersSprites = new ImageView[MAX_CHARACTERS + MAX_ENEMIES];
+  private MediaPlayer mediaPlayer;
+  private final Media enterMedia =
+      new Media(new File(resource_path + "sounds/ENTER.mp3").toURI().toString());
+  private final Media cursorMedia =
+      new Media(new File(resource_path + "sounds/CURSOR.mp3").toURI().toString());
   private final Text[] charactersHealth = new Text[MAX_CHARACTERS + MAX_ENEMIES];
   private final Text actionOutput = new Text("");
   private final Text stats = new Text("");
+  private final int[][] colorValues = { {129, 226, 255},
+                                        {179, 129, 255},
+                                        {255, 129, 129},
+                                        {255, 236, 129},
+                                        {129, 255, 131} };
+  private Text title = new Text("FINAL REALITY");
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -68,19 +86,28 @@ public class FinalReality extends Application {
     setUpScene1();
     setUpScene2();
 
-    setUpTimer();
+    setUpTimer1();
+    setUpTimer2();
+
+    timer2.start();
+
+    Media menuMusic = new Media(new File(resource_path + "sounds/menu.wav").toURI().toString());
+    mediaPlayer = new MediaPlayer(menuMusic);
+    mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+    mediaPlayer.play();
 
     window.setScene(scene1);
     window.show();
   }
 
   private void setUpScene1() {
-    Text title = new Text("FINAL REALITY");
     title.getStyleClass().add("gametitle");
+    title.setFill(getNewColor());
     Text text = new Text("Press ENTER to continue");
     text.getStyleClass().add("gamesubtitle");
 
     VBox layout1 = new VBox(20);
+    layout1.getStyleClass().add("layout1");
     layout1.getChildren().addAll(title, text);
     layout1.setAlignment(Pos.CENTER);
 
@@ -88,6 +115,22 @@ public class FinalReality extends Application {
     scene1.getStylesheets().add("file:" + resource_path + "scene1style.css");
 
     setKeysToScene1();
+  }
+
+  private Color getNewColor() {
+    long newTime = System.currentTimeMillis();
+    double timeSeconds = ((int) newTime) * 0.001;
+    int index = ((int) (timeSeconds / 5)) % 5;
+    double delta = ((timeSeconds / 5) % 5) - (((int) (timeSeconds / 5)) % 5);
+
+    int[] v1 = colorValues[index];
+    int[] v2 = colorValues[(index + 1) % 5];
+
+    int newR = v1[0] + (int) ((v2[0] - v1[0]) * delta);
+    int newG = v1[1] + (int) ((v2[1] - v1[1]) * delta);
+    int newB = v1[2] + (int) ((v2[2] - v1[2]) * delta);
+
+    return Color.rgb(newR, newG, newB);
   }
 
   private void setUpScene2() {
@@ -247,16 +290,35 @@ public class FinalReality extends Application {
   }
 
   private void beginGame() {
+    timer2.stop();
+    timer1.start();
     window.setScene(scene2);
+    mediaPlayer.stop();
+    Media battle = new Media(new File(resource_path + "/sounds/battle.wav").toURI().toString());
+    mediaPlayer = new MediaPlayer(battle);
+    mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+    mediaPlayer.play();
     driver.execute();
   }
 
   private void setKeysToScene2() {
     scene2.setOnKeyPressed(event -> {
       switch (event.getCode()) {
-        case UP -> driver.moveCursor(-1);
-        case DOWN -> driver.moveCursor(1);
-        case ENTER -> driver.execute();
+        case UP -> {
+          MediaPlayer cursor = new MediaPlayer(cursorMedia);
+          cursor.play();
+          driver.moveCursor(-1);
+        }
+        case DOWN -> {
+          MediaPlayer cursor = new MediaPlayer(cursorMedia);
+          cursor.play();
+          driver.moveCursor(1);
+        }
+        case ENTER -> {
+          MediaPlayer enter = new MediaPlayer(enterMedia);
+          enter.play();
+          driver.execute();
+        }
         case ESCAPE -> Platform.exit();
       }
     });
@@ -265,18 +327,18 @@ public class FinalReality extends Application {
   private void setKeysToScene1() {
     scene1.setOnKeyPressed(event -> {
       switch (event.getCode()) {
-        case ENTER:
-          window.setScene(scene2);
-          driver.execute();
-          break;
-        case ESCAPE:
-          Platform.exit();
+        case ENTER -> {
+          MediaPlayer enter = new MediaPlayer(enterMedia);
+          enter.play();
+          beginGame();
+        }
+        case ESCAPE -> Platform.exit();
       }
     });
   }
 
-  private void setUpTimer() {
-    AnimationTimer timer = new AnimationTimer() {
+  private void setUpTimer1() {
+    timer1 = new AnimationTimer() {
       @Override
       public void handle(long now) {
 
@@ -318,16 +380,21 @@ public class FinalReality extends Application {
           currentCharacterSprite.setFitHeight(150);
         }
 
-        Rectangle2D cropped = new Rectangle2D(column * 120, row * 120 + 1, 120, 120);
-
         for (int i = 0; i < MAX_CHARACTERS; i++) {
           PlayerCharacter character = driver.getPlayerCharacters().get(i);
+          double time = System.currentTimeMillis() * 0.001;
           int r = character.getSpriteRow();
-          int c = (int) (5 + (((double) (System.currentTimeMillis()/1000))) % 2);
+          int c = 5 + (int) ((time * 3) % 2);
 
           charactersHealth[i].setText(character.getCurrentHp() + "/" + character.getMaxHp());
 
-          Rectangle2D newAnimationFrame = new Rectangle2D(c * 120, r * 120 + 1, 120, 120);
+          Rectangle2D newAnimationFrame;
+          if (character.isAlive()) {
+            newAnimationFrame = new Rectangle2D(c * 120, r * 120 + 1, 120, 120);
+          } else {
+            newAnimationFrame = new Rectangle2D(10 * 120, r * 120 + 1, 120, 120);
+          }
+
 
           charactersSprites[i].setViewport(newAnimationFrame);
         }
@@ -344,6 +411,14 @@ public class FinalReality extends Application {
         stats.setText(driver.getStats());
       }
     };
-    timer.start();
+  }
+
+  void setUpTimer2() {
+    timer2 = new AnimationTimer() {
+      @Override
+      public void handle(long now) {
+        title.setFill(getNewColor());
+      }
+    };
   }
 }

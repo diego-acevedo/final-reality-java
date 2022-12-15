@@ -11,14 +11,15 @@
 .gametitle {
     -fx-font-family: "Final Fantasy";
     -fx-font-size: 100;
+    -fx-fill: #81e2ff;
 }
 
 .gamesubtitle {
     -fx-font-family: "Pixeloid Sans";
     -fx-font-size: 20;
+    -fx-fill: white;
 }
 
-.button {
-    -fx-font-family: "Pixeloid Sans";
-    -fx-font-size: 15;
+.layout1 {
+    -fx-background-color: #202020;
 }

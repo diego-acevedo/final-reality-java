@@ -45,7 +45,7 @@ public class Fire extends AbstractSpell {
   @Override
   public String description() {
     return """
-        Reduces opponent's life in <magicDamage> HP and there's a 20% chance they'll burn.
+        Reduces opponent's life with a 20% chance they'll burn.
         Type: Black
         Cost: 15 MP""";
   }
