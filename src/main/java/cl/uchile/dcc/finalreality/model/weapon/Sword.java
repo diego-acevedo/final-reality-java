@@ -69,4 +69,13 @@ public class Sword extends AbstractWeapon {
   public Weapon equipToWhiteMage(WhiteMage whitemage) throws InvalidEquipableWeaponException {
     throw new InvalidEquipableWeaponException("Sword cannot be equiped to white mage");
   }
+
+  @Override
+  public String getStats() {
+    return """
+        Type: %s
+        Damage: %d
+        Weight: %d""".formatted(this.getClass().getSimpleName(),
+        this.getDamage(), this.getWeight());
+  }
 }

@@ -76,4 +76,17 @@ public class SelectSpell extends AbstractState {
   public String stateInstruction() {
     return "Select a spell";
   }
+
+  @Override
+  public String getStats() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % spells.size())
+          + spells.size();
+    } else {
+      selectPos = gameDriver.getCursor() % spells.size();
+    }
+    Spell spellSelected = spells.get(selectPos);
+    return "Stats:\n" + spellSelected.description();
+  }
 }

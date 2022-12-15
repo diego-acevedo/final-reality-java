@@ -51,4 +51,11 @@ public interface PlayerCharacter extends GameCharacter {
   void useMagic(Spell spell, GameCharacter character)
       throws InvalidMagicWeaponException, NonMagicalCharacterException, InvalidMageException,
       InvalidStatValueException, InvalidTargetCharacterException, InvalidManaValueException;
+
+  /**
+   * Returns the row where the character's texture is stored.
+   *
+   * @return Row where the sprite is.
+   */
+  int getSpriteRow();
 }

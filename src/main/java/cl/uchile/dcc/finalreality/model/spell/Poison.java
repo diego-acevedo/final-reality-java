@@ -36,6 +36,14 @@ public class Poison extends AbstractSpell {
   }
 
   @Override
+  public String description() {
+    return """
+        Poisons the oponent.
+        Type: White
+        Cost: 40 MP""";
+  }
+
+  @Override
   public String toString() {
     return "Poison";
   }

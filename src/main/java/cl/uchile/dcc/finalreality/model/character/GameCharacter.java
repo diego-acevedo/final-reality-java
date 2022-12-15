@@ -112,4 +112,8 @@ public interface GameCharacter {
    * @return True if this character is playable, or false if it's not.
    */
   boolean isPlayable();
+
+  String getInfo();
+
+  String getStats();
 }

@@ -62,4 +62,9 @@ public abstract class AbstractState implements GameState {
   public String stateInstruction() {
     return "";
   }
+
+  @Override
+  public String getStats() {
+    return "";
+  }
 }

@@ -40,6 +40,7 @@ public class EnemyPlay extends AbstractState {
       int n = RANDOM_GENERATOR.nextInt(0, characters.size());
       String status = gameDriver.attack(enemy, characters.get(n));
       System.out.println(status);
+      gameDriver.setActionOutput(status);
       if (gameDriver.isTransitionSucceeded()) {
         nextState();
       } else {

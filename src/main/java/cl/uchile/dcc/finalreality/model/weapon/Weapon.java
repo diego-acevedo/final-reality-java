@@ -99,4 +99,6 @@ public interface Weapon {
    * @return True if the weapon is {@link NullWeapon null}.
    */
   boolean isNull();
+
+  String getStats();
 }

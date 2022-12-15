@@ -36,6 +36,14 @@ public class Paralysis extends AbstractSpell {
   }
 
   @Override
+  public String description() {
+    return """
+        Paralyze the oponent.
+        Type: White
+        Cost: 25 MP""";
+  }
+
+  @Override
   public String toString() {
     return "Paralysis";
   }

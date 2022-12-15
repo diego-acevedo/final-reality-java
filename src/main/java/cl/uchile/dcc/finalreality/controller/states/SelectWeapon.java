@@ -42,6 +42,7 @@ public class SelectWeapon extends AbstractState {
     Weapon weapon = items.remove(selectPos);
     String status = gameDriver.equip(weapon, (PlayerCharacter) gameDriver.getCurrentCharacter());
     System.out.println(status);
+    gameDriver.setActionOutput(status);
     if (gameDriver.isTransitionSucceeded()) {
       nextState();
     } else {
@@ -72,5 +73,18 @@ public class SelectWeapon extends AbstractState {
   @Override
   public String stateInstruction() {
     return "Select a weapon";
+  }
+
+  @Override
+  public String getStats() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % items.size())
+          + items.size();
+    } else {
+      selectPos = gameDriver.getCursor() % items.size();
+    }
+    Weapon weapon = items.get(selectPos);
+    return "Stats:\n" + weapon.getStats();
   }
 }

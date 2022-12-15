@@ -49,6 +49,7 @@ public class SelectSpellTarget extends AbstractState {
     PlayerCharacter attacker = (PlayerCharacter) gameDriver.getCurrentCharacter();
     String status = gameDriver.useMagic(attacker, selectedSpell, target);
     System.out.println(status);
+    gameDriver.setActionOutput(status);
     if (gameDriver.isTransitionSucceeded()) {
       nextState();
     } else {
@@ -79,5 +80,18 @@ public class SelectSpellTarget extends AbstractState {
   @Override
   public String stateInstruction() {
     return "Select a target";
+  }
+
+  @Override
+  public String getStats() {
+    int selectPos;
+    if (gameDriver.getCursor() < 0) {
+      selectPos = (gameDriver.getCursor() % characters.size())
+          + characters.size();
+    } else {
+      selectPos = gameDriver.getCursor() % characters.size();
+    }
+    GameCharacter target = characters.get(selectPos);
+    return "Stats:\n" + target.getStats();
   }
 }

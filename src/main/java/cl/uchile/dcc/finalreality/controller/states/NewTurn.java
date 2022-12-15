@@ -4,6 +4,10 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.model.character.GameCharacter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A {@link GameState} that represents the game is managing a new turn.
@@ -11,6 +15,8 @@ import java.util.List;
  * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
  */
 public class NewTurn extends AbstractState {
+
+  private ScheduledExecutorService waitToStart;
 
   /**
    * Creates a {@link NewTurn "new turn" state}. It doesn't have a failed state.
@@ -36,15 +42,23 @@ public class NewTurn extends AbstractState {
         if (gameDriver.getCurrentCharacter().isAlive()) {
           if (gameDriver.getCurrentCharacter().isPlayable()) {
             this.nextState = new PlayerSelectAction(gameDriver);
+            nextState();
           } else {
             this.nextState = new EnemyPlay(gameDriver);
+            waitToStart = Executors.newSingleThreadScheduledExecutor();
+            waitToStart.schedule(this::enemyNextState, 2, TimeUnit.SECONDS);
           }
         } else {
           this.nextState = new NewTurn(gameDriver);
+          nextState();
         }
       }
     }
+  }
+
+  private void enemyNextState() {
     nextState();
+    waitToStart.shutdown();
   }
 
   @Override

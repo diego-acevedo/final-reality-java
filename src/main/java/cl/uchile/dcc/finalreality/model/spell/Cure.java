@@ -38,6 +38,11 @@ public class Cure extends AbstractSpell {
   }
 
   @Override
+  public String description() {
+    return "Heals an ally 30% of their max HP.\nType: White Magic\nCost: 15 MP";
+  }
+
+  @Override
   public String toString() {
     return "Cure";
   }

@@ -75,4 +75,22 @@ public class Thief extends AbstractPlayerCharacter {
     this.setEquippedWeapon(weapon.equipToThief(this));
 
   }
+
+  @Override
+  public int getSpriteRow() {
+    return 1;
+  }
+
+  @Override
+  public String getInfo() {
+    return "HP: " + getCurrentHp() + "/" + getMaxHp();
+  }
+
+  @Override
+  public String getStats() {
+    return """
+        Name: %s
+        HP: %d
+        Defense: %d""".formatted(this.getName(), this.getCurrentHp(), this.getDefense());
+  }
 }

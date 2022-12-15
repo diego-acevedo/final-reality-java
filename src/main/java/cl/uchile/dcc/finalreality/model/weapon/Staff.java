@@ -98,4 +98,14 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
       InvalidTargetCharacterException, InvalidManaValueException {
     mage.conjureSpell(spell, character, this);
   }
+
+  @Override
+  public String getStats() {
+    return """
+        Type: %s
+        Damage: %d
+        Magic Damage: %d
+        Weight: %d""".formatted(this.getClass().getSimpleName(),
+        this.getDamage(), this.getMagicDamage(), this.getWeight());
+  }
 }

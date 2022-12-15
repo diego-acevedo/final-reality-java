@@ -82,9 +82,31 @@ public class BlackMage extends AbstractMage implements Mage {
   }
 
   @Override
+  public int getSpriteRow() {
+    return 5;
+  }
+
+  @Override
   public void conjureSpell(Spell spell, GameCharacter character, MagicWeapon weapon)
       throws InvalidMageException, InvalidStatValueException,
       InvalidTargetCharacterException, InvalidManaValueException {
     spell.conjureByBlackMage(this, character, weapon);
   }
+
+  @Override
+  public String getInfo() {
+    return "HP: " + getCurrentHp() + "/" + getMaxHp() + "\nMP: " + getCurrentMp() + "/" + getMaxMp();
+  }
+
+  @Override
+  public String getStats() {
+    return """
+        Name: %s
+        HP: %d
+        MP: %d
+        Defense: %d""".formatted(this.getName(), this.getCurrentHp(),
+        this.getCurrentMp(), this.getDefense());
+  }
+
+
 }

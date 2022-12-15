@@ -135,6 +135,23 @@ public class Enemy extends AbstractCharacter {
     this.setCurrentHp(newHp);
   }
 
+  @Override
+  public String getInfo() {
+    return "HP: " + getCurrentHp() + "/" + getMaxHp();
+  }
+
+  @Override
+  public String getStats() {
+    return """
+        Name: %s
+        HP: %d
+        Weight : %d
+        Attack: %d
+        Defense: %d""".formatted(this.getName(), this.getCurrentHp(),
+        this.getWeight(), this.getAttack(),
+        this.getDefense());
+  }
+
   /**
    * Changes the paralysis status of this enemy.
    *

@@ -56,4 +56,6 @@ public interface GameState {
   boolean executeAutomatically();
 
   String stateInstruction();
+
+  String getStats();
 }

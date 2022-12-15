@@ -86,4 +86,6 @@ public interface Spell {
    * @throws InvalidManaValueException The {@link Mage mage} does not have enough Mp.
    */
   void checkMana(int mageMana) throws InvalidManaValueException;
+
+  String description();
 }

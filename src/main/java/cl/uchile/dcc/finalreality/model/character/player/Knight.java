@@ -72,4 +72,22 @@ public class Knight extends AbstractPlayerCharacter {
   public void equip(Weapon weapon) throws InvalidEquipableWeaponException {
     this.setEquippedWeapon(weapon.equipToKnight(this));
   }
+
+  @Override
+  public int getSpriteRow() {
+    return 0;
+  }
+
+  @Override
+  public String getInfo() {
+    return "HP: " + getCurrentHp() + "/" + getMaxHp();
+  }
+
+  @Override
+  public String getStats() {
+    return """
+        Name: %s
+        HP: %d
+        Defense: %d""".formatted(this.getName(), this.getCurrentHp(), this.getDefense());
+  }
 }

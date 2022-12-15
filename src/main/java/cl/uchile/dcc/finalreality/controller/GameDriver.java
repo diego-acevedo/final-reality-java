@@ -46,6 +46,7 @@ public class GameDriver {
   private GameCharacter currentCharacter;
   private int cursor;
   private boolean gameOver;
+  private String actionOutput = "";
   public static final int MAX_CHARACTERS = 5;
   public static final int MAX_ENEMIES = 6;
   public static Random RANDOM_GENERATOR = new Random();
@@ -137,11 +138,11 @@ public class GameDriver {
         this.player.getInventory().addItem(oldWeapon);
       }
       return "%s succesfully equipped to %s."
-          .formatted(weapon.getClass().getSimpleName(), character.getClass().getSimpleName());
+          .formatted(weapon.getName(), character.getName());
     } catch (InvalidEquipableWeaponException e) {
       this.player.getInventory().addItem(weapon);
       return "You cannot equip this %s to this %s."
-          .formatted(weapon.getClass().getSimpleName(), character.getClass().getSimpleName());
+          .formatted(weapon.getName(), character.getName());
     }
   }
 
@@ -158,15 +159,15 @@ public class GameDriver {
       attacker.waitTurn();
       setTransitionSucceeded(true);
       return "%s has attacked %s"
-          .formatted(attacker.getClass().getSimpleName(), target.getClass().getSimpleName());
+          .formatted(attacker.getName(), target.getName());
     } catch (InvalidTargetCharacterException e1) {
       return "%s cannot attack this %s."
-          .formatted(attacker.getClass().getSimpleName(), target.getClass().getSimpleName());
+          .formatted(attacker.getName(), target.getName());
     } catch (InvalidStatValueException e2) {
       return "There's been a problem setting new Hp value.";
     } catch (NullWeaponException e3) {
       return "%s has no weapon equipped."
-          .formatted(attacker.getClass().getSimpleName());
+          .formatted(attacker.getName());
     }
   }
 
@@ -184,19 +185,19 @@ public class GameDriver {
       attacker.waitTurn();
       setTransitionSucceeded(true);
       return "%s has used %s on %s"
-          .formatted(attacker.getClass().getSimpleName(),
+          .formatted(attacker.getName(),
               spell.getClass().getSimpleName(),
-              target.getClass().getSimpleName());
+              target.getName());
     } catch (InvalidTargetCharacterException invalidTarget) {
       return "%s cannot use %s on %s."
-          .formatted(attacker.getClass().getSimpleName(),
+          .formatted(attacker.getName(),
               spell.getClass().getSimpleName(),
-              target.getClass().getSimpleName());
+              target.getName());
     } catch (InvalidMagicWeaponException invalidWeapon) {
       return "You have to have equipped a magic weapon to cast spells.";
     } catch (NonMagicalCharacterException nonMagical) {
       return "This is a non-magical character. %s can't cast spells."
-          .formatted(attacker.getClass().getSimpleName());
+          .formatted(attacker.getName());
     } catch (InvalidMageException invalidMage) {
       return "%s doesn't know how to cast %s."
           .formatted(attacker.getClass().getSimpleName(),
@@ -422,5 +423,17 @@ public class GameDriver {
 
   public String getInstructions() {
     return gameState.stateInstruction();
+  }
+
+  public void setActionOutput(String s) {
+    this.actionOutput = s;
+  }
+
+  public String getActionOutput() {
+    return actionOutput;
+  }
+
+  public String getStats() {
+    return gameState.getStats();
   }
 }
