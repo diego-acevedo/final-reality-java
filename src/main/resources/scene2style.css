@@ -9,34 +9,15 @@
     -fx-text-fill: white;
 }
 
-.instruction {
+.instruction, .current-char, .action-output {
     -fx-font-family: "Pixeloid Sans";
     -fx-font-size: 15;
     -fx-fill: white;
-}
-
-.current-char {
-    -fx-font-family: "Pixeloid Sans";
-    -fx-font-size: 15;
-    -fx-fill: white;
-}
-
-.center-border {
-    -fx-background-image: url("background.png");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 800 600;
-    -fx-background-position: center center;
 }
 
 .healthbar {
     -fx-font-family: "Pixeloid Sans";
     -fx-font-size: 14;
-    -fx-fill: white;
-}
-
-.action-output {
-    -fx-font-family: "Pixeloid Sans";
-    -fx-font-size: 15;
     -fx-fill: white;
 }
 
