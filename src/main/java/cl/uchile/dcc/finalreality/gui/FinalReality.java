@@ -15,10 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -26,7 +23,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.File;
 import java.util.Random;
 
@@ -38,11 +34,11 @@ public class FinalReality extends Application {
   private Stage window;
   private Scene scene1, scene2;
   private AnimationTimer timer1, timer2;
-  private final int height = 600;
-  private final int width = 1200;
+  private final int height = 700;
+  private final int width = 1000;
   private final String resource_path = "src/main/resources/";
   private GameDriver driver;
-  private final Label[] optionsLabels = new Label[20];
+  private final Label[] optionsLabels = new Label[3];
   private Text instructions;
   private Text currentCharacter;
   private final Image spritesCharacters = new Image("file:" + resource_path + "sprites/sprites.png");
@@ -64,7 +60,7 @@ public class FinalReality extends Application {
                                         {255, 129, 129},
                                         {255, 236, 129},
                                         {129, 255, 131} };
-  private Text title = new Text("FINAL REALITY");
+  private final Text title = new Text("FINAL REALITY");
 
   public static void main(String[] args) {
     launch(args);
@@ -74,7 +70,7 @@ public class FinalReality extends Application {
   public void start(Stage primaryStage) {
     window = primaryStage;
     window.setTitle("Final Reality");
-    window.setResizable(false);
+    window.setResizable(true);
 
     try {
       driver = GameDriver.getGameDriver((new Random()).nextLong());
@@ -135,46 +131,92 @@ public class FinalReality extends Application {
 
   private void setUpScene2() {
 
-    BorderPane layout2 = new BorderPane();
-    layout2.setRight(setUpRightBorder());
-    layout2.setLeft(setUpLeftBorder());
-    layout2.setCenter(setUpCenter());
+    AnchorPane background = setBackground();
+    HBox menu = setUpMenu();
+    HBox output = setUpOutput();
+    HBox playerCharacters = setUpPlayerCharacter();
+    VBox enemies = setUpEnemies();
+    background.getChildren().addAll(menu, output, playerCharacters, enemies);
+    AnchorPane.setBottomAnchor(menu, 0.0);
+    AnchorPane.setBottomAnchor(output, 170.0);
+    AnchorPane.setLeftAnchor(output, 15.0);
+    AnchorPane.setRightAnchor(playerCharacters, 100.0);
+    AnchorPane.setTopAnchor(playerCharacters, 110.0);
+    AnchorPane.setLeftAnchor(enemies, 100.0);
+    AnchorPane.setTopAnchor(enemies, 100.0);
 
-    scene2 = new Scene(layout2, width, height);
+    scene2 = new Scene(background, width, height);
     scene2.getStylesheets().add("file:" + resource_path + "scene2style.css");
 
     setKeysToScene2();
   }
 
-  private VBox setUpRightBorder() {
-    for (int i = 0; i < 20; i++) {
+  private AnchorPane setBackground() {
+    AnchorPane background = new AnchorPane();
+    background.getStyleClass().add("background");
+    return background;
+  }
+
+  private HBox setUpOutput() {
+
+    HBox outputBox = new HBox();
+    outputBox.getStyleClass().add("output");
+    outputBox.setPrefWidth(685);
+    outputBox.setPrefHeight(50);
+
+    actionOutput.setText(driver.getActionOutput());
+    actionOutput.getStyleClass().add("action-output");
+    actionOutput.setWrappingWidth(585);
+
+    outputBox.getChildren().add(actionOutput);
+    outputBox.setAlignment(Pos.CENTER_LEFT);
+    HBox.setMargin(actionOutput, new Insets(0, 0, 0, 20));
+
+    return outputBox;
+  }
+
+  private HBox setUpMenu() {
+
+    for (int i = 0; i < optionsLabels.length; i++) {
       optionsLabels[i] = new Label();
     }
 
+    VBox options = new VBox(5);
+    options.getStyleClass().add("menu");
+    options.setPrefHeight(150);
+    options.setPrefWidth(400);
+
     instructions = new Text();
     instructions.getStyleClass().add("instruction");
-    instructions.setWrappingWidth(170);
+    instructions.setWrappingWidth(370);
 
-    VBox optionsLayout = new VBox();
-    optionsLayout.getChildren().addAll(optionsLabels);
+    VBox optionsLayout = new VBox(optionsLabels);
 
+    options.getChildren().add(instructions);
+    options.getChildren().addAll(optionsLayout);
+
+    VBox.setMargin(instructions, new Insets(15, 15, 15, 15));
+    VBox.setMargin(optionsLayout, new Insets(0, 15, 15, 15));
+
+    options.setPrefWidth(400);
+    options.setPrefHeight(150);
+
+    VBox statsLayout = new VBox();
+    statsLayout.setPrefWidth(250);
+    statsLayout.setPrefHeight(150);
+    statsLayout.getStyleClass().add("stats");
     stats.setText(driver.getStats());
     stats.getStyleClass().add("instruction");
-    stats.setWrappingWidth(170);
+    statsLayout.getChildren().add(stats);
+    VBox.setMargin(stats, new Insets(15, 15, 15, 25));
+    stats.setWrappingWidth(210);
 
-    VBox rightBorderLayout = new VBox(20);
-    rightBorderLayout.getChildren().addAll(instructions, optionsLayout, stats);
-    VBox.setMargin(instructions, new Insets(15, 15, 0, 15));
-    VBox.setMargin(optionsLayout, new Insets(0, 15, 0, 15));
-    VBox.setMargin(stats, new Insets(0, 15, 15, 15));
-    rightBorderLayout.getStyleClass().add("right-border");
-    rightBorderLayout.setAlignment(Pos.TOP_LEFT);
-    rightBorderLayout.setPrefWidth(200);
+    HBox currentCharacterLayout = new HBox();
+    currentCharacterLayout.setPrefWidth(250);
+    currentCharacterLayout.setPrefHeight(150);
+    currentCharacterLayout.getStyleClass().add("cur-char-layout");
+    currentCharacterLayout.setAlignment(Pos.CENTER);
 
-    return rightBorderLayout;
-  }
-
-  private VBox setUpLeftBorder() {
     currentCharacter = new Text();
     currentCharacter.getStyleClass().add("current-char");
     GameCharacter currentChar = driver.getCurrentCharacter();
@@ -187,85 +229,43 @@ public class FinalReality extends Application {
     }
     currentCharacter.setTextAlignment(TextAlignment.CENTER);
 
-    int row = 0;
-    int column = 0;
-    if (currentChar != null) {
-      if (currentChar.isPlayable()) {
-        row = ((PlayerCharacter) currentChar).getSpriteRow();
-      } else {
-        row = 9;
-      }
-      column = 1;
-    }
-
-    Rectangle2D cropped = new Rectangle2D(column * 120, row * 120, 120, 120);
+    Rectangle2D cropped = new Rectangle2D(0, 0, 120, 120);
     currentCharacterSprite.setImage(spritesCharacters);
     currentCharacterSprite.setViewport(cropped);
-    currentCharacterSprite.setFitWidth(150);
-    currentCharacterSprite.setFitHeight(150);
+    currentCharacterSprite.setFitWidth(50);
+    currentCharacterSprite.setFitHeight(50);
     currentCharacterSprite.setSmooth(true);
 
-    actionOutput.setText("Result:\n" + driver.getActionOutput() + "\n----------");
-    actionOutput.getStyleClass().add("action-output");
-    actionOutput.setWrappingWidth(170);
-    actionOutput.setFill(Color.DARKSLATEBLUE);
+    currentCharacterLayout.getChildren().addAll(currentCharacter, currentCharacterSprite);
 
-    VBox leftBorderLayout = new VBox();
-    leftBorderLayout.getChildren().addAll(actionOutput, currentCharacter, currentCharacterSprite);
-    VBox.setMargin(actionOutput, new Insets(15, 15, 0, 15));
-    VBox.setMargin(currentCharacter, new Insets(15, 15, 15, 15));
-    VBox.setMargin(currentCharacterSprite, new Insets(15, 15, 15, 15));
-    leftBorderLayout.getStyleClass().add("left-border");
-    leftBorderLayout.setAlignment(Pos.BOTTOM_CENTER);
-    leftBorderLayout.setPrefWidth(200);
+    HBox menu = new HBox();
+    menu.getChildren().addAll(options, statsLayout, currentCharacterLayout);
+    HBox.setMargin(options, new Insets(15, 15, 15, 15));
+    HBox.setMargin(statsLayout, new Insets(15, 15, 15, 0));
+    HBox.setMargin(currentCharacterLayout, new Insets(15, 15, 15, 0));
 
-    return leftBorderLayout;
+    return menu;
   }
 
-  private Pane setUpCenter() {
-
-    Pane centerBorderLayout = new StackPane();
-    centerBorderLayout.getStyleClass().add("center-border");
-    centerBorderLayout.setPrefWidth(800);
-    centerBorderLayout.setPrefHeight(600);
-
-    VBox characters = new VBox(10);
-    VBox enemiesLeft = new VBox(10);
-    VBox enemiesRight = new VBox((10));
+  private HBox setUpPlayerCharacter() {
+    VBox leftCharacters = new VBox(20);
+    leftCharacters.setAlignment(Pos.CENTER);
+    VBox rightCharacters = new VBox(20);
+    rightCharacters.setAlignment(Pos.CENTER);
     for (int i = 0; i < MAX_CHARACTERS; i++) {
       PlayerCharacter character = driver.getPlayerCharacters().get(i);
-      int column = (int) (5 + (((double) (System.currentTimeMillis()/1000))/0.2) % 2);
+      double time = System.currentTimeMillis() * 0.001;
+      int column = 5 + (int) ((time * 3) % 2);
       int row = character.getSpriteRow();
 
-      charactersHealth[i] = new Text(character.getCurrentHp() + "/" + character.getMaxHp());
+      charactersHealth[i] = new Text(character.getName() + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
+      charactersHealth[i].setTextAlignment(TextAlignment.CENTER);
       charactersHealth[i].getStyleClass().add("healthbar");
-      charactersHealth[i].setFill(Color.WHITE);
 
       Rectangle2D cropped = new Rectangle2D(column * 120, row * 120 + 1, 120, 120);
 
       charactersSprites[i] = new ImageView(spritesCharacters);
       charactersSprites[i].setViewport(cropped);
-      charactersSprites[i].setFitHeight(60);
-      charactersSprites[i].setFitWidth(60);
-      charactersSprites[i].setSmooth(true);
-
-      VBox characterBox = new VBox(2);
-      characterBox.getChildren().addAll(charactersHealth[i], charactersSprites[i]);
-      characterBox.setTranslateX(550);
-      characterBox.setTranslateY(100);
-
-      characters.getChildren().add(characterBox);
-    }
-
-    for (int i = MAX_CHARACTERS; i < MAX_CHARACTERS + MAX_ENEMIES; i++) {
-      Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
-      int index = enemy.getWeight() % 3;
-
-      charactersHealth[i] = new Text(enemy.getCurrentHp() + "/" + enemy.getMaxHp());
-      charactersHealth[i].getStyleClass().add("healthbar");
-      charactersHealth[i].setFill(Color.WHITE);
-
-      charactersSprites[i] = new ImageView(enemySprites[index]);
       charactersSprites[i].setFitHeight(80);
       charactersSprites[i].setFitWidth(80);
       charactersSprites[i].setSmooth(true);
@@ -273,20 +273,49 @@ public class FinalReality extends Application {
       VBox characterBox = new VBox(2);
       characterBox.getChildren().addAll(charactersHealth[i], charactersSprites[i]);
 
-      if (i < MAX_CHARACTERS + 3) {
-        characterBox.setTranslateX(120);
-        characterBox.setTranslateY(160);
-        enemiesLeft.getChildren().add(characterBox);
+      if (i < MAX_CHARACTERS / 2) {
+        leftCharacters.getChildren().add(characterBox);
       } else {
-        characterBox.setTranslateX(230);
-        characterBox.setTranslateY(200);
-        enemiesRight.getChildren().add(characterBox);
+        rightCharacters.getChildren().add(characterBox);
       }
     }
 
-    centerBorderLayout.getChildren().addAll(characters, enemiesLeft, enemiesRight);
+    HBox characters = new HBox(40);
+    characters.getChildren().addAll(leftCharacters, rightCharacters);
 
-    return centerBorderLayout;
+    return characters;
+  }
+
+  private VBox setUpEnemies() {
+    HBox enemiesTop = new HBox(20);
+    HBox enemiesBottom = new HBox(20);
+
+    for (int i = MAX_CHARACTERS; i < MAX_CHARACTERS + MAX_ENEMIES; i++) {
+      Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
+      int index = enemy.getWeight() % 3;
+
+      charactersHealth[i] = new Text(enemy.getName() + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
+      charactersHealth[i].setTextAlignment(TextAlignment.CENTER);
+      charactersHealth[i].getStyleClass().add("healthbar");
+
+      charactersSprites[i] = new ImageView(enemySprites[index]);
+      charactersSprites[i].setFitHeight(140);
+      charactersSprites[i].setFitWidth(140);
+
+      VBox characterBox = new VBox(2);
+      characterBox.getChildren().addAll(charactersHealth[i], charactersSprites[i]);
+
+      if (i < MAX_CHARACTERS + 3) {
+        enemiesTop.getChildren().add(characterBox);
+      } else {
+        enemiesBottom.getChildren().add(characterBox);
+      }
+    }
+
+    VBox enemies = new VBox(10);
+    enemies.getChildren().addAll(enemiesTop, enemiesBottom);
+
+    return enemies;
   }
 
   private void beginGame() {
@@ -317,7 +346,9 @@ public class FinalReality extends Application {
         case ENTER -> {
           MediaPlayer enter = new MediaPlayer(enterMedia);
           enter.play();
-          driver.execute();
+          if (driver.getCurrentCharacter().isPlayable()) {
+            driver.execute();
+          }
         }
         case ESCAPE -> Platform.exit();
       }
@@ -343,16 +374,40 @@ public class FinalReality extends Application {
       public void handle(long now) {
 
         String[] options = driver.getOptions().toArray(new String[0]);
-        for (int i = 0; i < optionsLabels.length; i++) {
-          if (i < options.length) {
-            optionsLabels[i].setText(options[i]);
+        if (options.length >= 3) {
+          int cursor = driver.getCursor();
+          int index;
+          if (cursor < 0) {
+            index = (cursor % options.length) + options.length;
           } else {
-            optionsLabels[i].setText("");
+            index = cursor % options.length;
+          }
+          if (index == 0) {
+            for (int i = 0; i < optionsLabels.length; i++) {
+              optionsLabels[i].setText(options[i]);
+            }
+          } else if (index == options.length - 1) {
+            for (int i = options.length - 3; i < options.length; i++) {
+              optionsLabels[i - options.length + 3].setText(options[i]);
+            }
+          } else {
+            for (int i = index - 1; i < index + 2; i++) {
+              optionsLabels[i - index + 1].setText(options[i]);
+            }
+          }
+        } else {
+          for (Label label : optionsLabels) {
+            label.setText("");
+          }
+          for (int i = 0; i < options.length; i++) {
+            optionsLabels[i].setText(options[i]);
           }
         }
 
+
         String instruction = driver.getInstructions();
         instructions.setText(instruction);
+
 
         GameCharacter currentChar = driver.getCurrentCharacter();
         if (currentChar != null) {
@@ -363,7 +418,7 @@ public class FinalReality extends Application {
           currentCharacter.setText("");
         }
 
-        int row = 0;
+        int row;
         int column = 1;
         if (currentChar != null) {
           if (currentChar.isPlayable()) {
@@ -372,13 +427,14 @@ public class FinalReality extends Application {
             currentCharacterSprite.setImage(spritesCharacters);
             currentCharacterSprite.setViewport(cropped);
           } else {
-            int index = ((Enemy) currentChar).getWeight() % 3;
-            currentCharacterSprite.setImage(enemySprites[index]);
+            int image = ((Enemy) currentChar).getWeight() % 3;
+            currentCharacterSprite.setImage(enemySprites[image]);
             currentCharacterSprite.setViewport(new Rectangle2D(0, 0, 206, 206));
           }
-          currentCharacterSprite.setFitWidth(150);
-          currentCharacterSprite.setFitHeight(150);
+          currentCharacterSprite.setFitWidth(50);
+          currentCharacterSprite.setFitHeight(50);
         }
+
 
         for (int i = 0; i < MAX_CHARACTERS; i++) {
           PlayerCharacter character = driver.getPlayerCharacters().get(i);
@@ -386,7 +442,7 @@ public class FinalReality extends Application {
           int r = character.getSpriteRow();
           int c = 5 + (int) ((time * 3) % 2);
 
-          charactersHealth[i].setText(character.getCurrentHp() + "/" + character.getMaxHp());
+          charactersHealth[i].setText(character.getName() + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
 
           Rectangle2D newAnimationFrame;
           if (character.isAlive()) {
@@ -401,14 +457,14 @@ public class FinalReality extends Application {
 
         for (int i = MAX_CHARACTERS; i < MAX_CHARACTERS + MAX_ENEMIES; i++) {
           Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
-          int index = enemy.getWeight() % 3;
 
-          charactersHealth[i].setText(enemy.getCurrentHp() + "/" + enemy.getMaxHp());
+          charactersHealth[i].setText(enemy.getName() + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
         }
 
-        actionOutput.setText("Result:\n" + driver.getActionOutput() + "\n-------------------------");
+        actionOutput.setText(driver.getActionOutput());
 
         stats.setText(driver.getStats());
+
       }
     };
   }

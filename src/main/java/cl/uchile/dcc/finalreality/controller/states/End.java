@@ -23,7 +23,15 @@ public class End extends AbstractState {
 
   @Override
   public void execute() {
-    // finish state
+    String winner;
+    if (gameDriver.enemiesAlive()) {
+      winner = "Enemies won this fight...";
+    } else if (gameDriver.playerAlive()) {
+      winner = "Player has won the fight!";
+    } else {
+      winner = "Nobody won";
+    }
+    gameDriver.setActionOutput(winner);
   }
 
   @Override
@@ -33,15 +41,7 @@ public class End extends AbstractState {
 
   @Override
   public String stateInstruction() {
-    String winner;
-    if (gameDriver.enemiesAlive()) {
-      winner = "Enemies won this fight...";
-    } else if (gameDriver.playerAlive()) {
-      winner = "Player has won the fight!";
-    } else {
-      winner = "Nobody won";
-    }
-    return winner;
+    return "";
   }
 
   @Override
