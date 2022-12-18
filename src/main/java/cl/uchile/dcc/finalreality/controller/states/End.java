@@ -40,11 +40,6 @@ public class End extends AbstractState {
   }
 
   @Override
-  public String stateInstruction() {
-    return "";
-  }
-
-  @Override
   public boolean executeAutomatically() {
     return true;
   }

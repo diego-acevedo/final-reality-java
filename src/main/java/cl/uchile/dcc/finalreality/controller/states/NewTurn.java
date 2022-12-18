@@ -32,6 +32,7 @@ public class NewTurn extends AbstractState {
   public void execute() {
     if (gameDriver.isGameOver()) {
       this.nextState = new End(gameDriver);
+      nextState();
     } else {
       while (gameDriver.getTurnsQueue().isEmpty()) {
         // wait turn

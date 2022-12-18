@@ -82,8 +82,8 @@ public class FinalReality extends Application {
     setUpScene1();
     setUpScene2();
 
-    setUpTimer1();
-    setUpTimer2();
+    setUpTimerScene2();
+    setUpTimerScene1();
 
     timer2.start();
 
@@ -368,7 +368,7 @@ public class FinalReality extends Application {
     });
   }
 
-  private void setUpTimer1() {
+  private void setUpTimerScene2() {
     timer1 = new AnimationTimer() {
       @Override
       public void handle(long now) {
@@ -438,15 +438,23 @@ public class FinalReality extends Application {
 
         for (int i = 0; i < MAX_CHARACTERS; i++) {
           PlayerCharacter character = driver.getPlayerCharacters().get(i);
-          double time = System.currentTimeMillis() * 0.001;
           int r = character.getSpriteRow();
-          int c = 5 + (int) ((time * 3) % 2);
 
           charactersHealth[i].setText(character.getName() + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
 
           Rectangle2D newAnimationFrame;
           if (character.isAlive()) {
-            newAnimationFrame = new Rectangle2D(c * 120, r * 120 + 1, 120, 120);
+            if (driver.isGameOver()) {
+              if (driver.playerAlive()) {
+                newAnimationFrame = new Rectangle2D(7 * 120, r * 120 + 1, 120, 120);
+              } else {
+                newAnimationFrame = new Rectangle2D(8 * 120, r * 120 + 1, 120, 120);
+              }
+            } else {
+              double time = System.currentTimeMillis() * 0.001;
+              int c = 5 + (int) ((time * 3) % 2);
+              newAnimationFrame = new Rectangle2D(c * 120, r * 120 + 1, 120, 120);
+            }
           } else {
             newAnimationFrame = new Rectangle2D(10 * 120, r * 120 + 1, 120, 120);
           }
@@ -469,7 +477,7 @@ public class FinalReality extends Application {
     };
   }
 
-  void setUpTimer2() {
+  void setUpTimerScene1() {
     timer2 = new AnimationTimer() {
       @Override
       public void handle(long now) {
