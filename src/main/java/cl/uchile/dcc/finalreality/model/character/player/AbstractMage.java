@@ -57,7 +57,7 @@ public abstract class AbstractMage extends AbstractPlayerCharacter implements Ma
   /**
    * Sets the character's current MP.
    */
-  public void setCurrentMp(final int currentMp) throws InvalidStatValueException {
+  public void setCurrentMp(int currentMp) throws InvalidStatValueException {
     Require.statValueAtLeast(0, currentMp, "Current MP");
     Require.statValueAtMost(maxMp, currentMp, "Current MP");
     this.currentMp = currentMp;

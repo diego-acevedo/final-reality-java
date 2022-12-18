@@ -36,6 +36,11 @@ public class PoisonEffect implements PoisonousEffect {
   }
 
   @Override
+  public int spriteColumn() {
+    return 1;
+  }
+
+  @Override
   public boolean isPoisoned() {
     return true;
   }

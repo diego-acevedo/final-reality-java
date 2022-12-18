@@ -16,11 +16,12 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public class Cure extends AbstractSpell {
 
   @Override
-  public void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon)
+  public void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException {
     int newHp = (int) Math.min(character.getMaxHp(),
         character.getCurrentHp() + (character.getMaxHp() * 0.3));
     character.setCurrentHp(newHp);
+    mage.setCurrentMp(mage.getCurrentMp() - 15);
   }
 
   @Override

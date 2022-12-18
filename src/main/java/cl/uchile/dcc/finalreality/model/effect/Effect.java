@@ -23,4 +23,6 @@ public interface Effect {
    * @param enemy The {@link Enemy enemy} this {@link Effect effect} belongs to.
    */
   void setEnemy(Enemy enemy);
+
+  int spriteColumn();
 }

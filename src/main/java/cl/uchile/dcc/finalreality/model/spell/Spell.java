@@ -26,7 +26,7 @@ public interface Spell {
    * @throws InvalidTargetCharacterException The {@link Spell spell} needs to work on an
    *                                         {@link Enemy enemy}.
    */
-  void induceEffectOnEnemy(Enemy character, MagicWeapon weapon)
+  void induceEffectOnEnemy(Enemy character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException, InvalidTargetCharacterException;
 
   /**
@@ -38,7 +38,7 @@ public interface Spell {
    * @throws InvalidTargetCharacterException The {@link Spell spell} needs to work on an
    *                                         {@link PlayerCharacter character}.
    */
-  void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon)
+  void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException, InvalidTargetCharacterException;
 
   /**

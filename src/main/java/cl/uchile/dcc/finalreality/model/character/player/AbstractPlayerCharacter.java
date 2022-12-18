@@ -114,7 +114,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
   @Override
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
-    spell.induceEffectOnPlayerCharacter(this, weapon);
+    spell.induceEffectOnPlayerCharacter(this, weapon, mage);
   }
 
   @Override

@@ -36,6 +36,11 @@ public class BurntEffect implements FireEffect {
   }
 
   @Override
+  public int spriteColumn() {
+    return 0;
+  }
+
+  @Override
   public boolean isBurnt() {
     return true;
   }

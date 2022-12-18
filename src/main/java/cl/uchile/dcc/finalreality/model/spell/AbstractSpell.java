@@ -18,13 +18,13 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public abstract class AbstractSpell implements Spell {
 
   @Override
-  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon)
+  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     throw new InvalidTargetCharacterException(this + " cannot be used on " + character);
   }
 
   @Override
-  public void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon)
+  public void induceEffectOnPlayerCharacter(PlayerCharacter character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException, InvalidTargetCharacterException {
     throw new InvalidTargetCharacterException(this + " cannot be used on " + character);
   }

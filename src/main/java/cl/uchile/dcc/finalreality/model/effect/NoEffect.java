@@ -22,6 +22,11 @@ public class NoEffect implements ParalyzableEffect, FireEffect, PoisonousEffect 
   }
 
   @Override
+  public int spriteColumn() {
+    return 3;
+  }
+
+  @Override
   public boolean isBurnt() {
     return false;
   }

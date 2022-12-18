@@ -119,7 +119,7 @@ public class Enemy extends AbstractCharacter {
   @Override
   public void receiveSpell(Spell spell, Mage mage, MagicWeapon weapon)
       throws InvalidStatValueException, InvalidTargetCharacterException {
-    spell.induceEffectOnEnemy(this, weapon);
+    spell.induceEffectOnEnemy(this, weapon, mage);
   }
 
   @Override

@@ -17,8 +17,10 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public class Poison extends AbstractSpell {
 
   @Override
-  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon) {
+  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon, Mage mage)
+      throws InvalidStatValueException {
     character.changePoisonousStatus(new PoisonEffect(weapon.getMagicDamage()));
+    mage.setCurrentMp(mage.getCurrentMp() - 40);
   }
 
   @Override

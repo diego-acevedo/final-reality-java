@@ -17,8 +17,10 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public class Paralysis extends AbstractSpell {
 
   @Override
-  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon) {
+  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon, Mage mage)
+      throws InvalidStatValueException {
     character.changeParalysisStatus(new ParalysisEffect());
+    mage.setCurrentMp(mage.getCurrentMp() - 25);
   }
 
   @Override

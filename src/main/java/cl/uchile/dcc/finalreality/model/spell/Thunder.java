@@ -19,13 +19,14 @@ import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
 public class Thunder extends AbstractSpell {
 
   @Override
-  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon)
+  public void induceEffectOnEnemy(Enemy character, MagicWeapon weapon, Mage mage)
       throws InvalidStatValueException {
     int newHp = Math.max(0, character.getCurrentHp() - weapon.getMagicDamage());
     character.setCurrentHp(newHp);
     if (RANDOM_GENERATOR.nextFloat() <= 0.3) {
       character.changeParalysisStatus(new ParalysisEffect());
     }
+    mage.setCurrentMp(mage.getCurrentMp() - 15);
   }
 
   @Override

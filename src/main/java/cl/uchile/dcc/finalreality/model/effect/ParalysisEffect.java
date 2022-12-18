@@ -29,6 +29,11 @@ public class ParalysisEffect implements ParalyzableEffect {
   }
 
   @Override
+  public int spriteColumn() {
+    return 2;
+  }
+
+  @Override
   public boolean isParalyzed() {
     return true;
   }

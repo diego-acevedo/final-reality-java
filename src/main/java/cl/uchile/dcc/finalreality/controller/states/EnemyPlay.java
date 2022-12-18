@@ -46,6 +46,9 @@ public class EnemyPlay extends AbstractState {
       } else {
         this.execute();
       }
+    } else if (enemy.isParalysed()) {
+      enemy.waitTurn();
+      nextState();
     } else {
       nextState();
     }

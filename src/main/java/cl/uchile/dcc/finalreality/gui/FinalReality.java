@@ -47,6 +47,7 @@ public class FinalReality extends Application {
                                   new Image("file:" + resource_path + "sprites/sprites-enemy3.png")};
   private final ImageView currentCharacterSprite = new ImageView();
   private final ImageView[] charactersSprites = new ImageView[MAX_CHARACTERS + MAX_ENEMIES];
+  private final ImageView[][] effectSprites = new ImageView[MAX_ENEMIES][3];
   private MediaPlayer mediaPlayer;
   private final Media enterMedia =
       new Media(new File(resource_path + "sounds/ENTER.mp3").toURI().toString());
@@ -302,8 +303,30 @@ public class FinalReality extends Application {
       charactersSprites[i].setFitHeight(140);
       charactersSprites[i].setFitWidth(140);
 
+      int column;
+      effectSprites[i - MAX_CHARACTERS][0] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      column = enemy.getBurntStatus().spriteColumn();
+      effectSprites[i - MAX_CHARACTERS][0].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][0].setFitWidth(40);
+      effectSprites[i - MAX_CHARACTERS][0].setFitHeight(40);
+      effectSprites[i - MAX_CHARACTERS][1] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      column = enemy.getPoisonStatus().spriteColumn();
+      effectSprites[i - MAX_CHARACTERS][1].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][1].setFitWidth(40);
+      effectSprites[i - MAX_CHARACTERS][1].setFitHeight(40);
+      effectSprites[i - MAX_CHARACTERS][2] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      column = enemy.getParalysisStatus().spriteColumn();
+      effectSprites[i - MAX_CHARACTERS][2].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][2].setFitWidth(40);
+      effectSprites[i - MAX_CHARACTERS][2].setFitHeight(40);
+
+      HBox effects = new HBox(effectSprites[i - MAX_CHARACTERS]);
+      effects.setAlignment(Pos.BOTTOM_CENTER);
+
+      StackPane enemySprite = new StackPane(charactersSprites[i], effects);
+
       VBox characterBox = new VBox(2);
-      characterBox.getChildren().addAll(charactersHealth[i], charactersSprites[i]);
+      characterBox.getChildren().addAll(charactersHealth[i], enemySprite);
 
       if (i < MAX_CHARACTERS + 3) {
         enemiesTop.getChildren().add(characterBox);
@@ -467,6 +490,13 @@ public class FinalReality extends Application {
           Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
 
           charactersHealth[i].setText(enemy.getName() + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
+
+          column = enemy.getBurntStatus().spriteColumn();
+          effectSprites[i - MAX_CHARACTERS][0].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+          column = enemy.getPoisonStatus().spriteColumn();
+          effectSprites[i - MAX_CHARACTERS][1].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+          column = enemy.getParalysisStatus().spriteColumn();
+          effectSprites[i - MAX_CHARACTERS][2].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
         }
 
         actionOutput.setText(driver.getActionOutput());

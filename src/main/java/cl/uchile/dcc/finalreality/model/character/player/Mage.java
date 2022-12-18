@@ -18,4 +18,6 @@ public interface Mage extends PlayerCharacter {
       InvalidTargetCharacterException, InvalidManaValueException;
 
   int getCurrentMp();
+
+  void setCurrentMp(int currentMp) throws InvalidStatValueException;
 }
