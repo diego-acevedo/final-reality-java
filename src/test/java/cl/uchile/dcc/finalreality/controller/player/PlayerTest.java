@@ -1,12 +1,12 @@
 package cl.uchile.dcc.finalreality.controller.player;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.*;
-import cl.uchile.dcc.finalreality.model_controller.controller.player.Player;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.*;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.Weapon;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.weapon.*;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.player.Player;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.*;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static cl.uchile.dcc.finalreality.model_controller.controller.GameDriver.getGameDriver;
+import static cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver.getGameDriver;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {

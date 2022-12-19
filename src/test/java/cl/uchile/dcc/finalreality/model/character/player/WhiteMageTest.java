@@ -1,10 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidEquipableWeaponException;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.WhiteMage;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.*;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

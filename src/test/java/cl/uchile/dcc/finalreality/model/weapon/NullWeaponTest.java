@@ -1,7 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.NullWeapon;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.NullWeapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

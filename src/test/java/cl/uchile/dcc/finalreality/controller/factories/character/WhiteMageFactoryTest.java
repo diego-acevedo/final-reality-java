@@ -1,12 +1,12 @@
 package cl.uchile.dcc.finalreality.controller.factories.character;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.character.AbstractCharacterFactory;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.character.WhiteMageFactory;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.character.AbstractCharacterFactory;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.character.WhiteMageFactory;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.WhiteMage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

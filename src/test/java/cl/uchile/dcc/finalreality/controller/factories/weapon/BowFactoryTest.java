@@ -1,11 +1,11 @@
 package cl.uchile.dcc.finalreality.controller.factories.weapon;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.AbstractWeaponFactory;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.BowFactory;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.Bow;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.Weapon;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.weapon.AbstractWeaponFactory;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.weapon.BowFactory;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.Bow;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

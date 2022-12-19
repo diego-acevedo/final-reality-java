@@ -1,11 +1,11 @@
 package cl.uchile.dcc.finalreality.model.effect;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.effect.PoisonEffect;
-import cl.uchile.dcc.finalreality.model_controller.model.effect.PoisonousEffect;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.effect.PoisonEffect;
+import cl.uchile.dcc.finalreality.modelcontroller.model.effect.PoisonousEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

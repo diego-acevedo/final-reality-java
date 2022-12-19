@@ -1,10 +1,15 @@
 package cl.uchile.dcc.finalreality.gui;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
+import static cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver.MAX_CHARACTERS;
+import static cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver.MAX_ENEMIES;
+
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.PlayerCharacter;
+import java.io.File;
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -15,7 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -23,36 +31,40 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.io.File;
-import java.util.Random;
 
-import static cl.uchile.dcc.finalreality.model_controller.controller.GameDriver.MAX_CHARACTERS;
-import static cl.uchile.dcc.finalreality.model_controller.controller.GameDriver.MAX_ENEMIES;
-
+/**
+ * Application that simulates the combat dynamics of a Final Fantasy's game.
+ *
+ * @author <a href="https://github.com/diego-acevedo">Diego Acevedo</a>
+ */
 public class FinalReality extends Application {
 
   private Stage window;
-  private Scene scene1, scene2;
-  private AnimationTimer timer1, timer2;
+  private Scene scene1;
+  private Scene scene2;
+  private AnimationTimer timer1;
+  private AnimationTimer timer2;
   private final int height = 700;
   private final int width = 1000;
-  private final String resource_path = "src/main/resources/";
+  private final String resourcPath = "src/main/resources/";
   private GameDriver driver;
   private final Label[] optionsLabels = new Label[3];
   private Text instructions;
   private Text currentCharacter;
-  private final Image spritesCharacters = new Image("file:" + resource_path + "sprites/sprites.png");
-  private final Image[] enemySprites = {new Image("file:" + resource_path + "sprites/sprites-enemy1.png"),
-                                  new Image("file:" + resource_path + "sprites/sprites-enemy2.png"),
-                                  new Image("file:" + resource_path + "sprites/sprites-enemy3.png")};
+  private final Image spritesCharacters =
+      new Image("file:" + resourcPath + "sprites/sprites.png");
+  private final Image[] enemySprites =
+    {new Image("file:" + resourcPath + "sprites/sprites-enemy1.png"),
+     new Image("file:" + resourcPath + "sprites/sprites-enemy2.png"),
+     new Image("file:" + resourcPath + "sprites/sprites-enemy3.png")};
   private final ImageView currentCharacterSprite = new ImageView();
   private final ImageView[] charactersSprites = new ImageView[MAX_CHARACTERS + MAX_ENEMIES];
   private final ImageView[][] effectSprites = new ImageView[MAX_ENEMIES][3];
   private MediaPlayer mediaPlayer;
   private final Media enterMedia =
-      new Media(new File(resource_path + "sounds/ENTER.mp3").toURI().toString());
+      new Media(new File(resourcPath + "sounds/ENTER.mp3").toURI().toString());
   private final Media cursorMedia =
-      new Media(new File(resource_path + "sounds/CURSOR.mp3").toURI().toString());
+      new Media(new File(resourcPath + "sounds/CURSOR.mp3").toURI().toString());
   private final Text[] charactersHealth = new Text[MAX_CHARACTERS + MAX_ENEMIES];
   private final Text actionOutput = new Text("");
   private final Text stats = new Text("");
@@ -88,7 +100,7 @@ public class FinalReality extends Application {
 
     timer2.start();
 
-    Media menuMusic = new Media(new File(resource_path + "sounds/menu.wav").toURI().toString());
+    Media menuMusic = new Media(new File(resourcPath + "sounds/menu.wav").toURI().toString());
     mediaPlayer = new MediaPlayer(menuMusic);
     mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     mediaPlayer.play();
@@ -97,6 +109,11 @@ public class FinalReality extends Application {
     window.show();
   }
 
+  /**
+   * Sets up the first scene.
+   * <p> The first scene is a start screen. Contains the game title
+   * and instructions to start the game.</p>
+   */
   private void setUpScene1() {
     title.getStyleClass().add("gametitle");
     title.setFill(getNewColor());
@@ -109,11 +126,19 @@ public class FinalReality extends Application {
     layout1.setAlignment(Pos.CENTER);
 
     scene1 = new Scene(layout1, width, height);
-    scene1.getStylesheets().add("file:" + resource_path + "scene1style.css");
+    scene1.getStylesheets().add("file:" + resourcPath + "scene1style.css");
 
     setKeysToScene1();
   }
 
+  /**
+   * Calculates a new color for the tile.
+   * <p>There are 5 main colors, and the generated color is the result of
+   * a linear variation between two of these. The color will transition
+   * between all of them in a cycle.</p>
+   *
+   * @return A new color for the game title.
+   */
   private Color getNewColor() {
     long newTime = System.currentTimeMillis();
     double timeSeconds = ((int) newTime) * 0.001;
@@ -130,6 +155,12 @@ public class FinalReality extends Application {
     return Color.rgb(newR, newG, newB);
   }
 
+  /**
+   * Sets up the second scene.
+   * <p>This scene is the battle screen. It contains the character's
+   * sprites, the menu with the player's actions, the stats of the pointed
+   * object, and a section that displays the result of an action.</p>
+   */
   private void setUpScene2() {
 
     AnchorPane background = setBackground();
@@ -147,17 +178,28 @@ public class FinalReality extends Application {
     AnchorPane.setTopAnchor(enemies, 100.0);
 
     scene2 = new Scene(background, width, height);
-    scene2.getStylesheets().add("file:" + resource_path + "scene2style.css");
+    scene2.getStylesheets().add("file:" + resourcPath + "scene2style.css");
 
     setKeysToScene2();
   }
 
+  /**
+   * Creates an {@link AnchorPane pane} with the background. Here is where
+   * all the other elements will be displayed.
+   *
+   * @return The background of the scene 2.
+   */
   private AnchorPane setBackground() {
     AnchorPane background = new AnchorPane();
     background.getStyleClass().add("background");
     return background;
   }
 
+  /**
+   * Creates the output section where the action's result will be displayed.
+   *
+   * @return The action's result section.
+   */
   private HBox setUpOutput() {
 
     HBox outputBox = new HBox();
@@ -176,6 +218,13 @@ public class FinalReality extends Application {
     return outputBox;
   }
 
+  /**
+   * Creates all the menu features: a section for the action's options, a
+   * section to display stats of pointed objects and a section to display the
+   * current character.
+   *
+   * @return All menu features inside an {@link HBox}.
+   */
   private HBox setUpMenu() {
 
     for (int i = 0; i < optionsLabels.length; i++) {
@@ -248,6 +297,11 @@ public class FinalReality extends Application {
     return menu;
   }
 
+  /**
+   * Creates all the sprites for the player's characters.
+   *
+   * @return Player's character's sprites.
+   */
   private HBox setUpPlayerCharacter() {
     VBox leftCharacters = new VBox(20);
     leftCharacters.setAlignment(Pos.CENTER);
@@ -256,10 +310,11 @@ public class FinalReality extends Application {
     for (int i = 0; i < MAX_CHARACTERS; i++) {
       PlayerCharacter character = driver.getPlayerCharacters().get(i);
       double time = System.currentTimeMillis() * 0.001;
-      int column = 5 + (int) ((time * 3) % 2);
-      int row = character.getSpriteRow();
+      final int column = 5 + (int) ((time * 3) % 2);
+      final int row = character.getSpriteRow();
 
-      charactersHealth[i] = new Text(character.getName() + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
+      charactersHealth[i] = new Text(character.getName()
+          + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
       charactersHealth[i].setTextAlignment(TextAlignment.CENTER);
       charactersHealth[i].getStyleClass().add("healthbar");
 
@@ -287,15 +342,21 @@ public class FinalReality extends Application {
     return characters;
   }
 
+  /**
+   * Creates all the sprites for the enemies.
+   *
+   * @return Enemies's sprites.
+   */
   private VBox setUpEnemies() {
     HBox enemiesTop = new HBox(20);
     HBox enemiesBottom = new HBox(20);
 
     for (int i = MAX_CHARACTERS; i < MAX_CHARACTERS + MAX_ENEMIES; i++) {
       Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
-      int index = enemy.getWeight() % 3;
+      final int index = enemy.getWeight() % 3;
 
-      charactersHealth[i] = new Text(enemy.getName() + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
+      charactersHealth[i] = new Text(enemy.getName()
+          + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
       charactersHealth[i].setTextAlignment(TextAlignment.CENTER);
       charactersHealth[i].getStyleClass().add("healthbar");
 
@@ -304,19 +365,25 @@ public class FinalReality extends Application {
       charactersSprites[i].setFitWidth(140);
 
       int column;
-      effectSprites[i - MAX_CHARACTERS][0] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      effectSprites[i - MAX_CHARACTERS][0] =
+          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
       column = enemy.getBurntStatus().spriteColumn();
-      effectSprites[i - MAX_CHARACTERS][0].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][0].setViewport(
+          new Rectangle2D(100 * column, 0, 100, 100));
       effectSprites[i - MAX_CHARACTERS][0].setFitWidth(40);
       effectSprites[i - MAX_CHARACTERS][0].setFitHeight(40);
-      effectSprites[i - MAX_CHARACTERS][1] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      effectSprites[i - MAX_CHARACTERS][1] =
+          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
       column = enemy.getPoisonStatus().spriteColumn();
-      effectSprites[i - MAX_CHARACTERS][1].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][1].setViewport(
+          new Rectangle2D(100 * column, 0, 100, 100));
       effectSprites[i - MAX_CHARACTERS][1].setFitWidth(40);
       effectSprites[i - MAX_CHARACTERS][1].setFitHeight(40);
-      effectSprites[i - MAX_CHARACTERS][2] = new ImageView(new Image("file:" + resource_path + "sprites/effects.png"));
+      effectSprites[i - MAX_CHARACTERS][2] =
+          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
       column = enemy.getParalysisStatus().spriteColumn();
-      effectSprites[i - MAX_CHARACTERS][2].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+      effectSprites[i - MAX_CHARACTERS][2].setViewport(
+          new Rectangle2D(100 * column, 0, 100, 100));
       effectSprites[i - MAX_CHARACTERS][2].setFitWidth(40);
       effectSprites[i - MAX_CHARACTERS][2].setFitHeight(40);
 
@@ -341,18 +408,26 @@ public class FinalReality extends Application {
     return enemies;
   }
 
+  /**
+   * Transitions between the start screen to the battle screen.
+   * <p>The music is changed, stop the first scene's timer and starts
+   * the seconds scene's timer, and sets a new scene to the window.</p>
+   */
   private void beginGame() {
     timer2.stop();
     timer1.start();
     window.setScene(scene2);
     mediaPlayer.stop();
-    Media battle = new Media(new File(resource_path + "/sounds/battle.wav").toURI().toString());
+    Media battle = new Media(new File(resourcPath + "/sounds/battle.wav").toURI().toString());
     mediaPlayer = new MediaPlayer(battle);
     mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     mediaPlayer.play();
     driver.execute();
   }
 
+  /**
+   * Sets keys to scene 2.
+   */
   private void setKeysToScene2() {
     scene2.setOnKeyPressed(event -> {
       switch (event.getCode()) {
@@ -374,10 +449,14 @@ public class FinalReality extends Application {
           }
         }
         case ESCAPE -> Platform.exit();
+        default -> { }
       }
     });
   }
 
+  /**
+   * Sets keys to scene 1.
+   */
   private void setKeysToScene1() {
     scene1.setOnKeyPressed(event -> {
       switch (event.getCode()) {
@@ -387,10 +466,14 @@ public class FinalReality extends Application {
           beginGame();
         }
         case ESCAPE -> Platform.exit();
+        default -> { }
       }
     });
   }
 
+  /**
+   * Sets the timer for the second scene. Updates HP and MP, sprites animations, etc.
+   */
   private void setUpTimerScene2() {
     timer1 = new AnimationTimer() {
       @Override
@@ -463,7 +546,8 @@ public class FinalReality extends Application {
           PlayerCharacter character = driver.getPlayerCharacters().get(i);
           int r = character.getSpriteRow();
 
-          charactersHealth[i].setText(character.getName() + "\n" + character.getCurrentHp() + "/" + character.getMaxHp());
+          charactersHealth[i].setText(character.getName() + "\n"
+              + character.getCurrentHp() + "/" + character.getMaxHp());
 
           Rectangle2D newAnimationFrame;
           if (character.isAlive()) {
@@ -489,14 +573,18 @@ public class FinalReality extends Application {
         for (int i = MAX_CHARACTERS; i < MAX_CHARACTERS + MAX_ENEMIES; i++) {
           Enemy enemy = driver.getEnemyList().get(i - MAX_CHARACTERS);
 
-          charactersHealth[i].setText(enemy.getName() + "\n" + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
+          charactersHealth[i].setText(enemy.getName() + "\n"
+              + enemy.getCurrentHp() + "/" + enemy.getMaxHp());
 
           column = enemy.getBurntStatus().spriteColumn();
-          effectSprites[i - MAX_CHARACTERS][0].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+          effectSprites[i - MAX_CHARACTERS][0].setViewport(
+              new Rectangle2D(100 * column, 0, 100, 100));
           column = enemy.getPoisonStatus().spriteColumn();
-          effectSprites[i - MAX_CHARACTERS][1].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+          effectSprites[i - MAX_CHARACTERS][1].setViewport(
+              new Rectangle2D(100 * column, 0, 100, 100));
           column = enemy.getParalysisStatus().spriteColumn();
-          effectSprites[i - MAX_CHARACTERS][2].setViewport(new Rectangle2D(100 * column, 0, 100, 100));
+          effectSprites[i - MAX_CHARACTERS][2].setViewport(
+              new Rectangle2D(100 * column, 0, 100, 100));
         }
 
         actionOutput.setText(driver.getActionOutput());
@@ -507,6 +595,9 @@ public class FinalReality extends Application {
     };
   }
 
+  /**
+   * Sets the timer for the first scene. Updates game title's color.
+   */
   void setUpTimerScene1() {
     timer2 = new AnimationTimer() {
       @Override

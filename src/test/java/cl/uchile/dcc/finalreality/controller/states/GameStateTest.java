@@ -1,9 +1,9 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.controller.states.*;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.*;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.states.*;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

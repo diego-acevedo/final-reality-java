@@ -1,18 +1,18 @@
 package cl.uchile.dcc.finalreality.controller;
 
-import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.character.*;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.enemy.EnemyFactory;
-import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.*;
-import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
-import cl.uchile.dcc.finalreality.model_controller.model.spell.Poison;
-import cl.uchile.dcc.finalreality.model_controller.model.spell.Spell;
-import cl.uchile.dcc.finalreality.model_controller.model.spell.Thunder;
-import cl.uchile.dcc.finalreality.model_controller.model.weapon.Weapon;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.character.*;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.enemy.EnemyFactory;
+import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.modelcontroller.controller.factories.weapon.*;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.modelcontroller.model.spell.Poison;
+import cl.uchile.dcc.finalreality.modelcontroller.model.spell.Spell;
+import cl.uchile.dcc.finalreality.modelcontroller.model.spell.Thunder;
+import cl.uchile.dcc.finalreality.modelcontroller.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
