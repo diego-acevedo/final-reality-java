@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.exceptions;
 
 import cl.uchile.dcc.finalreality.Utils;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidEquipableWeaponException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 

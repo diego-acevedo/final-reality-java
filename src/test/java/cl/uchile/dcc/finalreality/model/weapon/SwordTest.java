@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Sword;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,5 +48,27 @@ class SwordTest {
     assertNotEquals(sword2.toString(),sword3.toString());
     assertNotEquals(sword3.toString(),sword1.toString());
     assertNotEquals(sword1.toString(),sword2.toString());
+  }
+
+  @Test
+  void testStats() {
+    String stats1 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(sword1.getClass().getSimpleName(), sword1.getDamage(), sword1.getWeight());
+    assertEquals(stats1, sword1.getStats());
+    String stats2 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(sword2.getClass().getSimpleName(), sword2.getDamage(), sword2.getWeight());
+    assertEquals(stats2, sword2.getStats());
+    String stats3 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(sword3.getClass().getSimpleName(), sword3.getDamage(), sword3.getWeight());
+    assertEquals(stats3, sword3.getStats());
   }
 }

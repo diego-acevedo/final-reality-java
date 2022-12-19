@@ -1,18 +1,13 @@
 package cl.uchile.dcc.finalreality.controller.factories.weapon;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.controller.factories.character.AbstractCharacterFactory;
-import cl.uchile.dcc.finalreality.controller.factories.character.BlackMageFactory;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.Sword;
-import cl.uchile.dcc.finalreality.model.weapon.Weapon;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.AbstractWeaponFactory;
+import cl.uchile.dcc.finalreality.model_controller.controller.factories.weapon.SwordFactory;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Sword;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.BlockingQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import org.junit.jupiter.api.BeforeAll;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Axe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,5 +47,27 @@ class AxeTest {
     assertNotEquals(axe2.toString(),axe3.toString());
     assertNotEquals(axe3.toString(),axe1.toString());
     assertNotEquals(axe1.toString(),axe2.toString());
+  }
+
+  @Test
+  void testStats() {
+    String stats1 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(axe1.getClass().getSimpleName(), axe1.getDamage(), axe1.getWeight());
+    assertEquals(stats1, axe1.getStats());
+    String stats2 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(axe2.getClass().getSimpleName(), axe2.getDamage(), axe2.getWeight());
+    assertEquals(stats2, axe2.getStats());
+    String stats3 = """
+        Type: %s
+        Damage: %d
+        Weight: %d"""
+        .formatted(axe3.getClass().getSimpleName(), axe3.getDamage(), axe3.getWeight());
+    assertEquals(stats3, axe3.getStats());
   }
 }

@@ -1,10 +1,13 @@
 package cl.uchile.dcc.finalreality.model.character;
 
-import cl.uchile.dcc.finalreality.exceptions.*;
-import cl.uchile.dcc.finalreality.model.character.player.*;
-import cl.uchile.dcc.finalreality.model.spell.*;
-import cl.uchile.dcc.finalreality.model.weapon.Staff;
-import cl.uchile.dcc.finalreality.model.weapon.Weapon;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.*;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.*;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Cure;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

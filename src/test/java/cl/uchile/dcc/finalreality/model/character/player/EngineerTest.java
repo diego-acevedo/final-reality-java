@@ -1,9 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.*;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.Engineer;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -117,5 +118,42 @@ class EngineerTest {
     assertNotEquals(engineer1, engineer2);
     assertNotEquals(engineer3, engineer2);
     assertNotEquals(engineer1, engineer3);
+  }
+
+  @Test
+  void spriteRowTest() {
+    assertEquals(8, engineer1.getSpriteRow());
+    assertEquals(8, engineer2.getSpriteRow());
+    assertEquals(8, engineer3.getSpriteRow());
+  }
+
+  @Test
+  void infoTest() throws InvalidStatValueException {
+    assertEquals("HP: " + engineer1.getCurrentHp() + "/" + engineer1.getMaxHp(), engineer1.getInfo());
+    engineer1.setCurrentHp((new Random()).nextInt(9, engineer1.getMaxHp()));
+    assertEquals("HP: " + engineer1.getCurrentHp() + "/" + engineer1.getMaxHp(), engineer1.getInfo());
+    engineer1.setCurrentHp((new Random()).nextInt(9, engineer1.getMaxHp()));
+    assertEquals("HP: " + engineer1.getCurrentHp() + "/" + engineer1.getMaxHp(), engineer1.getInfo());
+    engineer1.setCurrentHp((new Random()).nextInt(9, engineer1.getMaxHp()));
+    assertEquals("HP: " + engineer1.getCurrentHp() + "/" + engineer1.getMaxHp(), engineer1.getInfo());
+  }
+
+  @Test
+  void statsTest() {
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(engineer1.getName(), engineer1.getCurrentHp(), engineer1.getDefense()), engineer1.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(engineer2.getName(), engineer2.getCurrentHp(), engineer2.getDefense()), engineer2.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(engineer3.getName(), engineer3.getCurrentHp(), engineer3.getDefense()), engineer3.getStats());
   }
 }

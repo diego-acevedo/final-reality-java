@@ -1,9 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.*;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -130,5 +131,55 @@ class WhiteMageTest {
     assertNotEquals(whitemage1.toString(), whitemage2.toString());
     assertNotEquals(whitemage1.toString(), whitemage3.toString());
     assertNotEquals(whitemage2.toString(), whitemage3.toString());
+  }
+
+  @Test
+  void spriteRowTest() {
+    assertEquals(4, whitemage1.getSpriteRow());
+    assertEquals(4, whitemage2.getSpriteRow());
+    assertEquals(4, whitemage3.getSpriteRow());
+  }
+
+  @Test
+  void infoTest() throws InvalidStatValueException {
+    assertEquals("HP: " + whitemage1.getCurrentHp() + "/" + whitemage1.getMaxHp()
+        + "\nMP: " + whitemage1.getCurrentMp() + "/" + whitemage1.getMaxMp(), whitemage1.getInfo());
+    whitemage1.setCurrentHp((new Random()).nextInt(9, whitemage1.getMaxHp()));
+    whitemage1.setCurrentMp((new Random()).nextInt(9, whitemage1.getMaxMp()));
+    assertEquals("HP: " + whitemage1.getCurrentHp() + "/" + whitemage1.getMaxHp()
+        + "\nMP: " + whitemage1.getCurrentMp() + "/" + whitemage1.getMaxMp(), whitemage1.getInfo());
+    whitemage1.setCurrentHp((new Random()).nextInt(9, whitemage1.getMaxHp()));
+    whitemage1.setCurrentMp((new Random()).nextInt(9, whitemage1.getMaxMp()));
+    assertEquals("HP: " + whitemage1.getCurrentHp() + "/" + whitemage1.getMaxHp()
+        + "\nMP: " + whitemage1.getCurrentMp() + "/" + whitemage1.getMaxMp(), whitemage1.getInfo());
+    whitemage1.setCurrentHp((new Random()).nextInt(9, whitemage1.getMaxHp()));
+    whitemage1.setCurrentMp((new Random()).nextInt(9, whitemage1.getMaxMp()));
+    assertEquals("HP: " + whitemage1.getCurrentHp() + "/" + whitemage1.getMaxHp()
+        + "\nMP: " + whitemage1.getCurrentMp() + "/" + whitemage1.getMaxMp(), whitemage1.getInfo());
+  }
+
+  @Test
+  void statsTest() {
+    assertEquals("""
+        Name: %s
+        HP: %d
+        MP: %d
+        Defense: %d"""
+        .formatted(whitemage1.getName(), whitemage1.getCurrentHp(),
+            whitemage1.getCurrentMp(), whitemage1.getDefense()), whitemage1.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        MP: %d
+        Defense: %d"""
+        .formatted(whitemage2.getName(), whitemage2.getCurrentHp(),
+            whitemage2.getCurrentMp(), whitemage2.getDefense()), whitemage2.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        MP: %d
+        Defense: %d"""
+        .formatted(whitemage3.getName(), whitemage3.getCurrentHp(),
+            whitemage3.getCurrentMp(), whitemage3.getDefense()), whitemage3.getStats());
   }
 }

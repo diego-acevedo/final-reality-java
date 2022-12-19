@@ -1,9 +1,10 @@
 package cl.uchile.dcc.finalreality.model.character.player;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidEquipableWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.weapon.*;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidEquipableWeaponException;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.Thief;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -114,5 +115,42 @@ class ThiefTest {
     assertNotEquals(thief1, thief2);
     assertNotEquals(thief3, thief2);
     assertNotEquals(thief1, thief3);
+  }
+
+  @Test
+  void spriteRowTest() {
+    assertEquals(1, thief1.getSpriteRow());
+    assertEquals(1, thief2.getSpriteRow());
+    assertEquals(1, thief3.getSpriteRow());
+  }
+
+  @Test
+  void infoTest() throws InvalidStatValueException {
+    assertEquals("HP: " + thief1.getCurrentHp() + "/" + thief1.getMaxHp(), thief1.getInfo());
+    thief1.setCurrentHp((new Random()).nextInt(9, thief1.getMaxHp()));
+    assertEquals("HP: " + thief1.getCurrentHp() + "/" + thief1.getMaxHp(), thief1.getInfo());
+    thief1.setCurrentHp((new Random()).nextInt(9, thief1.getMaxHp()));
+    assertEquals("HP: " + thief1.getCurrentHp() + "/" + thief1.getMaxHp(), thief1.getInfo());
+    thief1.setCurrentHp((new Random()).nextInt(9, thief1.getMaxHp()));
+    assertEquals("HP: " + thief1.getCurrentHp() + "/" + thief1.getMaxHp(), thief1.getInfo());
+  }
+
+  @Test
+  void statsTest() {
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(thief1.getName(), thief1.getCurrentHp(), thief1.getDefense()), thief1.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(thief2.getName(), thief2.getCurrentHp(), thief2.getDefense()), thief2.getStats());
+    assertEquals("""
+        Name: %s
+        HP: %d
+        Defense: %d"""
+        .formatted(thief3.getName(), thief3.getCurrentHp(), thief3.getDefense()), thief3.getStats());
   }
 }

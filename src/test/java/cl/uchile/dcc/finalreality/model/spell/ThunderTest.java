@@ -1,15 +1,17 @@
 package cl.uchile.dcc.finalreality.model.spell;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.*;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
-import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
-import cl.uchile.dcc.finalreality.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.*;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Thunder;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.MagicWeapon;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.BlockingQueue;
@@ -47,6 +49,10 @@ class ThunderTest {
       throws InvalidMagicWeaponException, InvalidManaValueException,
       InvalidStatValueException, InvalidMageException,
       InvalidTargetCharacterException {
+    assertEquals("""
+        Reduces opponent's life with a 30% chance of paralysis.
+        Type: Black
+        Cost: 15 MP""", spell.description());
     assertThrows(InvalidMageException.class, () -> whiteMage.useMagic(spell, enemy));
     assertThrows(InvalidTargetCharacterException.class, () -> blackMage.useMagic(spell, knight));
     blackMage.useMagic(spell, enemy);

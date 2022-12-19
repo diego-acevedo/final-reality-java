@@ -1,9 +1,11 @@
 package cl.uchile.dcc.finalreality.model.effect;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.PoisonEffect;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.PoisonousEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +33,9 @@ class PoisonEffectTest {
   @Test
   void burntEffectTest() throws InvalidStatValueException {
     assertFalse(enemy.getPoisonStatus().isPoisoned());
+    assertEquals(3, enemy.getPoisonStatus().spriteColumn());
     enemy.changePoisonousStatus(effect);
+    assertEquals(1, enemy.getPoisonStatus().spriteColumn());
     assertEquals(100, enemy.getCurrentHp());
     enemy.receiveEffect();
     assertEquals(50, enemy.getCurrentHp());

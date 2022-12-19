@@ -1,9 +1,11 @@
 package cl.uchile.dcc.finalreality.model.effect;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.BurntEffect;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.FireEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +33,9 @@ class BurntEffectTest {
   @Test
   void burntEffectTest() throws InvalidStatValueException {
     assertFalse(enemy.getBurntStatus().isBurnt());
+    assertEquals(3, enemy.getBurntStatus().spriteColumn());
     enemy.changeBurntStatus(effect);
+    assertEquals(0, enemy.getBurntStatus().spriteColumn());
     assertEquals(100, enemy.getCurrentHp());
     enemy.receiveEffect();
     assertEquals(50, enemy.getCurrentHp());

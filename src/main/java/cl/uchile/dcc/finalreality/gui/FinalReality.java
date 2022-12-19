@@ -1,10 +1,10 @@
 package cl.uchile.dcc.finalreality.gui;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -26,8 +26,8 @@ import javafx.util.Duration;
 import java.io.File;
 import java.util.Random;
 
-import static cl.uchile.dcc.finalreality.controller.GameDriver.MAX_CHARACTERS;
-import static cl.uchile.dcc.finalreality.controller.GameDriver.MAX_ENEMIES;
+import static cl.uchile.dcc.finalreality.model_controller.controller.GameDriver.MAX_CHARACTERS;
+import static cl.uchile.dcc.finalreality.model_controller.controller.GameDriver.MAX_ENEMIES;
 
 public class FinalReality extends Application {
 

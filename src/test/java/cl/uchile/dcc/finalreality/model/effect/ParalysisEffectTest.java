@@ -1,9 +1,11 @@
 package cl.uchile.dcc.finalreality.model.effect;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.ParalysisEffect;
+import cl.uchile.dcc.finalreality.model_controller.model.effect.ParalyzableEffect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +33,9 @@ class ParalysisEffectTest {
   @Test
   void paralysisEffectTest() throws InvalidStatValueException {
     assertFalse(enemy.isParalysed());
+    assertEquals(3, enemy.getParalysisStatus().spriteColumn());
     enemy.changeParalysisStatus(effect);
+    assertEquals(2, enemy.getParalysisStatus().spriteColumn());
     enemy.receiveEffect();
     assertTrue(enemy.isParalysed());
     enemy.receiveEffect();

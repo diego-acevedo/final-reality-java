@@ -1,15 +1,17 @@
 package cl.uchile.dcc.finalreality.model.spell;
 
-import cl.uchile.dcc.finalreality.controller.GameDriver;
-import cl.uchile.dcc.finalreality.exceptions.*;
-import cl.uchile.dcc.finalreality.model.character.Enemy;
-import cl.uchile.dcc.finalreality.model.character.GameCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.BlackMage;
-import cl.uchile.dcc.finalreality.model.character.player.Knight;
-import cl.uchile.dcc.finalreality.model.character.player.PlayerCharacter;
-import cl.uchile.dcc.finalreality.model.character.player.WhiteMage;
-import cl.uchile.dcc.finalreality.model.weapon.MagicWeapon;
-import cl.uchile.dcc.finalreality.model.weapon.Staff;
+import cl.uchile.dcc.finalreality.model_controller.controller.GameDriver;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.*;
+import cl.uchile.dcc.finalreality.model_controller.model.character.Enemy;
+import cl.uchile.dcc.finalreality.model_controller.model.character.GameCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.BlackMage;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.Knight;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.PlayerCharacter;
+import cl.uchile.dcc.finalreality.model_controller.model.character.player.WhiteMage;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Cure;
+import cl.uchile.dcc.finalreality.model_controller.model.spell.Spell;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.MagicWeapon;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +51,10 @@ class CureTest {
       throws InvalidStatValueException, InvalidMagicWeaponException,
       InvalidManaValueException, InvalidMageException,
       InvalidTargetCharacterException {
+    assertEquals("""
+        Heals an ally 30% of their max HP.
+        Type: White Magic
+        Cost: 15 MP""", spell.description());
     enemy.setCurrentHp(50);
     knight.setCurrentHp(50);
     assertThrows(InvalidTargetCharacterException.class, () -> whiteMage.useMagic(spell, enemy));

@@ -1,7 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
-import org.apache.commons.lang3.ObjectUtils;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.NullWeapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +38,16 @@ class NullWeaponTest {
 
     assertEquals(weapon3, weapon1);
     assertEquals(weapon3, weapon2);
+  }
+
+  @Test
+  void testStats() {
+    String stats1 = "";
+    assertEquals(stats1, weapon1.getStats());
+    String stats2 = "";
+    assertEquals(stats2, weapon2.getStats());
+    String stats3 = "";
+    assertEquals(stats3, weapon3.getStats());
   }
 
 }

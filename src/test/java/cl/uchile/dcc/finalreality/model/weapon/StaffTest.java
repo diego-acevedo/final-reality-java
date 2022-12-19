@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapon;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.exceptions.InvalidStatValueException;
+import cl.uchile.dcc.finalreality.model_controller.model.weapon.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +53,30 @@ class StaffTest {
     assertNotEquals(staff2.toString(),staff3.toString());
     assertNotEquals(staff3.toString(),staff1.toString());
     assertNotEquals(staff1.toString(),staff2.toString());
+  }
+
+  @Test
+  void testStats() {
+    String stats1 = """
+        Type: %s
+        Damage: %d
+        Magic Damage: %d
+        Weight: %d"""
+        .formatted(staff1.getClass().getSimpleName(), staff1.getDamage(), staff1.getMagicDamage(), staff1.getWeight());
+    assertEquals(stats1, staff1.getStats());
+    String stats2 = """
+        Type: %s
+        Damage: %d
+        Magic Damage: %d
+        Weight: %d"""
+        .formatted(staff2.getClass().getSimpleName(), staff2.getDamage(), staff2.getMagicDamage(), staff2.getWeight());
+    assertEquals(stats2, staff2.getStats());
+    String stats3 = """
+        Type: %s
+        Damage: %d
+        Magic Damage: %d
+        Weight: %d"""
+        .formatted(staff3.getClass().getSimpleName(), staff3.getDamage(), staff3.getMagicDamage(), staff3.getWeight());
+    assertEquals(stats3, staff3.getStats());
   }
 }
