@@ -62,7 +62,7 @@ public class Inventory {
    */
   public void initialize(AbstractWeaponFactory factory)
       throws InvalidStatValueException {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       this.addItem(factory.create());
     }
   }

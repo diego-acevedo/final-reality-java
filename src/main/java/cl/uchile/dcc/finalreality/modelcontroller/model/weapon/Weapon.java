@@ -101,5 +101,10 @@ public interface Weapon {
    */
   boolean isNull();
 
+  /**
+   * Returns the weapon's stats.
+   *
+   * @return Weapon's stats.
+   */
   String getStats();
 }

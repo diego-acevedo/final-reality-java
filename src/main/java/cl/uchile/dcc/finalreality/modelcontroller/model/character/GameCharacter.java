@@ -115,7 +115,17 @@ public interface GameCharacter {
    */
   boolean isPlayable();
 
+  /**
+   * Returns the character's info.
+   *
+   * @return Character's info.
+   */
   String getInfo();
 
+  /**
+   * Returns the character's stats.
+   *
+   * @return Character's stats.
+   */
   String getStats();
 }

@@ -90,5 +90,10 @@ public interface Spell {
    */
   void checkMana(int mageMana) throws InvalidManaValueException;
 
+  /**
+   * Returns the spell's description.
+   *
+   * @return Spell's description.
+   */
   String description();
 }

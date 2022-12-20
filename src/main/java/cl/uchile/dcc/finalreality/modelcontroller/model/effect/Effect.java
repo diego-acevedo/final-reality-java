@@ -24,5 +24,10 @@ public interface Effect {
    */
   void setEnemy(Enemy enemy);
 
+  /**
+   * Returns the column where the sprite is lacated.
+   *
+   * @return Sprite's column.
+   */
   int spriteColumn();
 }
