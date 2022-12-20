@@ -42,7 +42,7 @@ public class SelectSpell extends AbstractState {
   @Override
   public void execute() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % spells.size() < 0) {
       selectPos = (gameDriver.getCursor() % spells.size())
           + spells.size();
     } else {
@@ -56,7 +56,7 @@ public class SelectSpell extends AbstractState {
   @Override
   public List<String> options() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % spells.size() < 0) {
       selectPos = (gameDriver.getCursor() % spells.size())
           + spells.size();
     } else {
@@ -81,7 +81,7 @@ public class SelectSpell extends AbstractState {
   @Override
   public String getStats() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % spells.size() < 0) {
       selectPos = (gameDriver.getCursor() % spells.size())
           + spells.size();
     } else {

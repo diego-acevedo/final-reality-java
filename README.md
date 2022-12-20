@@ -1,8 +1,5 @@
-<div style="width:300px">
 
-![](img/FinalReality.png)
-
-</div>
+<img src="img/FinalReality.png" width="250" alt="fr"/>
 
 ![http://creativecommons.org/licenses/by/4.0/](https://i.creativecommons.org/l/by/4.0/88x31.png)
 
@@ -25,12 +22,15 @@ This game consists of the following units:
 ### Characters
 
 There are 6 types of characters:
-- Knight
-- Engineer
-- Thief
-- Black Mage
-- White Mage 
-- Enemy
+
+| Character  |                                                                                                     Sprite                                                                                                     |
+|:----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|   Knight   |                                                                                     <img src="img/knight.png" width="50">                                                                                      |
+|  Engineer  |                                                                                    <img src="img/engineer.png" width="50">                                                                                     |
+|   Thief    |                                                                                      <img src="img/thief.png" width="50">                                                                                      |
+| Black Mage |                                                                                    <img src="img/blackmage.png" width="50">                                                                                    |
+| White Mage |                                                                                    <img src="img/whitemage.png" width="50">                                                                                    |
+|   Enemy    | <img src="src/main/resources/sprites/sprites-enemy1.png" width="50"> <img src="src/main/resources/sprites/sprites-enemy2.png" width="50"> <img src="src/main/resources/sprites/sprites-enemy3.png" width="50"> |
 
 The first five characters can be used by the user. Unlike enemies,
 this characters can equip weapons. The Black Mage character and White
@@ -100,8 +100,10 @@ There are three different effects:
 * **Bunrt**: At the beginning of every turn, the affected character's HP will be reduced.
 * **Poisoned**: At the beginning of every turn, the affected character's HP will be reduced.
 
+<img src="src/main/resources/sprites/effects.png" width="300" alt="">
+
 Controller
-------
+-------
 
 The controller allows the player to interact with the game. The controller
 has a cursor that the player can use to navigate the different options that
@@ -114,6 +116,31 @@ states are automatically executed, or played by the CPU, and others wait
 for the player to select an options. The states design is shown below.
 
 ![](img/StateDiagram.png)
+
+GUI
+-------
+
+<img src="img/gui1.png" width="400" alt="">
+
+<img src="img/gui2.png" width="400" alt="">
+
+How to play
+-------
+
+The goal is to defeat all the enemies before they kill all the player's
+characters. At the beginning, none of the characters has a
+weapon equipped, so the first step is to equip a weapon to the
+current character, and then the player can attack or cast a spell.
+After that, the player has to wait for their turn before attacking
+again.
+
+### Controls
+
+**Move cursor:** W - UP to move up, S - DOWN to move down.
+
+**Select action:** ENTER - SPACE to select an action.
+
+**Exit:** ESCAPE to close window.
 
 Changes implemented (Firts Assigment)
 -------
@@ -194,3 +221,12 @@ and cast spells.
 a seed. The initialization of the game's elements is done through
 factories.
 6. Game driver is a sigleton object.
+
+Changes implemented (Optional assigment)
+-------
+
+The GUI was implemented, allowing the player interact with the
+game through the controller in a more dynamic way. The GUI contains
+sprites for characters and enemies, background music, a background
+battle, and two screens (start screen and battle screen), among other
+things.

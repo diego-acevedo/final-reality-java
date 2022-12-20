@@ -33,7 +33,7 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public void execute() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % aliveEnemies.size() < 0) {
       selectPos = (gameDriver.getCursor() % aliveEnemies.size())
           + aliveEnemies.size();
     } else {
@@ -54,7 +54,7 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public List<String> options() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % aliveEnemies.size() < 0) {
       selectPos = (gameDriver.getCursor() % aliveEnemies.size())
           + aliveEnemies.size();
     } else {
@@ -79,7 +79,7 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public String getStats() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % aliveEnemies.size() < 0) {
       selectPos = (gameDriver.getCursor() % aliveEnemies.size())
           + aliveEnemies.size();
     } else {

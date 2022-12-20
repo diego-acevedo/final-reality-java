@@ -35,7 +35,7 @@ public class PlayerSelectAction extends AbstractState {
   @Override
   public void execute() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % possibleNextTransitions.size() < 0) {
       selectPos = (gameDriver.getCursor() % possibleNextTransitions.size())
           + possibleNextTransitions.size();
     } else {
@@ -48,7 +48,7 @@ public class PlayerSelectAction extends AbstractState {
   @Override
   public List<String> options() {
     int selectPos;
-    if (gameDriver.getCursor() < 0) {
+    if (gameDriver.getCursor() % possibleNextTransitions.size() < 0) {
       selectPos = (gameDriver.getCursor() % possibleNextTransitions.size())
           + possibleNextTransitions.size();
     } else {

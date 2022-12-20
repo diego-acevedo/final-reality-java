@@ -431,17 +431,17 @@ public class FinalReality extends Application {
   private void setKeysToScene2() {
     scene2.setOnKeyPressed(event -> {
       switch (event.getCode()) {
-        case UP -> {
+        case W, UP -> {
           MediaPlayer cursor = new MediaPlayer(cursorMedia);
           cursor.play();
           driver.moveCursor(-1);
         }
-        case DOWN -> {
+        case S, DOWN -> {
           MediaPlayer cursor = new MediaPlayer(cursorMedia);
           cursor.play();
           driver.moveCursor(1);
         }
-        case ENTER -> {
+        case ENTER, SPACE -> {
           MediaPlayer enter = new MediaPlayer(enterMedia);
           enter.play();
           if (driver.getCurrentCharacter().isPlayable()) {
@@ -483,7 +483,7 @@ public class FinalReality extends Application {
         if (options.length >= 3) {
           int cursor = driver.getCursor();
           int index;
-          if (cursor < 0) {
+          if (cursor % options.length < 0) {
             index = (cursor % options.length) + options.length;
           } else {
             index = cursor % options.length;
