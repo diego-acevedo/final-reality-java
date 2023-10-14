@@ -4,7 +4,6 @@ plugins {
     java
     id("application")
     id("org.openjfx.javafxplugin") version "0.0.13"
-//    id("jacoco")
 }
 
 java {
@@ -13,7 +12,6 @@ java {
 
 application {
     mainModule.set(moduleName)
-//    mainClass.set("cl.uchile.dcc.finalreality.gui.FinalReality")
 }
 
 group = "cl.uchile.dcc"

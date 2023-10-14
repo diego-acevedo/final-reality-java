@@ -31,23 +31,23 @@ class InventoryTest {
     List<Weapon> expectedInventory = new ArrayList<>();
     getGameDriver(seed);
     AbstractWeaponFactory factory = new AxeFactory();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       expectedInventory.add(factory.create());
     }
     factory = new BowFactory();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       expectedInventory.add(factory.create());
     }
     factory = new KnifeFactory();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       expectedInventory.add(factory.create());
     }
     factory = new StaffFactory();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       expectedInventory.add(factory.create());
     }
     factory = new SwordFactory();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       expectedInventory.add(factory.create());
     }
     for (int i = 0; i < expectedInventory.size(); i++) {

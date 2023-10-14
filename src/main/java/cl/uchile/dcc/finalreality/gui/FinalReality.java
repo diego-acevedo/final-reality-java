@@ -8,7 +8,7 @@ import cl.uchile.dcc.finalreality.modelcontroller.exceptions.InvalidStatValueExc
 import cl.uchile.dcc.finalreality.modelcontroller.model.character.Enemy;
 import cl.uchile.dcc.finalreality.modelcontroller.model.character.GameCharacter;
 import cl.uchile.dcc.finalreality.modelcontroller.model.character.player.PlayerCharacter;
-import java.io.File;
+import java.net.URL;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -51,20 +51,21 @@ public class FinalReality extends Application {
   private final Label[] optionsLabels = new Label[3];
   private Text instructions;
   private Text currentCharacter;
+  private final URL spritesCharactersURL = getClass().getClassLoader().getResource("sprites/sprites.png");
   private final Image spritesCharacters =
-      new Image("file:" + resourcPath + "sprites/sprites.png");
+      new Image(spritesCharactersURL.toExternalForm());
   private final Image[] enemySprites =
-    {new Image("file:" + resourcPath + "sprites/sprites-enemy1.png"),
-     new Image("file:" + resourcPath + "sprites/sprites-enemy2.png"),
-     new Image("file:" + resourcPath + "sprites/sprites-enemy3.png")};
+    {new Image(getClass().getClassLoader().getResource("sprites/sprites-enemy1.png").toExternalForm()),
+     new Image(getClass().getClassLoader().getResource("sprites/sprites-enemy2.png").toExternalForm()),
+     new Image(getClass().getClassLoader().getResource("sprites/sprites-enemy3.png").toExternalForm())};
   private final ImageView currentCharacterSprite = new ImageView();
   private final ImageView[] charactersSprites = new ImageView[MAX_CHARACTERS + MAX_ENEMIES];
   private final ImageView[][] effectSprites = new ImageView[MAX_ENEMIES][3];
   private MediaPlayer mediaPlayer;
   private final Media enterMedia =
-      new Media(new File(resourcPath + "sounds/ENTER.mp3").toURI().toString());
+      new Media(getClass().getClassLoader().getResource("sounds/ENTER.mp3").toExternalForm());
   private final Media cursorMedia =
-      new Media(new File(resourcPath + "sounds/CURSOR.mp3").toURI().toString());
+      new Media(getClass().getClassLoader().getResource("sounds/CURSOR.mp3").toExternalForm());
   private final Text[] charactersHealth = new Text[MAX_CHARACTERS + MAX_ENEMIES];
   private final Text actionOutput = new Text("");
   private final Text stats = new Text("");
@@ -100,7 +101,7 @@ public class FinalReality extends Application {
 
     timer2.start();
 
-    Media menuMusic = new Media(new File(resourcPath + "sounds/menu.wav").toURI().toString());
+    Media menuMusic = new Media(getClass().getClassLoader().getResource("sounds/menu.wav").toExternalForm());
     mediaPlayer = new MediaPlayer(menuMusic);
     mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     mediaPlayer.play();
@@ -126,7 +127,7 @@ public class FinalReality extends Application {
     layout1.setAlignment(Pos.CENTER);
 
     scene1 = new Scene(layout1, width, height);
-    scene1.getStylesheets().add("file:" + resourcPath + "scene1style.css");
+    scene1.getStylesheets().add(getClass().getClassLoader().getResource("scene1style.css").toExternalForm());
 
     setKeysToScene1();
   }
@@ -178,7 +179,7 @@ public class FinalReality extends Application {
     AnchorPane.setTopAnchor(enemies, 100.0);
 
     scene2 = new Scene(background, width, height);
-    scene2.getStylesheets().add("file:" + resourcPath + "scene2style.css");
+    scene2.getStylesheets().add(getClass().getClassLoader().getResource("scene2style.css").toExternalForm());
 
     setKeysToScene2();
   }
@@ -366,21 +367,21 @@ public class FinalReality extends Application {
 
       int column;
       effectSprites[i - MAX_CHARACTERS][0] =
-          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
+          new ImageView(new Image(getClass().getClassLoader().getResource("sprites/effects.png").toExternalForm()));
       column = enemy.getBurntStatus().spriteColumn();
       effectSprites[i - MAX_CHARACTERS][0].setViewport(
           new Rectangle2D(100 * column, 0, 100, 100));
       effectSprites[i - MAX_CHARACTERS][0].setFitWidth(40);
       effectSprites[i - MAX_CHARACTERS][0].setFitHeight(40);
       effectSprites[i - MAX_CHARACTERS][1] =
-          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
+          new ImageView(new Image(getClass().getClassLoader().getResource("sprites/effects.png").toExternalForm()));
       column = enemy.getPoisonStatus().spriteColumn();
       effectSprites[i - MAX_CHARACTERS][1].setViewport(
           new Rectangle2D(100 * column, 0, 100, 100));
       effectSprites[i - MAX_CHARACTERS][1].setFitWidth(40);
       effectSprites[i - MAX_CHARACTERS][1].setFitHeight(40);
       effectSprites[i - MAX_CHARACTERS][2] =
-          new ImageView(new Image("file:" + resourcPath + "sprites/effects.png"));
+          new ImageView(new Image(getClass().getClassLoader().getResource("sprites/effects.png").toExternalForm()));
       column = enemy.getParalysisStatus().spriteColumn();
       effectSprites[i - MAX_CHARACTERS][2].setViewport(
           new Rectangle2D(100 * column, 0, 100, 100));
@@ -418,7 +419,7 @@ public class FinalReality extends Application {
     timer1.start();
     window.setScene(scene2);
     mediaPlayer.stop();
-    Media battle = new Media(new File(resourcPath + "/sounds/battle.wav").toURI().toString());
+    Media battle = new Media(getClass().getClassLoader().getResource("sounds/battle.wav").toExternalForm());
     mediaPlayer = new MediaPlayer(battle);
     mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     mediaPlayer.play();
