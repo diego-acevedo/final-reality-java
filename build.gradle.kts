@@ -4,7 +4,6 @@ plugins {
     java
     id("application")
     id("org.openjfx.javafxplugin") version "0.0.13"
-//    id("jacoco")
 }
 
 java {
@@ -13,7 +12,6 @@ java {
 
 application {
     mainModule.set(moduleName)
-//    mainClass.set("cl.uchile.dcc.finalreality.gui.FinalReality")
 }
 
 group = "cl.uchile.dcc"
@@ -33,7 +31,7 @@ dependencies {
 
 javafx {
     version = "14-ea+6"
-    modules = mutableListOf("javafx.controls")
+    modules = mutableListOf("javafx.controls", "javafx.media")
 }
 
 tasks.named<Test>("test") {

@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Pixeloid Sans';
+    src: url('fonts/PixeloidSans-nR3g1.ttf');
+}
+
+.label {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+}
+
+.instruction, .current-char, .action-output {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 15;
+    -fx-fill: white;
+}
+
+.healthbar {
+    -fx-font-family: "Pixeloid Sans";
+    -fx-font-size: 14;
+    -fx-fill: white;
+}
+
+.background {
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-image: url(background.png);
+}
+
+.menu {
+    -fx-background-size: 420 150;
+    -fx-background-image: url(menu.png);
+}
+
+.stats {
+    -fx-background-size: 250 150;
+    -fx-background-image: url(menu2.png);
+}
+
+.cur-char-layout {
+    -fx-background-size: 250 150;
+    -fx-background-image: url(menu2.png);
+}
+
+.output {
+    -fx-background-size: 685 50;
+    -fx-background-image: url(menu3.png);
+}
