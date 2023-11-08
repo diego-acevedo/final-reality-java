@@ -142,7 +142,7 @@ public class FinalReality extends Application {
    */
   private Color getNewColor() {
     long newTime = System.currentTimeMillis();
-    double timeSeconds = ((int) newTime) * 0.001;
+    double timeSeconds = newTime * 0.001;
     int index = ((int) (timeSeconds / 5)) % 5;
     double delta = ((timeSeconds / 5) % 5) - (((int) (timeSeconds / 5)) % 5);
 
